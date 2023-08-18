@@ -197,3 +197,85 @@ tabloda tutuyor olacağız. (firmalar SQL formatında tutuyor olacak)
 3) Bir kişi IDsini bildiğimiz (yukarıda çıkardığımız) yemeği hazırladığı zaman, direkt tablomuzdan yararlanarak 
 önerilerde bulunacağız.
 """
+
+#############################
+# Amazon'da ürün arama'
+#############################
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+# def search_amazon_selenium(query):
+#    driver = webdriver.Chrome()
+ #   driver.get("https://www.amazon.de")
+
+#    search_box = driver.find_element("id", "twotabsearchtextbox")
+#    search_box.send_keys(query)
+#    search_box.send_keys(Keys.RETURN)
+
+#    input("İşlemler tamamlandı. Enter tuşuna basın to exit...")
+
+    # Tarayıcıyı kapatmadan önce kullanıcının onayını bekliyoruz
+ #   driver.quit()
+
+#search_amazon_selenium("green apple")
+
+
+# yukarıdaki ile deneme yapıld. uygulamada aşağıdaki kullanılacak.
+def search_amazon_selenium(query):
+    driver = webdriver.Chrome()
+    driver.get("https://www.amazon.de")
+
+    search_box = driver.find_element("id", "twotabsearchtextbox")
+    search_box.send_keys(query)
+    search_box.send_keys(Keys.RETURN)
+
+    # Sayfa sonucu işlemleri ve verilerin çekilmesi burada yapılabilir
+
+    # Tarif seçildiğinde ve eksik malzemeler listelendiğinde
+    # kullanıcıdan hangi malzemenin tıklanacağını seçmesi beklenir.
+    clicked_ingredient = "Apple"  # Kullanıcı tarafından seçilen malzeme
+
+    # Seçilen malzemeyi yeni bir sorgu olarak kullanmak için
+    new_query = f"{clicked_ingredient}"
+    search_amazon_selenium(new_query)
+
+    input("İşlemler tamamlandı. Enter tuşuna basın to exit...")
+
+    driver.quit()
+
+# Kullanıcının seçtiği malzemeleri bir listeye ekleyelim
+selected_ingredients = ["Chicken", "Rice", "Vegetables"]
+
+# Seçilen malzemeleri kullanarak bir sorgu oluşturalım
+query = " ".join(selected_ingredients)
+
+# İlk arama sorgusunu yapalım
+search_amazon_selenium(query)
+
+
+import streamlit as st
+
+
+def main():
+    st.title("Cookistry - Yemek Tarifleri ve Malzeme Siparişi")
+
+    # Kullanıcıdan elindeki malzemeleri girmesini isteyelim
+    user_ingredients = st.text_input("Elinizde Hangi Malzemeler Var? (Virgülle Ayırarak Girin)")
+
+    # "Tarifleri Göster" düğmesine basıldığında
+    if st.button("Tarifleri Göster"):
+        # Burada malzemeleri kullanarak tarifleri filtreleyebilir ve gösterebilirsiniz
+        selected_recipes = get_selected_recipes(user_ingredients)
+
+        # Seçilen tarifleri listeleyelim
+        st.subheader("Seçilen Tarifler:")
+        for recipe in selected_recipes:
+            st.write("- " + recipe)
+
+    st.write("-------")
+    st.write("Cookistry ile yemek yapmaya başlayın!")
+
+
+if __name__ == "__main__":
+    main()
