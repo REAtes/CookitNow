@@ -199,29 +199,29 @@ tabloda tutuyor olacağız. (firmalar SQL formatında tutuyor olacak)
 """
 
 #############################
-# Amazon'da ürün arama'
+# Eksik ürün siparişi
 #############################
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-# def search_amazon_selenium(query):
-#    driver = webdriver.Chrome()
- #   driver.get("https://www.amazon.de")
+ def search_item(query):
+   driver = webdriver.Chrome()
+   driver.get("https://www.istegelsin.com/")
 
-#    search_box = driver.find_element("id", "twotabsearchtextbox")
-#    search_box.send_keys(query)
-#    search_box.send_keys(Keys.RETURN)
+   search_box = driver.find_element("placeholder", "Binlerce çeşit içinde ara")
+   search_box.send_keys(query)
+   search_box.send_keys(Keys.RETURN)
 
-#    input("İşlemler tamamlandı. Enter tuşuna basın to exit...")
+   # input("İşlemler tamamlandı. Enter tuşuna basın to exit...")
 
-    # Tarayıcıyı kapatmadan önce kullanıcının onayını bekliyoruz
- #   driver.quit()
+   #  Tarayıcıyı kapatmadan önce kullanıcının onayını bekliyoruz
+   driver.quit()
 
-#search_amazon_selenium("green apple")
+search_item("badem")
 
 
-# yukarıdaki ile deneme yapıld. uygulamada aşağıdaki kullanılacak.
+# yukarıdaki ile deneme yapıldı. uygulamada aşağıdaki kullanılacak.
 def search_amazon_selenium(query):
     driver = webdriver.Chrome()
     driver.get("https://www.amazon.de")
