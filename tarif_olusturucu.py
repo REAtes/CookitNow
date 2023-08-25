@@ -206,76 +206,22 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
  def search_item(query):
-   driver = webdriver.Chrome()
-   driver.get("https://www.istegelsin.com/")
-
-   search_box = driver.find_element("placeholder", "Binlerce çeşit içinde ara")
-   search_box.send_keys(query)
-   search_box.send_keys(Keys.RETURN)
-
-   # input("İşlemler tamamlandı. Enter tuşuna basın to exit...")
-
-   #  Tarayıcıyı kapatmadan önce kullanıcının onayını bekliyoruz
-   driver.quit()
-
-search_item("badem")
-
-
-# yukarıdaki ile deneme yapıldı. uygulamada aşağıdaki kullanılacak.
-def search_amazon_selenium(query):
     driver = webdriver.Chrome()
-    driver.get("https://www.amazon.de")
+    #driver.get("https://www.istegelsin.com/")
+    #driver.get("https://www.migros.com.tr/")
+    #driver.get("https://www.a101kapida.com/")  # çalıştı = by="id", value="searchbar"
+    #driver.get("https://www.trendyol.com/s/hizli-market")
+    driver.get("https://www.carrefoursa.com/")  # çalıştı = by="id", value="js-site-search-input"
 
-    search_box = driver.find_element("id", "twotabsearchtextbox")
+    search_box = driver.find_element(by="id", value="js-site-search-input")
     search_box.send_keys(query)
     search_box.send_keys(Keys.RETURN)
 
-    # Sayfa sonucu işlemleri ve verilerin çekilmesi burada yapılabilir
-
-    # Tarif seçildiğinde ve eksik malzemeler listelendiğinde
-    # kullanıcıdan hangi malzemenin tıklanacağını seçmesi beklenir.
-    clicked_ingredient = "Apple"  # Kullanıcı tarafından seçilen malzeme
-
-    # Seçilen malzemeyi yeni bir sorgu olarak kullanmak için
-    new_query = f"{clicked_ingredient}"
-    search_amazon_selenium(new_query)
-
-    input("İşlemler tamamlandı. Enter tuşuna basın to exit...")
-
+    # Tarayıcıyı kapatmadan önce kullanıcının onayını bekliyoruz
+    input(f"{query} aranıyor...")
     driver.quit()
 
-# Kullanıcının seçtiği malzemeleri bir listeye ekleyelim
-selected_ingredients = ["Chicken", "Rice", "Vegetables"]
 
-# Seçilen malzemeleri kullanarak bir sorgu oluşturalım
-query = " ".join(selected_ingredients)
+search_item("kuzu pirzola")
 
-# İlk arama sorgusunu yapalım
-search_amazon_selenium(query)
-
-
-import streamlit as st
-
-
-def main():
-    st.title("Cookistry - Yemek Tarifleri ve Malzeme Siparişi")
-
-    # Kullanıcıdan elindeki malzemeleri girmesini isteyelim
-    user_ingredients = st.text_input("Elinizde Hangi Malzemeler Var? (Virgülle Ayırarak Girin)")
-
-    # "Tarifleri Göster" düğmesine basıldığında
-    if st.button("Tarifleri Göster"):
-        # Burada malzemeleri kullanarak tarifleri filtreleyebilir ve gösterebilirsiniz
-        selected_recipes = get_selected_recipes(user_ingredients)
-
-        # Seçilen tarifleri listeleyelim
-        st.subheader("Seçilen Tarifler:")
-        for recipe in selected_recipes:
-            st.write("- " + recipe)
-
-    st.write("-------")
-    st.write("Cookistry ile yemek yapmaya başlayın!")
-
-
-if __name__ == "__main__":
-    main()
+# yukarıdaki ile deneme yapıldı
