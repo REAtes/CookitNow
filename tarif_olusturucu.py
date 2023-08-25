@@ -50,6 +50,7 @@ def check_df(dataframe):
 
 check_df(tarifler)
 
+
 ################################
 # Değişken Tiplerin Yakalanması
 ################################
@@ -118,7 +119,6 @@ def grab_col_names(dataframe, cat_th=10, car_th=20):
 
 cat_cols, num_cols, cat_but_car = grab_col_names(tarifler)
 
-
 ######################
 # Eksik Değer Var mı?
 ######################
@@ -127,12 +127,10 @@ cat_cols, num_cols, cat_but_car = grab_col_names(tarifler)
 (tarifler.isnull().sum() / tarifler.shape[0] * 100).sort_values(ascending=False)
 
 # en az bir tane eksik degere sahip olan gözlem birimleri (satır)
-tarifler[tarifler.isnull().any(axis=1)]
+eksik_satirlar = tarifler[tarifler.isnull().any(axis=1)]
 
 # eksik değerleri hızlıca silmek
 tarifler.dropna(inplace=True)
-
-
 
 ######################
 # Feature Engineering
@@ -199,18 +197,16 @@ tabloda tutuyor olacağız. (firmalar SQL formatında tutuyor olacak)
 """
 
 #############################
-# Eksik ürün siparişi
+# Eksik ürün arama
 #############################
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
- def search_item(query):
+
+def search_item(query):
     driver = webdriver.Chrome()
-    #driver.get("https://www.istegelsin.com/")
-    #driver.get("https://www.migros.com.tr/")
-    #driver.get("https://www.a101kapida.com/")  # çalıştı = by="id", value="searchbar"
-    #driver.get("https://www.trendyol.com/s/hizli-market")
+    # driver.get("https://www.a101kapida.com/")  # çalıştı = by="id", value="searchbar"
     driver.get("https://www.carrefoursa.com/")  # çalıştı = by="id", value="js-site-search-input"
 
     search_box = driver.find_element(by="id", value="js-site-search-input")
