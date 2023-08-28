@@ -218,6 +218,6 @@ def search_item(query):
     driver.quit()
 
 
-search_item("kuzu pirzola")
+search_item("badem")
 
 # yukarıdaki ile deneme yapıldı
