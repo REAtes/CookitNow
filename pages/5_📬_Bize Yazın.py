@@ -39,7 +39,7 @@ with st.container():
         <input type="text" name="name" placeholder="Adınız ve soyadınız" required>
         <input type="email" name="email" placeholder="E-mail adresiniz" required>  
         <textarea name="message" placeholder="Mesajınız..." required></textarea>
-        <button type="submit">Send</button>
+        <button type="submit">Gönder</button>
     </form>
     """
     left_col, righy_col = st.columns(2)
