@@ -13,6 +13,7 @@ st.set_page_config(page_title="GastroMiuul - Daha Sürdürülebilir Dünya İçi
 df = pd.read_csv("C:/Users/remre/PycharmProjects/Tarif_Olusturucu/GastroMiuul/archive/Food_Ingredients.csv")
 lowercase = lambda x: str(x).lower()
 df.rename(lowercase, axis='columns', inplace=True)
+df.drop("unnamed: 0", axis=1, inplace=True)
 
 
 # ---- Main Page Gif ----
@@ -34,16 +35,16 @@ with st.container():
     with col2:
         st.write('# Gastr🍽Miuul')
         st_lottie(lottie_coding)
-    st.write('## Mutfak Maceranız Başlıyor!')
+    st.write('## Mutfak Maceran Başlıyor!')
 
 
 st.write(
     """
-    Mutfakta **sürdürülebilir** bir yaklaşımla hem doğayı korumaya hem de yiyecek israfını önlemeye hazır mısınız? 
+    Mutfakta `sürdürülebilir` bir yaklaşımla hem doğayı korumaya hem de yiyecek israfını önlemeye hazır mısın? 
     """)
 st.write(
     """
-    İster elinizdeki malzemeye göre ister diğer tariflere göz atın ve mutfak maceranızı başlatın!
+    İster elindeki malzemeye göre ister diğer tariflere göz at ve mutfak maceranı başlat!
     """)
 
 with st.container():
@@ -57,7 +58,7 @@ with st.container():
         if diger:
             switch_page("Diğer Tarifler")
 
-
+st.write(df)
 
 
 

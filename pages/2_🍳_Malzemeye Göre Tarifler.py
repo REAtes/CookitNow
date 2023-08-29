@@ -6,7 +6,7 @@ from streamlit_lottie import st_lottie
 from streamlit_option_menu import option_menu
 from streamlit_extras.metric_cards import style_metric_cards
 
-st.set_page_config(page_title="Malzemeye Göre Tarifler  | GastroMiuul", page_icon="👩🍳")
+st.set_page_config(page_title="Malzemeye Göre Tarifler  | GastroMiuul", page_icon="🍳")
 
 
 # ---- Header Section ----
@@ -20,20 +20,25 @@ def load_lottieurl(url):
 
 
 lottie_coding2 = load_lottieurl("https://lottie.host/cc7f103d-8c61-410d-b2c3-dd12baca3c5e/NSfWO4QLy3.json")
-st.title('Elindeki Malzemeyi Söyle, Sana Ne Yapacağını Söyleyelim!')
+st.write('# Elindeki Malzemeyi Söyle, Sana Ne Yapacağını Söyleyelim!')
 #with st.container():
 #    col1, col2, col3 = st.columns((1, 4, 1))
 #    with col2:
 #        st_lottie(lottie_coding2)
 #    st.subheader('Ürün israfının önüne geçtiğin için kendinle gurur duymalısın!')
-
-st_lottie(lottie_coding2)
+col1, col2, col3 = st.columns((1,4,1))
+with col2:
+    st_lottie(lottie_coding2)
 st.subheader('Ürün israfının önüne geçtiğin için kendinle gurur duymalısın!')
 
 
 
 with st.container():
-    st.multiselect('Şimdi bize elindeki malzemeler hakkında bilgi verir misin, hangi ürünler var?',
+    st.write(
+        """
+        Şimdi bize elindeki malzemeler hakkında bilgi verir misin, hangi ürünler var?
+        """)
+    st.multiselect('',
                        ["Domates", "Soğan", "Sarımsak", "Biber", "Tavuk", "Kırmızı Et","Pirinç", "Makarna", "Patates",
                         "Havuç", "Ispanak", "Brokoli","Bezelye", "Mantar", "Kabak","Kırmızı Mercimek", "Nohut", "Yoğurt",
                         "Peynir", "Zeytin", "Zeytinyağı", "Tereyağı", "Süt", "Un",  "Yumurta","Maydanoz", "Dereotu", "Nane",
