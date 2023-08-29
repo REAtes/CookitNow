@@ -6,20 +6,17 @@ from streamlit_lottie import st_lottie
 from streamlit_option_menu import option_menu
 from streamlit_extras.switch_page_button import switch_page
 
+st.set_page_config(page_title="GastroMiuul - Daha Sürdürülebilir Dünya İçin", page_icon="🍽")
 
 
-st.set_page_config(layout="wide",
-                   page_icon="🍽"
-                   )
 
-# ---- Load Main Page Gif ----
-
-
+# ---- Main Page Gif ----
 def load_lottieurl(url):
     r = requests.get(url)
     if r.status_code != 200:
         return None
     return r.json()
+
 
 
 # ---- Header Section ----
@@ -30,17 +27,19 @@ lottie_coding = load_lottieurl("https://lottie.host/53a4d2ce-e9fd-48e7-bd10-688f
 with st.container():
     col1, col2, col3 = st.columns((1, 4, 1))
     with col2:
-        st.title('GastroMiuul')
+        st.title('🍽 GastroMiuul')
         st_lottie(lottie_coding)
     st.subheader('Mutfak Maceranız Başlıyor!')
 
 
 st.write(
     """
-    Mutfakta farklı bir deneyim yaşamak ve malzemelerinizi en iyi şekilde değerlendirmek için hazır mısınız? Hem 
-    elindeki malzemeye göre hem de diğer tariflere göz atarak unutulmaz tatlar keşfedin.
+    Mutfakta sürdürülebilir bir yaklaşımla hem doğayı korumaya hem de yiyecek israfını önlemeye hazır mısınız? 
+    """)
+st.write(
     """
-)
+    İster elinizdeki malzemeye göre ister diğer tariflere göz atın ve mutfak maceranızı başlatın!
+    """)
 
 with st.container():
     sol_col, sag_col = st.columns(2)

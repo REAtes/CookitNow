@@ -5,6 +5,9 @@ import requests
 from streamlit_lottie import st_lottie
 from streamlit_option_menu import option_menu
 
+st.set_page_config(page_title="Malzemeye Göre Tarifler  | GastroMiuul", page_icon="👩‍🍳")
+
+
 # ---- Header Section ----
 
 
@@ -16,41 +19,30 @@ def load_lottieurl(url):
 
 
 lottie_coding2 = load_lottieurl("https://lottie.host/cc7f103d-8c61-410d-b2c3-dd12baca3c5e/NSfWO4QLy3.json")
-st.title('Elimdeki Malzemeye Göre Tarifler')
+st.title('Elindeki Malzemeyi Söyle, Sana Ne Yapacağını Söyleyelim!')
 with st.container():
     col1, col2, col3 = st.columns((1, 4, 1))
     with col2:
         st_lottie(lottie_coding2)
-    st.subheader('Elindeki Malzemeyi Söyle, Sana Ne Yapacağını Söyleyeyim!')
+    st.subheader('Ürün israfının önüne geçtiğin için kendinle gurur duymalısın!')
 
 
 
 with st.container():
-    st.multiselect('Elindeki Malzemeleri seç "Enter"a bas', ["Domates", "Soğan", "Sarımsak", "Biber", "Tavuk",
-                                                                 "Kırmızı Et","Pirinç", "Makarna", "Patates", "Havuç",
-                                                                 "Ispanak", "Brokoli","Bezelye", "Mantar", "Kabak",
-                                                                 "Kırmızı Mercimek", "Nohut", "Yoğurt", "Peynir",
-                                                                 "Zeytin", "Zeytinyağı", "Tereyağı", "Süt", "Un",
-                                                                 "Yumurta","Maydanoz", "Dereotu", "Nane", "Kekik",
-                                                                 "Tarçın", "Zencefil","Kırmızı Pul Biber", "Kekik",
-                                                                 "Krema", "Limon", "Limon Suyu", "Elma","Armut",
-                                                                 "Çilek", "Üzüm", "Portakal", "Muz", "Ananas",
-                                                                 "Avokado","Karpuz", "Kavun", "Badem", "Ceviz",
-                                                                 "Fındık", "Susam", "Ayçiçek Yağı", "Bal", "Tahin",
-                                                                 "Hardal", "Mayonez", "Ketçap", "Salça", "Balık",
-                                                                 "Karides", "Midye", "Kalamar", "Tavuk Göğsü",
-                                                                 "Pastirma", "Salam", "Sucuk", "Sosis", "Zeytin Ezmesi",
-                                                                 "Süzme Yoğurt", "Kıvırcık", "Roka", "Lahana",
-                                                                 "Karnabahar", "Turşu", "Salatalık", "Kırmızı Lahana",
-                                                                 "Beyaz Lahana", "Brokoli", "Kabak","Brüksel Lahanası",
-                                                                 "Patlıcan", "Enginar", "Bamya", "Kırmızı Biber",
-                                                                 "Acı Biber", "Enginar", "Mısır", "Bezelye",
-                                                                 "Yeşil Fasulye","Kuşkonmaz", "Sarımsak", "Kereviz",
-                                                                 "Havuç", "Patates", "Taze Soğan","Roka", "Marul",
-                                                                 "Semizotu", "Dereotu", "Taze Nane",
-                                                                 "Kıvırcık Maydanoz", "Ruşeym", "Quinoa", "Kinoa",
-                                                                 "Bulgur", "Couscous"
-                                                                 ])
+    st.multiselect('Şimdi bize elindeki malzemeler hakkında bilgi verir misin, hangi ürünler var?',
+                   ["Domates", "Soğan", "Sarımsak", "Biber", "Tavuk", "Kırmızı Et","Pirinç", "Makarna", "Patates",
+                    "Havuç", "Ispanak", "Brokoli","Bezelye", "Mantar", "Kabak","Kırmızı Mercimek", "Nohut", "Yoğurt",
+                    "Peynir", "Zeytin", "Zeytinyağı", "Tereyağı", "Süt", "Un",  "Yumurta","Maydanoz", "Dereotu", "Nane",
+                    "Kekik", "Tarçın", "Zencefil","Kırmızı Pul Biber", "Kekik", "Krema", "Limon", "Limon Suyu", "Elma",
+                    "Armut", "Çilek", "Üzüm", "Portakal", "Muz", "Ananas", "Avokado","Karpuz", "Kavun", "Badem",
+                    "Ceviz", "Fındık", "Susam", "Ayçiçek Yağı", "Bal", "Tahin", "Hardal", "Mayonez", "Ketçap", "Salça",
+                    "Balık", "Karides", "Midye", "Kalamar", "Tavuk Göğsü", "Pastirma", "Salam", "Sucuk", "Sosis",
+                    "Zeytin Ezmesi", "Süzme Yoğurt", "Kıvırcık", "Roka", "Lahana", "Karnabahar", "Turşu", "Salatalık",
+                    "Kırmızı Lahana", "Beyaz Lahana", "Brokoli", "Kabak","Brüksel Lahanası", "Patlıcan", "Enginar",
+                    "Bamya", "Kırmızı Biber", "Acı Biber", "Enginar", "Mısır", "Bezelye", "Yeşil Fasulye","Kuşkonmaz",
+                    "Sarımsak", "Kereviz", "Havuç", "Patates", "Taze Soğan","Roka", "Marul", "Semizotu", "Dereotu",
+                    "Taze Nane", "Kıvırcık Maydanoz", "Ruşeym", "Quinoa", "Kinoa", "Bulgur", "Couscous"
+                    ])
     with st.container():
             st.button('Gelsin Tarifler')
             #st.subheader('Mehmet Şef Hazır! İşte sana önerdiğimiz tarifler')

@@ -6,7 +6,7 @@ from streamlit_lottie import st_lottie
 from streamlit_option_menu import option_menu
 from streamlit_extras.switch_page_button import switch_page
 
-st.set_page_config(page_title="Bize Ulaşın", page_icon="📬", layout="wide")
+st.set_page_config(page_title="Bize Ulaşın | GastroMiuul", page_icon="📬")
 
 def load_lottieurl(url):
     r = requests.get(url)
@@ -32,13 +32,13 @@ local_css("style/style.css")
 
 with st.container():
     st.header("Bize yazın!")
-    st.write("##")
+    st.write("""Öneri veya mesajınızı bekliyoruz...""")
 
     contact_form = """
     <form action="https://formsubmit.io/send/r.emreates@gmail.com" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>  
-        <textarea name="message" placeholder="Your Message here" required></textarea>
+        <input type="text" name="name" placeholder="Adınız ve soyadınız" required>
+        <input type="email" name="email" placeholder="E-mail adresiniz" required>  
+        <textarea name="message" placeholder="Mesajınız..." required></textarea>
         <button type="submit">Send</button>
     </form>
     """
