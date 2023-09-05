@@ -89,15 +89,15 @@ df["stew"] = df["search_terms"].apply(lambda search_terms: 1 if "stew" in search
 
     # ---- Cooking Time ---- #
 df["breakfast"] = df["search_terms"].apply(lambda search_terms:
-                                           1 if "breakfast" in search_terms.lower() else 0).sum()  # 21219
+                                           1 if "breakfast" in search_terms.lower() else 0)  # 21219
 df["dinner"] = df["search_terms"].apply(lambda search_terms:
-                                        1 if "dinner" in search_terms.lower() else 0).sum()  # 118004
+                                        1 if "dinner" in search_terms.lower() else 0) # 118004
 df["lunch"] = df["search_terms"].apply(lambda search_terms:
-                                       1 if "lunch" in search_terms.lower() else 0).sum()  # 28547
+                                       1 if "lunch" in search_terms.lower() else 0)  # 28547
 df["side"] = df["search_terms"].apply(lambda search_terms:
-                                      1 if "side" in search_terms.lower() else 0).sum()  # 29032
+                                      1 if "side" in search_terms.lower() else 0)  # 29032
 df["snack"] = df["search_terms"].apply(lambda search_terms:
-                                       1 if "snack" in search_terms.lower() else 0).sum()  # 12042
+                                       1 if "snack" in search_terms.lower() else 0)  # 12042
 df["appetizer"] = df["search_terms"].apply(lambda search_terms:
                                            1 if "appetizer" in search_terms.lower() else 0)  # 26538
 
@@ -151,7 +151,6 @@ if which_meal == "I don't mind":
                  'Carb-Free',
                  'Dairy-Free',
                  'Diabetic',
-                 'Flour-Free',
                  'Gluten-Free',
                  'Grain-Free',
                  'Healthy',
@@ -173,8 +172,6 @@ if which_meal == "I don't mind":
                 favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("dairy-free"))]
             if diet_turu == "Diabetic":
                 favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("diabetic"))]
-            if diet_turu == "Flour-Free":
-                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("flour-free"))]
             if diet_turu == "Gluten-Free":
                 favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("gluten-free"))]
             if diet_turu == "Healthy":
@@ -780,13 +777,22 @@ def urun_getir(df, adet=20):
     name = df["name"].tolist()
     ingredients = df["ingredients_raw_str"].tolist()
     steps = df["steps"].tolist()
+
+    if adet > len(name):
+        adet = len(name)
+    if len(name) == 0:
+        st.write("We will start to add at least one recipe for this filtering 👩‍🍳")
+
     for a in range(adet):
         st.subheader(f':red[{name[a]}]')
-        tab1, tab2, = st.tabs(["Ingredients", "Cooking Steps"])
+        tab1, tab2, tab3 = st.tabs(["Calori & Carbon Footprint", "Ingredients", "Cooking Steps"])
         with tab1:
-            st.write(ingredients[a])
+            st.write("Calori & Carbon Footprint")
         with tab2:
+            st.write(ingredients[a])
+        with tab3:
             st.write(steps[a])
+
 
 if tarifler_gelsin:
     #st.write(favori_yemek_df[["servings", "name", "ingredients_raw_str", "steps"]])

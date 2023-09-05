@@ -6,9 +6,13 @@ from streamlit_lottie import st_lottie
 from streamlit_option_menu import option_menu
 from streamlit_extras.switch_page_button import switch_page
 from streamlit_extras.metric_cards import style_metric_cards
+from streamlit_card import card
+from streamlit_extras.stylable_container import stylable_container
 
 
-st.set_page_config(page_title="GastroMiuul - Daha Sürdürülebilir Dünya İçin", page_icon="🍽")
+
+
+st.set_page_config(page_title="GastroMiuul - Daha Sürdürülebilir Dünya İçin", page_icon="🍽", layout="wide")
 
 # ---- Load Data ----
 
@@ -44,28 +48,48 @@ lottie_coding = load_lottieurl("https://lottie.host/53a4d2ce-e9fd-48e7-bd10-688f
 
 
 with st.container():
-    col1, col2, col3 = st.columns((1, 4, 1))
+    col1, col2, col3 = st.columns((3, 2, 3))
     with col2:
         st.write('# Gastr🍽Miuul')
         st_lottie(lottie_coding)
-    st.write('## Mutfak Maceran Başlıyor!')
+        st.write('## Mutfak Maceran Başlıyor!')
 
+        st.write(
+            "Mutfakta `sürdürülebilir` bir yaklaşımla hem doğayı korumaya hem de yiyecek israfını önlemeye hazır mısın?")
 
-st.write(
-    "Mutfakta `sürdürülebilir` bir yaklaşımla hem doğayı korumaya hem de yiyecek israfını önlemeye hazır mısın?")
+        st.write("İster elindeki malzemeye göre ister diğer tariflere göz at ve mutfak maceranı başlat!")
 
-st.write("İster elindeki malzemeye göre ister diğer tariflere göz at ve mutfak maceranı başlat!")
+        with st.container():
+            sol_col, sag_col = st.columns(2)
+            with sol_col:
+                with stylable_container(
+                        key="red_button",
+                        css_styles="""
+                        button {
+                            background-color: #FFBC42;
+                            color: green;
+                            border-radius: 5px;
+                        }
+                        """,
+                ):
+                    malzemeye_gore = st.button("**Elimdeki Malzemeye Göre**")
+                    if malzemeye_gore:
+                        switch_page("Malzemeye Göre Tarifler")
+                with sag_col:
+                    with stylable_container(
+                            key="yellow_button",
+                            css_styles="""
+                                    button {
+                                        background-color: #FFBC42;
+                                        color: #000000;
+                                        border-radius: 5px;
+                                    }
+                                    """,
+                    ):
 
-with st.container():
-    sol_col, sag_col = st.columns(2)
-    with sol_col:
-        malzemeye_gore = st.button("Elimdeki Malzemeye Göre")
-        if malzemeye_gore:
-            switch_page("Malzemeye Göre Tarifler")
-    with sag_col:
-        diger = st.button("Diğer Tariflere Göz At")
-        if diger:
-            switch_page("Diğer Tarifler")
+                        diger = st.button("Diğer Tariflere Göz At")
+                        if diger:
+                            switch_page("Diğer Tarifler")
 
 # ---- Numbers ----
 df["tatli"] = df["search_terms"].apply(lambda search_terms: 1 if "cake" in search_terms.lower() or
@@ -79,9 +103,6 @@ df["tavuk"].sum()
 
 df["dana"] = df["search_terms"].apply(lambda search_terms: 1 if "beef" in search_terms.lower() else 0)
 df["dana"].sum()
-
-df["içecek"] = df["search_terms"].apply(lambda search_terms: 1 if "drink" in search_terms.lower() else 0)
-df["içecek"].sum()
 
 df["denizden"] = df["search_terms"].apply(lambda search_terms: 1 if "fish" in search_terms.lower() or
                                                                     "seafood" in search_terms.lower() or
@@ -105,9 +126,6 @@ df["pizza"].sum()
 
 df["pork"] = df["search_terms"].apply(lambda search_terms: 1 if "pork" in search_terms.lower() else 0)
 df["pork"].sum()
-
-df["quick"] = df["search_terms"].apply(lambda search_terms: 1 if "quick" in search_terms.lower() else 0)
-df["quick"].sum()
 
 df["rice"] = df["search_terms"].apply(lambda search_terms: 1 if "rice" in search_terms.lower() else 0)
 df["rice"].sum()
@@ -154,77 +172,59 @@ df["diet"].sum()
 
 
 st.write("---")
-st.write("## Menümüzde Neler Var?")
 
-col1, col2, col3, col4 = st.columns(4)
-col1.metric(label="Recipes 🧄", value=df.shape[0])
-col2.metric(label="Desserts 🍰", value=df["tatli"].sum())
-col3.metric(label="Chicken Recipes 🍗", value=df["tavuk"].sum())
-col4.metric(label="Lamb Recipes 🍖", value=df["kuzu"].sum())
-col2.metric(label="Beef Recipes 🥩", value=df["dana"].sum())
-col3.metric(label="Seafood 🦞", value=df["denizden"].sum())
-col4.metric(label="Pork Recipes 🥓", value=df["pork"].sum())
-col2.metric(label="Drinks 🍹", value=df["içecek"].sum())
-col3.metric(label="Noodle Recipes 🍜", value=df["noodles"].sum())
-col4.metric(label="Pasta Recipes 🍝", value=df["pasta"].sum())
-col2.metric(label="Pie Recipes 🥧", value=df["pie"].sum())
-col3.metric(label="Pizza 🍕", value=df["pizza"].sum())
-col2.metric(label="Quick Recipes ⏳", value=df["quick"].sum())
-col3.metric(label="Rice Recipes 🍚", value=df["rice"].sum())
-col4.metric(label="Salad Recipes 🥗", value=df["salad"].sum())
-col4.metric(label="Sandwich Recipes 🥪", value=df["sandwich"].sum())
-col2.metric(label="Soup Recipes 🥣", value=df["soup"].sum())
-col3.metric(label="Vegan Recipes 🥑", value=df["vegan"].sum())
-col4.metric(label="Vegetarian Recipes 🥦", value=df["vegetarian"].sum())
-col2.metric(label="Diet Recipes 🍏", value=df["diet"].sum())
-
-
-# st.write(df)
-
-
-
-# We can add multi-select box. It will make dropdown menu;
-# st.multiselect('Where do you work', ('London','Istanbul','Berlin'))
-# We can add sliders and some features,
-
-# st.slider('Kaç dakikada yemek yapmak istiyorsun?', 200, step=5)
-# We can write title and text;
-# st.title('Web App')
-# st.text('Hello Streamlit')
-
-# We can write headers like that;
-# st.header('This is a header')
-
-# st.image(....)
-
-
-# We can use markdown and its features on streamlit;
-# st.markdown('This is a normal Markdown')
-# st.markdown('# This is a bold Markdown')
-# st.markdown('## This is a thin-bold Markdown')
-# st.markdown('* This is a Markdown with point')
-# st.markdown('** This is a small bold Markdown **')
-
-# We can make colorful our text;
-# st.success('Successful')
-# st.markdown('`This is a markdown`')
-# st.info("This is an information")
-# st.warning('This is a warning')
-# st.error('This is an error')
+with st.container():
+    c1, c2, c3, c4, c5, c6 = st.columns(6)
+    with c1:
+        card(title="1",
+             text="1",
+             image="https://images.unsplash.com/photo-1506224477000-07aa8a76be20?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80")
+        card(title="2",
+             text="Beef Recipes",
+             image="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80")
+        card(title="3",
+             text="Beef Recipes",
+             image="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80")
+    with c2:
+        card(title="4",
+             text="Beef Recipes",
+             image="https://images.unsplash.com/photo-1607455849478-86754d8816f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1114&q=80")
+        card(title="5",
+             text="Beef Recipes",
+             image="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1153&q=80")
+        card(title="6",
+             text="Beef Recipes",
+             image="https://images.unsplash.com/photo-1481070414801-51fd732d7184?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80")
+    with c3:
+        card(title="7",
+             text="Beef Recipes",
+             image="https://images.unsplash.com/photo-1602534923950-d2c7e6be0ca0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1112&q=80")
+        card(title="8",
+             text="Beef Recipes",
+             image="https://images.unsplash.com/photo-1602534923950-d2c7e6be0ca0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1112&q=80")
+    with c4:
+        card(title="9",
+             text="Beef Recipes",
+             image="https://images.unsplash.com/photo-1578596371629-0fe8c3c12f80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80")
+        card(title="10",
+             text="Beef Recipes",
+             image="https://images.unsplash.com/photo-1625944228741-cf30983ecb91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1162&q=80")
+    with c5:
+        card(title="11",
+             text="Beef Recipes",
+             image="https://images.unsplash.com/photo-1506224477000-07aa8a76be20?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80")
+        card(title="12",
+             text="Beef Recipes",
+             image="https://images.unsplash.com/photo-1523986490752-c28064f26be3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80")
+    with c6:
+        card(title="13",
+             text="Beef Recipes",
+             image="https://images.unsplash.com/photo-1506224477000-07aa8a76be20?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80")
+        card(title="14",
+             text="Beef Recipes",
+             image="https://images.unsplash.com/photo-1506224477000-07aa8a76be20?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80")
 
 
-# st.select_slider('Pick a size', ['S', 'M', 'L'])
-# st.text_input('First name')
-# st.number_input('Pick a number', 0, 10)
-# st.text_area('Text to translate')
-# st.date_input('Your birthday')
-# st.time_input('Meeting time')
-# st.file_uploader('Upload a CSV')
-# st.download_button('Download file', data)
-# st.camera_input("Take a picture")
-# st.color_picker('Pick a color')
-# st.button('Click me')
-# st.data_editor('Edit data', data)
-# st.checkbox('I agree')
-# st.toggle('Enable')
-# st.slider('Pick a number', 0, 100)
+
+
+
