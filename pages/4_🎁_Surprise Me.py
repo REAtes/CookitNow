@@ -8,7 +8,7 @@ from streamlit_extras.metric_cards import style_metric_cards
 from googleapiclient.discovery import build
 import random
 
-st.set_page_config(page_title="Surprise Me | GastroMiuul", page_icon="🪄")
+st.set_page_config(page_title="Surprise Me | GastroMiuul", page_icon="🎁")
 
 
 # ---- Main Screen  ---- #

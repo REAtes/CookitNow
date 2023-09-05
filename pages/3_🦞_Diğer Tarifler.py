@@ -104,11 +104,15 @@ df["appetizer"] = df["search_terms"].apply(lambda search_terms:
 
 
 # ---- Streamlit sidebar filters ---- #
-def select_meal(df, meal):
+
+servings = st.sidebar.slider("Number of people to be served", 1, 8, 4)
+
+
+def select_meal(df, meal, servings):
     if meal == "I don't mind" or meal == "Please choose":
-        return df
+        return df.loc[df["servings"] == servings]
     else:
-        meal_df = df.loc[df[meal.lower()] == 1]
+        meal_df = df.loc[(df[meal.lower()] == 1) & (df["servings"] == servings)]
         return meal_df
 
 
@@ -117,16 +121,16 @@ which_meal = st.sidebar.selectbox(label="What meal would you like choose?",
                                   options=("Please choose", "I don't mind", 'Breakfast', 'Lunch',
                                            'Dinner', 'Appetizer', 'Snack', 'Side'))
 
-def select_style(df, style):
+def select_style(df, style, servings):
     if style == "I don't mind" or style == "Please choose":
-        return df
+        return df.loc[df["servings"] == servings]
     else:
-        style_df = df.loc[df[style.lower()] == 1]
+        style_df = df.loc[(df[style.lower()] == 1) & (df["servings"] == servings)]
         return style_df
 
 
 if which_meal == "I don't mind":
-    df = select_meal(df, which_meal)
+    df = select_meal(df, which_meal, servings)
 
 
     which_style = st.sidebar.selectbox("Which cooking style do you prefer:",
@@ -135,7 +139,7 @@ if which_meal == "I don't mind":
                                    index=0)
 
     if which_style == "I don't mind":
-        df = select_style(df, which_style)
+        df = select_style(df, which_style, servings)
 
         secenek1 = ["Yes", "No"]
         diet_y_n = st.sidebar.radio("Do you follow any specific diet?", secenek1)
@@ -279,11 +283,10 @@ if which_meal == "I don't mind":
                                                   ])
                 favori_yemek_df = favori_yemek_df[favori_yemek_df["search_terms"].str.contains(cuisine.lower())]
 
-
             # ---- Or, would you like to choose a diet? ---- #
 
     else:
-        df = select_style(df, which_style)
+        df = select_style(df, which_style, servings)
 
         secenek1 = ["Yes", "No"]
         diet_y_n = st.sidebar.radio("Do you follow any specific diet?", secenek1)
@@ -435,11 +438,10 @@ if which_meal == "I don't mind":
                                                 ])
                 favori_yemek_df = favori_yemek_df[favori_yemek_df["search_terms"].str.contains(cuisine.lower())]
 
-
             # ---- Or, would you like to choose a diet? ---- #
 
 else:
-    df = select_meal(df, which_meal)
+    df = select_meal(df, which_meal, servings)
 
     which_style = st.sidebar.selectbox("Which cooking style do you prefer:",
                                        ("Please choose", "I don't mind", 'Baked', 'Barbecue',
@@ -447,7 +449,7 @@ else:
                                        index=0)
 
     if which_style == "I don't mind":
-        df = select_style(df, which_style)
+        df = select_style(df, which_style, servings)
 
         secenek1 = ["Yes", "No"]
         diet_y_n = st.sidebar.radio("Do you follow any specific diet?", secenek1)
@@ -594,11 +596,10 @@ else:
                                                   ])
                 favori_yemek_df = favori_yemek_df[favori_yemek_df["search_terms"].str.contains(cuisine.lower())]
 
-
             # ---- Or, would you like to choose a diet? ---- #
 
     else:
-        df = select_style(df, which_style)
+        df = select_style(df, which_style, servings)
 
         secenek1 = ["Yes", "No"]
         diet_y_n = st.sidebar.radio("Do you follow any specific diet?", secenek1)
@@ -749,7 +750,6 @@ else:
                                                 'Vietnamese'
                                                 ])
                 favori_yemek_df = favori_yemek_df[favori_yemek_df["search_terms"].str.contains(cuisine.lower())]
-
 
             # ---- Or, would you like to choose a diet? ---- #
 
