@@ -47,8 +47,3 @@ with st.container():
         st.markdown(contact_form, unsafe_allow_html=True)
     with righy_col:
         st_lottie(lottie_coding3)
-
-
-
-
-
