@@ -798,7 +798,23 @@ if tarifler_gelsin:
                 st.write(favori_yemek_df.loc[0, "steps"])
 
 
+#------Görsel ekleme------#
+#from googleapiclient.discovery import build
+#def google_image_search(query, api_key, cse_id, num=1):
+#    service = build("customsearch", "v1", developerKey=api_key)
+#    res = service.cse().list(q=query, cx=cse_id, searchType='image', num=num).execute()
+#    return res['items'][0]['link']
 
+# Google search için api ve cse id'lerim.
+#api_key = "AIzaSyDld5RyAGvlO3KNzHLP3R2CCZV_Uz8cYbg"
+#cse_id = "c42eb241a8bb244c0"
+#buraya seçilen yemeğin ismi gelecek
+#query = "kuru fasülye"
+#Fonksiyon görselin url'sini çekiyor..
+#image_url1 = google_image_search(query1, api_key, cse_id)
+#print(image_url1)
+
+st.image(image_url1, caption=query1)
 
 
 
