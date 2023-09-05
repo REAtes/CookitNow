@@ -102,6 +102,7 @@ df["appetizer"] = df["search_terms"].apply(lambda search_terms:
                                            1 if "appetizer" in search_terms.lower() else 0)  # 26538
 
 
+
 # ---- Streamlit sidebar filters ---- #
 def select_meal(df, meal):
     if meal == "I don't mind" or meal == "Please choose":
@@ -774,6 +775,19 @@ with col2:
 st.subheader("Are you ready to cook a new recipe?")
 
 tarifler_gelsin = st.button("Here are our superstar recipes")
+
+def urun_getir(df, adet=20):
+    name = df["name"].tolist()
+    ingredients = df["ingredients_raw_str"].tolist()
+    steps = df["steps"].tolist()
+    for a in range(adet):
+        st.subheader(f':red[{name[a]}]')
+        tab1, tab2, = st.tabs(["Ingredients", "Cooking Steps"])
+        with tab1:
+            st.write(ingredients[a])
+        with tab2:
+            st.write(steps[a])
+
 if tarifler_gelsin:
     #st.write(favori_yemek_df[["servings", "name", "ingredients_raw_str", "steps"]])
     if which_meal == "Please choose":
@@ -782,20 +796,13 @@ if tarifler_gelsin:
         st.write("Please choose a style on the sidebar 👈")
     elif diet_y_n == "Yes":
         with st.container():
-            st.write(favori_diet_df.loc[0, "name"])
-            tab1, tab2, = st.tabs(["Ingredients", "Cooking Steps"])
-            with tab1:
-                st.write(favori_diet_df.loc[0, "ingredients_raw_str"])
-            with tab2:
-                st.write(favori_diet_df.loc[0, "steps"])
+            urun_getir(favori_diet_df, adet=20)
     else:
         with st.container():
-            st.write(favori_yemek_df.loc[0, "name"])
-            tab1, tab2, = st.tabs(["Ingredients", "Cooking Steps"])
-            with tab1:
-                st.write(favori_yemek_df.loc[0, "ingredients_raw_str"])
-            with tab2:
-                st.write(favori_yemek_df.loc[0, "steps"])
+            urun_getir(favori_yemek_df, adet=20)
+
+
+
 
 
 #------Görsel ekleme------#
@@ -814,7 +821,7 @@ if tarifler_gelsin:
 #image_url1 = google_image_search(query1, api_key, cse_id)
 #print(image_url1)
 
-st.image(image_url1, caption=query1)
+# st.image(image_url1, caption=query1)
 
 
 
