@@ -48,6 +48,21 @@ with st.container():
                     "Sarımsak", "Kereviz", "Havuç", "Patates", "Taze Soğan","Roka", "Marul", "Semizotu", "Dereotu",
                     "Taze Nane", "Kıvırcık Maydanoz", "Ruşeym", "Quinoa", "Kinoa", "Bulgur", "Couscous"
                     ])
+    #st.multiselect('',
+    #           ["Tomato", "Onion", "Garlic", "Pepper", "Chicken", "Red Meat", "Rice", "Pasta", "Potato",
+    #            "Carrot", "Spinach", "Broccoli", "Peas", "Mushroom", "Zucchini", "Red Lentil", "Chickpea", "Yogurt",
+    #            "Cheese", "Olive", "Olive Oil", "Butter", "Milk", "Flour", "Egg", "Parsley", "Dill", "Mint",
+    #            "Cinnamon", "Ginger", "Red Pepper Flakes", "Thyme", "Cream", "Lemon", "Lemon Juice", "Apple",
+    #            "Pear", "Strawberry", "Grape", "Orange", "Banana", "Pineapple", "Avocado", "Watermelon", "Melon", "Almond",
+    #            "Walnut", "Hazelnut", "Sesame", "Sunflower Oil", "Honey", "Tahini", "Mustard", "Mayonnaise", "Ketchup", "Tomato Paste",
+    #            "Fish", "Shrimp", "Mussel", "Squid", "Chicken Breast", "Pastrami", "Salami", "Sausage", "Frankfurter",
+    #            "Olive Paste", "Strained Yogurt", "Lettuce", "Rocket", "Cabbage", "Cauliflower", "Pickle", "Cucumber",
+    #            "Red Cabbage", "White Cabbage", "Broccoli", "Zucchini", "Brussels Sprouts", "Eggplant", "Artichoke",
+    #            "Okra", "Red Pepper", "Hot Pepper", "Corn", "Peas", "Green Bean", "Asparagus",
+    #            "Garlic", "Celery", "Carrot", "Potato", "Green Onion", "Rocket", "Lettuce", "Purslane", "Dill",
+    #            "Fresh Mint", "Curled Parsley", "Wheat Germ", "Quinoa", "Bulgur", "Couscous"
+    #            ])
+
 
 st.button('Gelsin Tarifler')
 
