@@ -23,12 +23,14 @@ from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import LogisticRegression
 import shap
 
+df = pd.read_csv("C:/Users/remre/PycharmProjects/Tarif_Olusturucu/GastroMiuul/datasets/recipes_w_search_terms.csv")
+lowercase = lambda x: str(x).lower()
+df.rename(lowercase, axis='columns', inplace=True)
+df.dropna(inplace=True)
 pd.set_option('display.max_columns', None)
-# pd.set_option('display.max_rows', 500)
+pd.set_option('display.max_rows', 1500)
 pd.set_option('display.float_format', lambda x: '%.3f' % x)
 pd.set_option('display.width', 1500)
-
-tarifler = pd.read_csv("GastroMiuul/archive/Food_Ingredients.csv")
 
 
 def check_df(dataframe):
@@ -48,7 +50,15 @@ def check_df(dataframe):
     print(dataframe.describe([0.01, 0.05, 0.75, 0.90, 0.95, 0.99]).T)
 
 
-check_df(tarifler)
+check_df(df)
+
+df = df.reset_index()
+df.drop(["index", "id"], axis=1, inplace=True)
+
+search_terms = df["search_terms"]
+search_terms.to_excel("search_terms.xlsx", index=False)
+
+
 
 
 ################################
@@ -136,24 +146,7 @@ tarifler.dropna(inplace=True)
 # Feature Engineering
 ######################
 
-tarifler['tatli'] = tarifler['Title'].apply(lambda title: 1 if 'cake' in title.lower() or
-                                                               'pudding' in title.lower() else 0)
 
-tarifler["tatli"].sum()
-
-"""
--- tatlılar
--- tavuk yemekleri
--- et yemekleri
--- hindi
--- deniz mahsulleri
--- özel gün yemekleri
--- gluten
--- alerjen olabilecek ürünler
--- yemek türü; tencere, fırın
--- hazırlama süresi??
-Ve bunlar gibi daha da zenginleştirilmesi.
-"""
 
 
 #################################
