@@ -102,333 +102,655 @@ df["appetizer"] = df["search_terms"].apply(lambda search_terms:
                                            1 if "appetizer" in search_terms.lower() else 0)  # 26538
 
 
-# ---- Streamlit sidebar filtreleri ---- #
+# ---- Streamlit sidebar filters ---- #
+def select_meal(df, meal):
+    if meal == "I don't mind" or meal == "Please choose":
+        return df
+    else:
+        meal_df = df.loc[df[meal.lower()] == 1]
+        return meal_df
+
+
+
+which_meal = st.sidebar.selectbox(label="What meal would you like choose?",
+                                  options=("Please choose", "I don't mind", 'Breakfast', 'Lunch',
+                                           'Dinner', 'Appetizer', 'Snack', 'Side'))
 
 def select_style(df, style):
-    if style == "I don't mind":
+    if style == "I don't mind" or style == "Please choose":
         return df
     else:
         style_df = df.loc[df[style.lower()] == 1]
         return style_df
 
 
-which_style = st.sidebar.selectbox("Which cooking style do you prefer:",
-                                   ("I don't mind", 'Baked', 'Barbecue', 'Braised', 'Casserole', 'Roast', 'Stew'),
+if which_meal == "I don't mind":
+    df = select_meal(df, which_meal)
+
+
+    which_style = st.sidebar.selectbox("Which cooking style do you prefer:",
+                                   ("Please choose", "I don't mind", 'Baked', 'Barbecue',
+                                    'Braised', 'Casserole', 'Roast', 'Stew'),
                                    index=0)
 
+    if which_style == "I don't mind":
+        df = select_style(df, which_style)
+
+        secenek1 = ["Yes", "No"]
+        diet_y_n = st.sidebar.radio("Do you follow any specific diet?", secenek1)
+
+        if diet_y_n == "Yes":
+            diet_turu = st.sidebar.selectbox(
+                "Please select one of the diets",
+                ('Atkins',
+                 'Carb-Free',
+                 'Dairy-Free',
+                 'Diabetic',
+                 'Flour-Free',
+                 'Gluten-Free',
+                 'Grain-Free',
+                 'Healthy',
+                 'Lactose-Free',
+                 'Low-Calorie',
+                 'Low-Carb',
+                 'Low-Fat',
+                 'Low-Sodium',
+                 'Low-Sugar',
+                 'Salt-Free',
+                 'Sodium-Free',
+                 'Sugar-Free'))
+            favori_diet_df = pd.DataFrame()
+            if diet_turu == "Atkins":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("atkins"))]
+            if diet_turu == "Carb-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("carb-free"))]
+            if diet_turu == "Dairy-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("dairy-free"))]
+            if diet_turu == "Diabetic":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("diabetic"))]
+            if diet_turu == "Flour-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("flour-free"))]
+            if diet_turu == "Gluten-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("gluten-free"))]
+            if diet_turu == "Healthy":
+                favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("diet"))
+                                                             | (df["search_terms"].str.contains("diet"))
+                                                             | (df["search_terms"].str.contains("light")))]
+            if diet_turu == "Lactose-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("lactose-free"))]
+            if diet_turu == "Low-Calorie":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-calorie"))]
+            if diet_turu == "Low-Carb":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-carb"))]
+            if diet_turu == "Low-Fat":
+                favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("low-fat"))
+                                                             | (df["search_terms"].str.contains("lowfat")))]
+            if diet_turu == "Low-Sodium":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-sodium"))]
+            if diet_turu == "Low-Sugar":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-sugar"))]
+            if diet_turu == "Salt-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("salt-free"))]
+            if diet_turu == "Sodium-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("sodium-free"))]
+            if diet_turu == "Sugar-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("sugar-free"))
+                                                             | (df["search_terms"].str.contains("sugarless")))]
+
+        # ---- What is your Favorite? ---- #
+        else:
+            yemek_turu = st.sidebar.selectbox(
+                "Please select one of them",
+                ("Beef Recipes",
+                 "Chicken Recipes",
+                 "Diet Recipes",
+                 "Dessert",
+                 "Lamb Recipes",
+                 "Noodle Recipes",
+                 "Pasta Recipes",
+                 "Pie Recipes",
+                 "Pizza",
+                 "Pork Recipes",
+                 "Quick Recipes",
+                 "Rice Recipes",
+                 "Salad Recipes",
+                 "Sandwich Recipes",
+                 "Seafoods",
+                 "Soup Recipes",
+                 "Vegan Recipes",
+                 "Vegetarian Recipes"
+                 ))
+            favori_yemek_df = pd.DataFrame()
+            if yemek_turu == "Beef Recipes":
+                favori_yemek_df = df.loc[df["dana"]== 1]
+            if yemek_turu == "Chicken Recipes":
+                favori_yemek_df = df.loc[df["tavuk"] == 1]
+            if yemek_turu == "Diet Recipes":
+                favori_yemek_df = df.loc[df["diet"] == 1]
+            #if yemek_turu == "Drinks":
+                #favori_yemek_df = df.loc[df["içecek"] == 1]
+            if yemek_turu == "Dessert":
+                favori_yemek_df = df.loc[df["tatli"] == 1]
+            if yemek_turu == "Tatlılar":
+                favori_yemek_df = df.loc[df["tatli"] == 1]
+            if yemek_turu == "Lamb Recipes":
+                favori_yemek_df = df.loc[df["kuzu"] == 1]
+            if yemek_turu == "Noodle Recipes":
+                favori_yemek_df = df.loc[df["noodles"] == 1]
+            if yemek_turu == "Pasta Recipes":
+                favori_yemek_df = df.loc[df["pasta"] == 1]
+            if yemek_turu == "Pie Recipes":
+                favori_yemek_df = df.loc[df["pie"] == 1]
+            if yemek_turu == "Pizza":
+                favori_yemek_df = df.loc[df["pizza"] == 1]
+            if yemek_turu == "Pork Recipes":
+                favori_yemek_df = df.loc[df["pork"] == 1]
+            if yemek_turu == "Quick Recipes":
+                favori_yemek_df = df.loc[df["quick"] == 1]
+            if yemek_turu == "Rice Recipes":
+                favori_yemek_df = df.loc[df["rice"] == 1]
+            if yemek_turu == "Salad Recipes":
+                favori_yemek_df = df.loc[df["salad"] == 1]
+            if yemek_turu == "Sandwich Recipes":
+                favori_yemek_df = df.loc[df["sandwich"] == 1]
+            if yemek_turu == "Seafood Recipes":
+                favori_yemek_df = df.loc[df["denizden"] == 1]
+            if yemek_turu == "Soup Recipes":
+                favori_yemek_df = df.loc[df["soup"] == 1]
+            if yemek_turu == "Vegan Recipes":
+                favori_yemek_df = df.loc[df["vegan"] == 1]
+            if yemek_turu == "Vegetarian Recipes":
+                favori_yemek_df = df.loc[df["vegetarian"] == 1]
 
 
-if which_style == "I don't mind":
-    df = select_style(df, which_style)
+            # ---- Would you like to choose a cuisine? ---- #
 
-    secenek1 = ["Yes", "No"]
-    diet_y_n = st.sidebar.radio("Do you follow any specific diet?", secenek1)
+            secenek2 = ["No", "Yes"]
+            cuisine_y_n = st.sidebar.radio("Would you like to choose a cuisine?", secenek2)
 
-    if diet_y_n == "Yes":
-        diet_turu = st.sidebar.selectbox(
-            "Please select one of the diets",
-            ('Atkins',
-             'Carb-Free',
-             'Dairy-Free',
-             'Diabetic',
-             'Flour-Free',
-             'Gluten-Free',
-             'Grain-Free',
-             'Healthy',
-             'Lactose-Free',
-             'Low-Calorie',
-             'Low-Carb',
-             'Low-Fat',
-             'Low-Sodium',
-             'Low-Sugar',
-             'Salt-Free',
-             'Sodium-Free',
-             'Sugar-Free'
-             ))
-        favori_diet_df = pd.DataFrame()
-        if diet_turu == "Atkins":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("atkins"))]
-        if diet_turu == "Carb-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("carb-free"))]
-        if diet_turu == "Dairy-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("dairy-free"))]
-        if diet_turu == "Diabetic":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("diabetic"))]
-        if diet_turu == "Flour-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("flour-free"))]
-        if diet_turu == "Gluten-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("gluten-free"))]
-        if diet_turu == "Healthy":
-            favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("diet"))
-                                                         | (df["search_terms"].str.contains("diet"))
-                                                         | (df["search_terms"].str.contains("light")))]
-        if diet_turu == "Lactose-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("lactose-free"))]
-        if diet_turu == "Low-Calorie":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-calorie"))]
-        if diet_turu == "Low-Carb":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-carb"))]
-        if diet_turu == "Low-Fat":
-            favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("low-fat"))
-                                                         | (df["search_terms"].str.contains("lowfat")))]
-        if diet_turu == "Low-Sodium":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-sodium"))]
-        if diet_turu == "Low-Sugar":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-sugar"))]
-        if diet_turu == "Salt-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("salt-free"))]
-        if diet_turu == "Sodium-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("sodium-free"))]
-        if diet_turu == "Sugar-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("sugar-free"))
-                                                         | (df["search_terms"].str.contains("sugarless")))]
-            # if diet_y_n != "I dont":
-            #     change_diet_choice("I dont")
+            if cuisine_y_n == "Yes":
+                cuisine = st.sidebar.selectbox("*You can type*",
+                                                 ['American', 'Crazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole', 'Cuban',
+                                                  'Egyptian', 'English', 'Ethiopian', 'French', 'German', 'Greek', 'Indian',
+                                                  'Indonesian', 'Irish', 'Italian', 'Jamaican', 'Japanese', 'Korean', 'Lebanese',
+                                                  'Malaysian', 'Mexican', 'Moroccan', 'Nigerian', 'Persian', 'Peruvian', 'Polish',
+                                                  'Russian', 'Scottish', 'Southern', 'Spanish', 'Thai', 'Turkish', 'Vietnamese'
+                                                  ])
+                favori_yemek_df = favori_yemek_df[favori_yemek_df["search_terms"].str.contains(cuisine.lower())]
 
 
-    # ---- What is your Favorite? ---- #
+            # ---- Or, would you like to choose a diet? ---- #
+
     else:
-        yemek_turu = st.sidebar.radio(
-            "Please select one of them",
-            ("Beef Recipes",
-             "Chicken Recipes",
-             "Diet Recipes",
-             "Dessert",
-             "Lamb Recipes",
-             "Noodle Recipes",
-             "Pasta Recipes",
-             "Pie Recipes",
-             "Pizza",
-             "Pork Recipes",
-             "Quick Recipes",
-             "Rice Recipes",
-             "Salad Recipes",
-             "Sandwich Recipes",
-             "Seafoods",
-             "Soup Recipes",
-             "Vegan Recipes",
-             "Vegetarian Recipes"
-             ))
-        favori_yemek_df = pd.DataFrame()
-        if yemek_turu == "Beef Recipes":
-            favori_yemek_df = df.loc[df["dana"]== 1]
-        if yemek_turu == "Chicken Recipes":
-            favori_yemek_df = df.loc[df["tavuk"] == 1]
-        if yemek_turu == "Diet Recipes":
-            favori_yemek_df = df.loc[df["diet"] == 1]
-        #if yemek_turu == "Drinks":
-            #favori_yemek_df = df.loc[df["içecek"] == 1]
-        if yemek_turu == "Dessert":
-            favori_yemek_df = df.loc[df["tatli"] == 1]
-        if yemek_turu == "Tatlılar":
-            favori_yemek_df = df.loc[df["tatli"] == 1]
-        if yemek_turu == "Lamb Recipes":
-            favori_yemek_df = df.loc[df["kuzu"] == 1]
-        if yemek_turu == "Noodle Recipes":
-            favori_yemek_df = df.loc[df["noodles"] == 1]
-        if yemek_turu == "Pasta Recipes":
-            favori_yemek_df = df.loc[df["pasta"] == 1]
-        if yemek_turu == "Pie Recipes":
-            favori_yemek_df = df.loc[df["pie"] == 1]
-        if yemek_turu == "Pizza":
-            favori_yemek_df = df.loc[df["pizza"] == 1]
-        if yemek_turu == "Pork Recipes":
-            favori_yemek_df = df.loc[df["pork"] == 1]
-        if yemek_turu == "Quick Recipes":
-            favori_yemek_df = df.loc[df["quick"] == 1]
-        if yemek_turu == "Rice Recipes":
-            favori_yemek_df = df.loc[df["rice"] == 1]
-        if yemek_turu == "Salad Recipes":
-            favori_yemek_df = df.loc[df["salad"] == 1]
-        if yemek_turu == "Sandwich Recipes":
-            favori_yemek_df = df.loc[df["sandwich"] == 1]
-        if yemek_turu == "Seafood Recipes":
-            favori_yemek_df = df.loc[df["denizden"] == 1]
-        if yemek_turu == "Soup Recipes":
-            favori_yemek_df = df.loc[df["soup"] == 1]
-        if yemek_turu == "Vegan Recipes":
-            favori_yemek_df = df.loc[df["vegan"] == 1]
-        if yemek_turu == "Vegetarian Recipes":
-            favori_yemek_df = df.loc[df["vegetarian"] == 1]
+        df = select_style(df, which_style)
 
-        st.sidebar.write("---")
+        secenek1 = ["Yes", "No"]
+        diet_y_n = st.sidebar.radio("Do you follow any specific diet?", secenek1)
 
-        # ---- Would you like to choose a cuisine? ---- #
+        if diet_y_n == "Yes":
+            diet_turu = st.sidebar.selectbox(
+                "Please select one of the diets",
+                ('Atkins',
+                 'Carb-Free',
+                 'Dairy-Free',
+                 'Diabetic',
+                 'Flour-Free',
+                 'Gluten-Free',
+                 'Grain-Free',
+                 'Healthy',
+                 'Lactose-Free',
+                 'Low-Calorie',
+                 'Low-Carb',
+                 'Low-Fat',
+                 'Low-Sodium',
+                 'Low-Sugar',
+                 'Salt-Free',
+                 'Sodium-Free',
+                 'Sugar-Free'
+                 ))
+            favori_diet_df = pd.DataFrame()
+            if diet_turu == "Atkins":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("atkins"))]
+            if diet_turu == "Carb-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("carb-free"))]
+            if diet_turu == "Dairy-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("dairy-free"))]
+            if diet_turu == "Diabetic":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("diabetic"))]
+            if diet_turu == "Flour-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("flour-free"))]
+            if diet_turu == "Gluten-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("gluten-free"))]
+            if diet_turu == "Healthy":
+                favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("diet"))
+                                                             | (df["search_terms"].str.contains("diet"))
+                                                             | (df["search_terms"].str.contains("light")))]
+            if diet_turu == "Lactose-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("lactose-free"))]
+            if diet_turu == "Low-Calorie":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-calorie"))]
+            if diet_turu == "Low-Carb":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-carb"))]
+            if diet_turu == "Low-Fat":
+                favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("low-fat"))
+                                                             | (df["search_terms"].str.contains("lowfat")))]
+            if diet_turu == "Low-Sodium":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-sodium"))]
+            if diet_turu == "Low-Sugar":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-sugar"))]
+            if diet_turu == "Salt-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("salt-free"))]
+            if diet_turu == "Sodium-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("sodium-free"))]
+            if diet_turu == "Sugar-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("sugar-free"))
+                                                             | (df["search_terms"].str.contains("sugarless")))]
+                # if diet_y_n != "I dont":
+                #     change_diet_choice("I dont")
 
-        secenek2 = ["No", "Yes"]
-        cuisine_y_n = st.sidebar.radio("Would you like to choose a cuisine?", secenek2)
 
-        if cuisine_y_n == "Yes":
-            cuisine = st.sidebar.selectbox("*You can type*",
-                                             ['American', 'Crazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole', 'Cuban',
-                                              'Egyptian', 'English', 'Ethiopian', 'French', 'German', 'Greek', 'Indian',
-                                              'Indonesian', 'Irish', 'Italian', 'Jamaican', 'Japanese', 'Korean', 'Lebanese',
-                                              'Malaysian', 'Mexican', 'Moroccan', 'Nigerian', 'Persian', 'Peruvian', 'Polish',
-                                              'Russian', 'Scottish', 'Southern', 'Spanish', 'Thai', 'Turkish', 'Vietnamese'
-                                              ])
-            favori_yemek_df = favori_yemek_df[favori_yemek_df["search_terms"].str.contains(cuisine.lower())]
+        # ---- What is your Favorite? ---- #
+        else:
+            yemek_turu = st.sidebar.selectbox(
+                "Please select one of them",
+                ("Beef Recipes",
+                 "Chicken Recipes",
+                 "Diet Recipes",
+                 "Dessert",
+                 "Lamb Recipes",
+                 "Noodle Recipes",
+                 "Pasta Recipes",
+                 "Pie Recipes",
+                 "Pizza",
+                 "Pork Recipes",
+                 "Quick Recipes",
+                 "Rice Recipes",
+                 "Salad Recipes",
+                 "Sandwich Recipes",
+                 "Seafoods",
+                 "Soup Recipes",
+                 "Vegan Recipes",
+                 "Vegetarian Recipes"
+                 ))
+            favori_yemek_df = pd.DataFrame()
+            if yemek_turu == "Beef Recipes":
+                favori_yemek_df = df.loc[df["dana"] == 1]
+            if yemek_turu == "Chicken Recipes":
+                favori_yemek_df = df.loc[df["tavuk"] == 1]
+            if yemek_turu == "Diet Recipes":
+                favori_yemek_df = df.loc[df["diet"] == 1]
+            # if yemek_turu == "Drinks":
+            # favori_yemek_df = df.loc[df["içecek"] == 1]
+            if yemek_turu == "Dessert":
+                favori_yemek_df = df.loc[df["tatli"] == 1]
+            if yemek_turu == "Tatlılar":
+                favori_yemek_df = df.loc[df["tatli"] == 1]
+            if yemek_turu == "Lamb Recipes":
+                favori_yemek_df = df.loc[df["kuzu"] == 1]
+            if yemek_turu == "Noodle Recipes":
+                favori_yemek_df = df.loc[df["noodles"] == 1]
+            if yemek_turu == "Pasta Recipes":
+                favori_yemek_df = df.loc[df["pasta"] == 1]
+            if yemek_turu == "Pie Recipes":
+                favori_yemek_df = df.loc[df["pie"] == 1]
+            if yemek_turu == "Pizza":
+                favori_yemek_df = df.loc[df["pizza"] == 1]
+            if yemek_turu == "Pork Recipes":
+                favori_yemek_df = df.loc[df["pork"] == 1]
+            if yemek_turu == "Quick Recipes":
+                favori_yemek_df = df.loc[df["quick"] == 1]
+            if yemek_turu == "Rice Recipes":
+                favori_yemek_df = df.loc[df["rice"] == 1]
+            if yemek_turu == "Salad Recipes":
+                favori_yemek_df = df.loc[df["salad"] == 1]
+            if yemek_turu == "Sandwich Recipes":
+                favori_yemek_df = df.loc[df["sandwich"] == 1]
+            if yemek_turu == "Seafood Recipes":
+                favori_yemek_df = df.loc[df["denizden"] == 1]
+            if yemek_turu == "Soup Recipes":
+                favori_yemek_df = df.loc[df["soup"] == 1]
+            if yemek_turu == "Vegan Recipes":
+                favori_yemek_df = df.loc[df["vegan"] == 1]
+            if yemek_turu == "Vegetarian Recipes":
+                favori_yemek_df = df.loc[df["vegetarian"] == 1]
 
-        st.sidebar.write("---")
 
-        # ---- Or, would you like to choose a diet? ---- #
+            # ---- Would you like to choose a cuisine? ---- #
+
+            secenek2 = ["No", "Yes"]
+            cuisine_y_n = st.sidebar.radio("Would you like to choose a cuisine?", secenek2)
+
+            if cuisine_y_n == "Yes":
+                cuisine = st.sidebar.selectbox("*You can type*",
+                                               ['American', 'Crazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole',
+                                                'Cuban',
+                                                'Egyptian', 'English', 'Ethiopian', 'French', 'German', 'Greek', 'Indian',
+                                                'Indonesian', 'Irish', 'Italian', 'Jamaican', 'Japanese', 'Korean',
+                                                'Lebanese',
+                                                'Malaysian', 'Mexican', 'Moroccan', 'Nigerian', 'Persian', 'Peruvian',
+                                                'Polish',
+                                                'Russian', 'Scottish', 'Southern', 'Spanish', 'Thai', 'Turkish',
+                                                'Vietnamese'
+                                                ])
+                favori_yemek_df = favori_yemek_df[favori_yemek_df["search_terms"].str.contains(cuisine.lower())]
+
+
+            # ---- Or, would you like to choose a diet? ---- #
 
 else:
-    df = select_style(df, which_style)
+    df = select_meal(df, which_meal)
 
-    secenek1 = ["Yes", "No"]
-    diet_y_n = st.sidebar.radio("Do you follow any specific diet?", secenek1)
+    which_style = st.sidebar.selectbox("Which cooking style do you prefer:",
+                                       ("Please choose", "I don't mind", 'Baked', 'Barbecue',
+                                        'Braised', 'Casserole', 'Roast', 'Stew'),
+                                       index=0)
 
-    if diet_y_n == "Yes":
-        diet_turu = st.sidebar.selectbox(
-            "Please select one of the diets",
-            ('Atkins',
-             'Carb-Free',
-             'Dairy-Free',
-             'Diabetic',
-             'Flour-Free',
-             'Gluten-Free',
-             'Grain-Free',
-             'Healthy',
-             'Lactose-Free',
-             'Low-Calorie',
-             'Low-Carb',
-             'Low-Fat',
-             'Low-Sodium',
-             'Low-Sugar',
-             'Salt-Free',
-             'Sodium-Free',
-             'Sugar-Free'
-             ))
-        favori_diet_df = pd.DataFrame()
-        if diet_turu == "Atkins":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("atkins"))]
-        if diet_turu == "Carb-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("carb-free"))]
-        if diet_turu == "Dairy-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("dairy-free"))]
-        if diet_turu == "Diabetic":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("diabetic"))]
-        if diet_turu == "Flour-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("flour-free"))]
-        if diet_turu == "Gluten-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("gluten-free"))]
-        if diet_turu == "Healthy":
-            favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("diet"))
-                                                         | (df["search_terms"].str.contains("diet"))
-                                                         | (df["search_terms"].str.contains("light")))]
-        if diet_turu == "Lactose-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("lactose-free"))]
-        if diet_turu == "Low-Calorie":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-calorie"))]
-        if diet_turu == "Low-Carb":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-carb"))]
-        if diet_turu == "Low-Fat":
-            favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("low-fat"))
-                                                         | (df["search_terms"].str.contains("lowfat")))]
-        if diet_turu == "Low-Sodium":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-sodium"))]
-        if diet_turu == "Low-Sugar":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-sugar"))]
-        if diet_turu == "Salt-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("salt-free"))]
-        if diet_turu == "Sodium-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("sodium-free"))]
-        if diet_turu == "Sugar-Free":
-            favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("sugar-free"))
-                                                         | (df["search_terms"].str.contains("sugarless")))]
-            # if diet_y_n != "I dont":
-            #     change_diet_choice("I dont")
+    if which_style == "I don't mind":
+        df = select_style(df, which_style)
+
+        secenek1 = ["Yes", "No"]
+        diet_y_n = st.sidebar.radio("Do you follow any specific diet?", secenek1)
+
+        if diet_y_n == "Yes":
+            diet_turu = st.sidebar.selectbox(
+                "Please select one of the diets",
+                ('Atkins',
+                 'Carb-Free',
+                 'Dairy-Free',
+                 'Diabetic',
+                 'Flour-Free',
+                 'Gluten-Free',
+                 'Grain-Free',
+                 'Healthy',
+                 'Lactose-Free',
+                 'Low-Calorie',
+                 'Low-Carb',
+                 'Low-Fat',
+                 'Low-Sodium',
+                 'Low-Sugar',
+                 'Salt-Free',
+                 'Sodium-Free',
+                 'Sugar-Free'))
+            favori_diet_df = pd.DataFrame()
+            if diet_turu == "Atkins":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("atkins"))]
+            if diet_turu == "Carb-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("carb-free"))]
+            if diet_turu == "Dairy-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("dairy-free"))]
+            if diet_turu == "Diabetic":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("diabetic"))]
+            if diet_turu == "Flour-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("flour-free"))]
+            if diet_turu == "Gluten-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("gluten-free"))]
+            if diet_turu == "Healthy":
+                favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("diet"))
+                                                             | (df["search_terms"].str.contains("diet"))
+                                                             | (df["search_terms"].str.contains("light")))]
+            if diet_turu == "Lactose-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("lactose-free"))]
+            if diet_turu == "Low-Calorie":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-calorie"))]
+            if diet_turu == "Low-Carb":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-carb"))]
+            if diet_turu == "Low-Fat":
+                favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("low-fat"))
+                                                             | (df["search_terms"].str.contains("lowfat")))]
+            if diet_turu == "Low-Sodium":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-sodium"))]
+            if diet_turu == "Low-Sugar":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-sugar"))]
+            if diet_turu == "Salt-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("salt-free"))]
+            if diet_turu == "Sodium-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("sodium-free"))]
+            if diet_turu == "Sugar-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("sugar-free"))
+                                                             | (df["search_terms"].str.contains("sugarless")))]
+                # if diet_y_n != "I dont":
+                #     change_diet_choice("I dont")
 
 
-    # ---- What is your Favorite? ---- #
+        # ---- What is your Favorite? ---- #
+        else:
+            yemek_turu = st.sidebar.selectbox(
+                "Please select one of them",
+                ("Beef Recipes",
+                 "Chicken Recipes",
+                 "Diet Recipes",
+                 "Dessert",
+                 "Lamb Recipes",
+                 "Noodle Recipes",
+                 "Pasta Recipes",
+                 "Pie Recipes",
+                 "Pizza",
+                 "Pork Recipes",
+                 "Quick Recipes",
+                 "Rice Recipes",
+                 "Salad Recipes",
+                 "Sandwich Recipes",
+                 "Seafoods",
+                 "Soup Recipes",
+                 "Vegan Recipes",
+                 "Vegetarian Recipes"
+                 ))
+            favori_yemek_df = pd.DataFrame()
+            if yemek_turu == "Beef Recipes":
+                favori_yemek_df = df.loc[df["dana"]== 1]
+            if yemek_turu == "Chicken Recipes":
+                favori_yemek_df = df.loc[df["tavuk"] == 1]
+            if yemek_turu == "Diet Recipes":
+                favori_yemek_df = df.loc[df["diet"] == 1]
+            #if yemek_turu == "Drinks":
+                #favori_yemek_df = df.loc[df["içecek"] == 1]
+            if yemek_turu == "Dessert":
+                favori_yemek_df = df.loc[df["tatli"] == 1]
+            if yemek_turu == "Tatlılar":
+                favori_yemek_df = df.loc[df["tatli"] == 1]
+            if yemek_turu == "Lamb Recipes":
+                favori_yemek_df = df.loc[df["kuzu"] == 1]
+            if yemek_turu == "Noodle Recipes":
+                favori_yemek_df = df.loc[df["noodles"] == 1]
+            if yemek_turu == "Pasta Recipes":
+                favori_yemek_df = df.loc[df["pasta"] == 1]
+            if yemek_turu == "Pie Recipes":
+                favori_yemek_df = df.loc[df["pie"] == 1]
+            if yemek_turu == "Pizza":
+                favori_yemek_df = df.loc[df["pizza"] == 1]
+            if yemek_turu == "Pork Recipes":
+                favori_yemek_df = df.loc[df["pork"] == 1]
+            if yemek_turu == "Quick Recipes":
+                favori_yemek_df = df.loc[df["quick"] == 1]
+            if yemek_turu == "Rice Recipes":
+                favori_yemek_df = df.loc[df["rice"] == 1]
+            if yemek_turu == "Salad Recipes":
+                favori_yemek_df = df.loc[df["salad"] == 1]
+            if yemek_turu == "Sandwich Recipes":
+                favori_yemek_df = df.loc[df["sandwich"] == 1]
+            if yemek_turu == "Seafood Recipes":
+                favori_yemek_df = df.loc[df["denizden"] == 1]
+            if yemek_turu == "Soup Recipes":
+                favori_yemek_df = df.loc[df["soup"] == 1]
+            if yemek_turu == "Vegan Recipes":
+                favori_yemek_df = df.loc[df["vegan"] == 1]
+            if yemek_turu == "Vegetarian Recipes":
+                favori_yemek_df = df.loc[df["vegetarian"] == 1]
+
+
+            # ---- Would you like to choose a cuisine? ---- #
+
+            secenek2 = ["No", "Yes"]
+            cuisine_y_n = st.sidebar.radio("Would you like to choose a cuisine?", secenek2)
+
+            if cuisine_y_n == "Yes":
+                cuisine = st.sidebar.selectbox("*You can type*",
+                                                 ['American', 'Crazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole', 'Cuban',
+                                                  'Egyptian', 'English', 'Ethiopian', 'French', 'German', 'Greek', 'Indian',
+                                                  'Indonesian', 'Irish', 'Italian', 'Jamaican', 'Japanese', 'Korean', 'Lebanese',
+                                                  'Malaysian', 'Mexican', 'Moroccan', 'Nigerian', 'Persian', 'Peruvian', 'Polish',
+                                                  'Russian', 'Scottish', 'Southern', 'Spanish', 'Thai', 'Turkish', 'Vietnamese'
+                                                  ])
+                favori_yemek_df = favori_yemek_df[favori_yemek_df["search_terms"].str.contains(cuisine.lower())]
+
+
+            # ---- Or, would you like to choose a diet? ---- #
+
     else:
-        yemek_turu = st.sidebar.radio(
-            "Please select one of them",
-            ("Beef Recipes",
-             "Chicken Recipes",
-             "Diet Recipes",
-             "Dessert",
-             "Lamb Recipes",
-             "Noodle Recipes",
-             "Pasta Recipes",
-             "Pie Recipes",
-             "Pizza",
-             "Pork Recipes",
-             "Quick Recipes",
-             "Rice Recipes",
-             "Salad Recipes",
-             "Sandwich Recipes",
-             "Seafoods",
-             "Soup Recipes",
-             "Vegan Recipes",
-             "Vegetarian Recipes"
-             ))
-        favori_yemek_df = pd.DataFrame()
-        if yemek_turu == "Beef Recipes":
-            favori_yemek_df = df.loc[df["dana"] == 1]
-        if yemek_turu == "Chicken Recipes":
-            favori_yemek_df = df.loc[df["tavuk"] == 1]
-        if yemek_turu == "Diet Recipes":
-            favori_yemek_df = df.loc[df["diet"] == 1]
-        # if yemek_turu == "Drinks":
-        # favori_yemek_df = df.loc[df["içecek"] == 1]
-        if yemek_turu == "Dessert":
-            favori_yemek_df = df.loc[df["tatli"] == 1]
-        if yemek_turu == "Tatlılar":
-            favori_yemek_df = df.loc[df["tatli"] == 1]
-        if yemek_turu == "Lamb Recipes":
-            favori_yemek_df = df.loc[df["kuzu"] == 1]
-        if yemek_turu == "Noodle Recipes":
-            favori_yemek_df = df.loc[df["noodles"] == 1]
-        if yemek_turu == "Pasta Recipes":
-            favori_yemek_df = df.loc[df["pasta"] == 1]
-        if yemek_turu == "Pie Recipes":
-            favori_yemek_df = df.loc[df["pie"] == 1]
-        if yemek_turu == "Pizza":
-            favori_yemek_df = df.loc[df["pizza"] == 1]
-        if yemek_turu == "Pork Recipes":
-            favori_yemek_df = df.loc[df["pork"] == 1]
-        if yemek_turu == "Quick Recipes":
-            favori_yemek_df = df.loc[df["quick"] == 1]
-        if yemek_turu == "Rice Recipes":
-            favori_yemek_df = df.loc[df["rice"] == 1]
-        if yemek_turu == "Salad Recipes":
-            favori_yemek_df = df.loc[df["salad"] == 1]
-        if yemek_turu == "Sandwich Recipes":
-            favori_yemek_df = df.loc[df["sandwich"] == 1]
-        if yemek_turu == "Seafood Recipes":
-            favori_yemek_df = df.loc[df["denizden"] == 1]
-        if yemek_turu == "Soup Recipes":
-            favori_yemek_df = df.loc[df["soup"] == 1]
-        if yemek_turu == "Vegan Recipes":
-            favori_yemek_df = df.loc[df["vegan"] == 1]
-        if yemek_turu == "Vegetarian Recipes":
-            favori_yemek_df = df.loc[df["vegetarian"] == 1]
+        df = select_style(df, which_style)
 
-        st.sidebar.write("---")
+        secenek1 = ["Yes", "No"]
+        diet_y_n = st.sidebar.radio("Do you follow any specific diet?", secenek1)
 
-        # ---- Would you like to choose a cuisine? ---- #
+        if diet_y_n == "Yes":
+            diet_turu = st.sidebar.selectbox(
+                "Please select one of the diets",
+                ('Atkins',
+                 'Carb-Free',
+                 'Dairy-Free',
+                 'Diabetic',
+                 'Flour-Free',
+                 'Gluten-Free',
+                 'Grain-Free',
+                 'Healthy',
+                 'Lactose-Free',
+                 'Low-Calorie',
+                 'Low-Carb',
+                 'Low-Fat',
+                 'Low-Sodium',
+                 'Low-Sugar',
+                 'Salt-Free',
+                 'Sodium-Free',
+                 'Sugar-Free'
+                 ))
+            favori_diet_df = pd.DataFrame()
+            if diet_turu == "Atkins":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("atkins"))]
+            if diet_turu == "Carb-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("carb-free"))]
+            if diet_turu == "Dairy-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("dairy-free"))]
+            if diet_turu == "Diabetic":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("diabetic"))]
+            if diet_turu == "Flour-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("flour-free"))]
+            if diet_turu == "Gluten-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("gluten-free"))]
+            if diet_turu == "Healthy":
+                favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("diet"))
+                                                             | (df["search_terms"].str.contains("diet"))
+                                                             | (df["search_terms"].str.contains("light")))]
+            if diet_turu == "Lactose-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("lactose-free"))]
+            if diet_turu == "Low-Calorie":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-calorie"))]
+            if diet_turu == "Low-Carb":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-carb"))]
+            if diet_turu == "Low-Fat":
+                favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("low-fat"))
+                                                             | (df["search_terms"].str.contains("lowfat")))]
+            if diet_turu == "Low-Sodium":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-sodium"))]
+            if diet_turu == "Low-Sugar":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("low-sugar"))]
+            if diet_turu == "Salt-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("salt-free"))]
+            if diet_turu == "Sodium-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & (df["search_terms"].str.contains("sodium-free"))]
+            if diet_turu == "Sugar-Free":
+                favori_diet_df = df.loc[(df["diet"] == 1) & ((df["search_terms"].str.contains("sugar-free"))
+                                                             | (df["search_terms"].str.contains("sugarless")))]
+                # if diet_y_n != "I dont":
+                #     change_diet_choice("I dont")
 
-        secenek2 = ["No", "Yes"]
-        cuisine_y_n = st.sidebar.radio("Would you like to choose a cuisine?", secenek2)
 
-        if cuisine_y_n == "Yes":
-            cuisine = st.sidebar.selectbox("*You can type*",
-                                           ['American', 'Crazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole',
-                                            'Cuban',
-                                            'Egyptian', 'English', 'Ethiopian', 'French', 'German', 'Greek', 'Indian',
-                                            'Indonesian', 'Irish', 'Italian', 'Jamaican', 'Japanese', 'Korean',
-                                            'Lebanese',
-                                            'Malaysian', 'Mexican', 'Moroccan', 'Nigerian', 'Persian', 'Peruvian',
-                                            'Polish',
-                                            'Russian', 'Scottish', 'Southern', 'Spanish', 'Thai', 'Turkish',
-                                            'Vietnamese'
-                                            ])
-            favori_yemek_df = favori_yemek_df[favori_yemek_df["search_terms"].str.contains(cuisine.lower())]
+        # ---- What is your Favorite? ---- #
+        else:
+            yemek_turu = st.sidebar.selectbox(
+                "Please select one of them",
+                ("Beef Recipes",
+                 "Chicken Recipes",
+                 "Diet Recipes",
+                 "Dessert",
+                 "Lamb Recipes",
+                 "Noodle Recipes",
+                 "Pasta Recipes",
+                 "Pie Recipes",
+                 "Pizza",
+                 "Pork Recipes",
+                 "Quick Recipes",
+                 "Rice Recipes",
+                 "Salad Recipes",
+                 "Sandwich Recipes",
+                 "Seafoods",
+                 "Soup Recipes",
+                 "Vegan Recipes",
+                 "Vegetarian Recipes"
+                 ))
+            favori_yemek_df = pd.DataFrame()
+            if yemek_turu == "Beef Recipes":
+                favori_yemek_df = df.loc[df["dana"] == 1]
+            if yemek_turu == "Chicken Recipes":
+                favori_yemek_df = df.loc[df["tavuk"] == 1]
+            if yemek_turu == "Diet Recipes":
+                favori_yemek_df = df.loc[df["diet"] == 1]
+            # if yemek_turu == "Drinks":
+            # favori_yemek_df = df.loc[df["içecek"] == 1]
+            if yemek_turu == "Dessert":
+                favori_yemek_df = df.loc[df["tatli"] == 1]
+            if yemek_turu == "Tatlılar":
+                favori_yemek_df = df.loc[df["tatli"] == 1]
+            if yemek_turu == "Lamb Recipes":
+                favori_yemek_df = df.loc[df["kuzu"] == 1]
+            if yemek_turu == "Noodle Recipes":
+                favori_yemek_df = df.loc[df["noodles"] == 1]
+            if yemek_turu == "Pasta Recipes":
+                favori_yemek_df = df.loc[df["pasta"] == 1]
+            if yemek_turu == "Pie Recipes":
+                favori_yemek_df = df.loc[df["pie"] == 1]
+            if yemek_turu == "Pizza":
+                favori_yemek_df = df.loc[df["pizza"] == 1]
+            if yemek_turu == "Pork Recipes":
+                favori_yemek_df = df.loc[df["pork"] == 1]
+            if yemek_turu == "Quick Recipes":
+                favori_yemek_df = df.loc[df["quick"] == 1]
+            if yemek_turu == "Rice Recipes":
+                favori_yemek_df = df.loc[df["rice"] == 1]
+            if yemek_turu == "Salad Recipes":
+                favori_yemek_df = df.loc[df["salad"] == 1]
+            if yemek_turu == "Sandwich Recipes":
+                favori_yemek_df = df.loc[df["sandwich"] == 1]
+            if yemek_turu == "Seafood Recipes":
+                favori_yemek_df = df.loc[df["denizden"] == 1]
+            if yemek_turu == "Soup Recipes":
+                favori_yemek_df = df.loc[df["soup"] == 1]
+            if yemek_turu == "Vegan Recipes":
+                favori_yemek_df = df.loc[df["vegan"] == 1]
+            if yemek_turu == "Vegetarian Recipes":
+                favori_yemek_df = df.loc[df["vegetarian"] == 1]
 
-        st.sidebar.write("---")
 
-        # ---- Or, would you like to choose a diet? ---- #
+            # ---- Would you like to choose a cuisine? ---- #
+
+            secenek2 = ["No", "Yes"]
+            cuisine_y_n = st.sidebar.radio("Would you like to choose a cuisine?", secenek2)
+
+            if cuisine_y_n == "Yes":
+                cuisine = st.sidebar.selectbox("*You can type*",
+                                               ['American', 'Crazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole',
+                                                'Cuban',
+                                                'Egyptian', 'English', 'Ethiopian', 'French', 'German', 'Greek', 'Indian',
+                                                'Indonesian', 'Irish', 'Italian', 'Jamaican', 'Japanese', 'Korean',
+                                                'Lebanese',
+                                                'Malaysian', 'Mexican', 'Moroccan', 'Nigerian', 'Persian', 'Peruvian',
+                                                'Polish',
+                                                'Russian', 'Scottish', 'Southern', 'Spanish', 'Thai', 'Turkish',
+                                                'Vietnamese'
+                                                ])
+                favori_yemek_df = favori_yemek_df[favori_yemek_df["search_terms"].str.contains(cuisine.lower())]
+
+
+            # ---- Or, would you like to choose a diet? ---- #
 
 
 
@@ -454,10 +776,26 @@ st.subheader("Are you ready to cook a new recipe?")
 tarifler_gelsin = st.button("Here are our superstar recipes")
 if tarifler_gelsin:
     #st.write(favori_yemek_df[["servings", "name", "ingredients_raw_str", "steps"]])
-    if diet_y_n == "Yes":
-        st.write(favori_diet_df["name"].head(20))
+    if which_meal == "Please choose":
+        st.write("Please choose a meal on the sidebar 👈")
+    elif which_style == "Please choose":
+        st.write("Please choose a style on the sidebar 👈")
+    elif diet_y_n == "Yes":
+        with st.container():
+            st.write(favori_diet_df.loc[0, "name"])
+            tab1, tab2, = st.tabs(["Ingredients", "Cooking Steps"])
+            with tab1:
+                st.write(favori_diet_df.loc[0, "ingredients_raw_str"])
+            with tab2:
+                st.write(favori_diet_df.loc[0, "steps"])
     else:
-        st.write(favori_yemek_df["name"].head(20))
+        with st.container():
+            st.write(favori_yemek_df.loc[0, "name"])
+            tab1, tab2, = st.tabs(["Ingredients", "Cooking Steps"])
+            with tab1:
+                st.write(favori_yemek_df.loc[0, "ingredients_raw_str"])
+            with tab2:
+                st.write(favori_yemek_df.loc[0, "steps"])
 
 
 
