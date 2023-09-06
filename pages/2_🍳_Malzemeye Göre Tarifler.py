@@ -26,28 +26,20 @@ col1, col2, col3 = st.columns((1,4,1))
 with col2:
     st_lottie(lottie_coding2)
 st.subheader('Ürün israfının önüne geçtiğin için kendinle gurur duymalısın!')
-
-
+#seçim yapılacak malzeme listesinin tamamı
+df_ingredients = pd.read_csv("ingredients.csv")
+ingredients = df_ingredients["ingredients"].tolist()
 
 with st.container():
     st.write(
         """
         Şimdi bize elindeki malzemeler hakkında bilgi verir misin, hangi ürünler var?
         """)
-    st.multiselect('',
-                   ["Domates", "Soğan", "Sarımsak", "Biber", "Tavuk", "Kırmızı Et","Pirinç", "Makarna", "Patates",
-                    "Havuç", "Ispanak", "Brokoli","Bezelye", "Mantar", "Kabak","Kırmızı Mercimek", "Nohut", "Yoğurt",
-                    "Peynir", "Zeytin", "Zeytinyağı", "Tereyağı", "Süt", "Un",  "Yumurta","Maydanoz", "Dereotu", "Nane",
-                    "Kekik", "Tarçın", "Zencefil","Kırmızı Pul Biber", "Kekik", "Krema", "Limon", "Limon Suyu", "Elma",
-                    "Armut", "Çilek", "Üzüm", "Portakal", "Muz", "Ananas", "Avokado","Karpuz", "Kavun", "Badem",
-                    "Ceviz", "Fındık", "Susam", "Ayçiçek Yağı", "Bal", "Tahin", "Hardal", "Mayonez", "Ketçap", "Salça",
-                    "Balık", "Karides", "Midye", "Kalamar", "Tavuk Göğsü", "Pastirma", "Salam", "Sucuk", "Sosis",
-                    "Zeytin Ezmesi", "Süzme Yoğurt", "Kıvırcık", "Roka", "Lahana", "Karnabahar", "Turşu", "Salatalık",
-                    "Kırmızı Lahana", "Beyaz Lahana", "Brokoli", "Kabak","Brüksel Lahanası", "Patlıcan", "Enginar",
-                    "Bamya", "Kırmızı Biber", "Acı Biber", "Enginar", "Mısır", "Bezelye", "Yeşil Fasulye","Kuşkonmaz",
-                    "Sarımsak", "Kereviz", "Havuç", "Patates", "Taze Soğan","Roka", "Marul", "Semizotu", "Dereotu",
-                    "Taze Nane", "Kıvırcık Maydanoz", "Ruşeym", "Quinoa", "Kinoa", "Bulgur", "Couscous"
-                    ])
+    st.multiselect('', ingredients)
+
+
+#aşağıdaki ufak liste de kullanılabilir.
+
     #st.multiselect('',
     #           ["Tomato", "Onion", "Garlic", "Pepper", "Chicken", "Red Meat", "Rice", "Pasta", "Potato",
     #            "Carrot", "Spinach", "Broccoli", "Peas", "Mushroom", "Zucchini", "Red Lentil", "Chickpea", "Yogurt",
@@ -62,7 +54,19 @@ with st.container():
     #            "Garlic", "Celery", "Carrot", "Potato", "Green Onion", "Rocket", "Lettuce", "Purslane", "Dill",
     #            "Fresh Mint", "Curled Parsley", "Wheat Germ", "Quinoa", "Bulgur", "Couscous"
     #            ])
-
+    #["Domates", "Soğan", "Sarımsak", "Biber", "Tavuk", "Kırmızı Et", "Pirinç", "Makarna", "Patates",
+     #"Havuç", "Ispanak", "Brokoli", "Bezelye", "Mantar", "Kabak", "Kırmızı Mercimek", "Nohut", "Yoğurt",
+    #"Peynir", "Zeytin", "Zeytinyağı", "Tereyağı", "Süt", "Un", "Yumurta", "Maydanoz", "Dereotu", "Nane",
+    # "Kekik", "Tarçın", "Zencefil", "Kırmızı Pul Biber", "Kekik", "Krema", "Limon", "Limon Suyu", "Elma",
+    # "Armut", "Çilek", "Üzüm", "Portakal", "Muz", "Ananas", "Avokado", "Karpuz", "Kavun", "Badem",
+    # "Ceviz", "Fındık", "Susam", "Ayçiçek Yağı", "Bal", "Tahin", "Hardal", "Mayonez", "Ketçap", "Salça",
+    # "Balık", "Karides", "Midye", "Kalamar", "Tavuk Göğsü", "Pastirma", "Salam", "Sucuk", "Sosis",
+    # "Zeytin Ezmesi", "Süzme Yoğurt", "Kıvırcık", "Roka", "Lahana", "Karnabahar", "Turşu", "Salatalık",
+    # "Kırmızı Lahana", "Beyaz Lahana", "Brokoli", "Kabak", "Brüksel Lahanası", "Patlıcan", "Enginar",
+    # "Bamya", "Kırmızı Biber", "Acı Biber", "Enginar", "Mısır", "Bezelye", "Yeşil Fasulye", "Kuşkonmaz",
+    # "Sarımsak", "Kereviz", "Havuç", "Patates", "Taze Soğan", "Roka", "Marul", "Semizotu", "Dereotu",
+    # "Taze Nane", "Kıvırcık Maydanoz", "Ruşeym", "Quinoa", "Kinoa", "Bulgur", "Couscous"
+    # ]
 
 st.button('Gelsin Tarifler')
 
