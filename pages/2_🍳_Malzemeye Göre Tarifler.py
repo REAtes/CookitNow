@@ -13,7 +13,7 @@ st.set_page_config(page_title="Malzemeye Göre Tarifler  | GastroMiuul", page_ic
 
 # ---- Main Screen  ---- #
 
-
+@st.cache_data
 def load_lottieurl(url):
     r = requests.get(url)
     if r.status_code != 200:

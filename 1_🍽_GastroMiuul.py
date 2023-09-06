@@ -24,7 +24,7 @@ def load_data(url, page):
     return df
 
 
-df = pd.read_csv("C:/Users/remre/PycharmProjects/Tarif_Olusturucu/GastroMiuul/datasets/dataframe_060923csv1.csv")
+df = pd.read_csv("Food_Ingredients.csv")
 lowercase = lambda x: str(x).lower()
 df.rename(lowercase, axis='columns', inplace=True)
 pd.set_option('display.max_columns', None)
