@@ -28,30 +28,74 @@ col1, col2, col3 = st.columns((1, 4, 1))
 with col2:
     st_lottie(lottie_coding2)
 st.subheader('Be Proud of Preventing Product Waste!')
-#seçim yapılacak malzeme listesinin tamamı
-df_ingredients = pd.read_csv("ingredients.csv")
-ingredients = df_ingredients["ingredients"].tolist()
 
+#seçim yapılacak malzeme listesinin tamamı
+
+ingredients = ["chicken", "beef", "pork", "lamb", "turkey", "duck", "veal", "bacon", "ham", "sausage"
+         "salmon", "tuna", "shrimp", "lobster", "crab", "cod", "mackerel", "trout", "oyster", "clam"
+         "tomato", "onion", "garlic", "bell pepper", "broccoli", "carrot", "spinach",
+         "lettuce", "cabbage", "mushroom", "green beans", "peas", "corn", "zucchini",
+         "eggplant", "cucumber", "celery", "kale", "brussels sprouts", "cauliflower",
+         "asparagus", "beet", "radish", "leek"
+         "apple", "banana", "orange", "strawberry", "blueberry", "raspberry", "kiwi",
+         "mango", "pineapple", "grape", "watermelon", "peach", "pear", "plum", "pomegranate",
+         "fig", "lemon", "lime", "cherry", "blackberry"
+         "rice", "pasta", "potato", "bread", "quinoa", "oats", "barley", "cornmeal",
+         "whole wheat", "rye", "buckwheat", "couscous"
+         "milk", "cream", "yogurt", "cheese", "butter", "ghee", "almond milk",
+         "soy milk", "oat milk", "cashew milk", "feta", "parmesan", "cheddar"
+         "almond", "walnut", "cashew", "peanut", "sesame seed", "sunflower seed",
+         "pumpkin seed", "chia seed", "flaxseed", "pecan", "macadamia", "hazelnut"
+         "pepper", "salt", "sugar", "cinnamon", "chili", "rosemary", "basil",
+         "oregano", "parsley", "cilantro", "thyme", "curry powder", "ginger",
+         "turmeric", "coriander", "cumin", "paprika", "cardamom", "cloves", "nutmeg", "saffron"
+         "olive oil", "soy sauce", "vinegar", "honey", "maple syrup", "sesame oil",
+         "coconut oil", "mustard", "ketchup", "mayonnaise", "hot sauce", "peanut butter",
+         "wasabi", "teriyaki sauce", "BBQ sauce", "salsa"
+         "tea", "coffee", "wine", "beer", "soda", "juice"
+         "black beans", "lentils", "chickpeas", "green lentils", "red kidney beans",
+         "white beans", "soybeans", "mung beans", "peanuts", "fava beans", "lima beans"
+         "tofu", "tempeh", "seitan", "edamame", "textured vegetable protein", "soy chunks",
+         "chocolate", "vanilla", "gelatin", "marshmallow", "caramel", "cookie",
+         "cake", "brownie", "pie", "ice cream"]
 with st.container():
     st.write("Now, can you please type the ingredients you have? What products do you have?")
     st.multiselect('', ingredients, placeholder="type here")
 
-
 #aşağıdaki ufak liste de kullanılabilir.
 
     #st.multiselect('',
-    #           ["Tomato", "Onion", "Garlic", "Pepper", "Chicken", "Red Meat", "Rice", "Pasta", "Potato",
-    #            "Carrot", "Spinach", "Broccoli", "Peas", "Mushroom", "Zucchini", "Red Lentil", "Chickpea", "Yogurt",
-    #            "Cheese", "Olive", "Olive Oil", "Butter", "Milk", "Flour", "Egg", "Parsley", "Dill", "Mint",
-    #            "Cinnamon", "Ginger", "Red Pepper Flakes", "Thyme", "Cream", "Lemon", "Lemon Juice", "Apple",
-    #            "Pear", "Strawberry", "Grape", "Orange", "Banana", "Pineapple", "Avocado", "Watermelon", "Melon", "Almond",
-    #            "Walnut", "Hazelnut", "Sesame", "Sunflower Oil", "Honey", "Tahini", "Mustard", "Mayonnaise", "Ketchup", "Tomato Paste",
-    #            "Fish", "Shrimp", "Mussel", "Squid", "Chicken Breast", "Pastrami", "Salami", "Sausage", "Frankfurter",
-    #            "Olive Paste", "Strained Yogurt", "Lettuce", "Rocket", "Cabbage", "Cauliflower", "Pickle", "Cucumber",
-    #            "Red Cabbage", "White Cabbage", "Broccoli", "Zucchini", "Brussels Sprouts", "Eggplant", "Artichoke",
-    #            "Okra", "Red Pepper", "Hot Pepper", "Corn", "Peas", "Green Bean", "Asparagus",
-    #            "Garlic", "Celery", "Carrot", "Potato", "Green Onion", "Rocket", "Lettuce", "Purslane", "Dill",
-    #            "Fresh Mint", "Curled Parsley", "Wheat Germ", "Quinoa", "Bulgur", "Couscous"
+    #           [
+#         "chicken", "beef", "pork", "lamb", "turkey", "duck", "veal", "bacon", "ham", "sausage"
+#         "salmon", "tuna", "shrimp", "lobster", "crab", "cod", "mackerel", "trout", "oyster", "clam"
+#         "tomato", "onion", "garlic", "bell pepper", "broccoli", "carrot", "spinach",
+#         "lettuce", "cabbage", "mushroom", "green beans", "peas", "corn", "zucchini",
+#         "eggplant", "cucumber", "celery", "kale", "brussels sprouts", "cauliflower",
+#         "asparagus", "beet", "radish", "leek"
+#         "apple", "banana", "orange", "strawberry", "blueberry", "raspberry", "kiwi",
+#         "mango", "pineapple", "grape", "watermelon", "peach", "pear", "plum", "pomegranate",
+#         "fig", "lemon", "lime", "cherry", "blackberry"
+#         "rice", "pasta", "potato", "bread", "quinoa", "oats", "barley", "cornmeal",
+#         "whole wheat", "rye", "buckwheat", "couscous"
+#         "milk", "cream", "yogurt", "cheese", "butter", "ghee", "almond milk",
+#         "soy milk", "oat milk", "cashew milk", "feta", "parmesan", "cheddar"
+#         "almond", "walnut", "cashew", "peanut", "sesame seed", "sunflower seed",
+#         "pumpkin seed", "chia seed", "flaxseed", "pecan", "macadamia", "hazelnut"
+#         "pepper", "salt", "sugar", "cinnamon", "chili", "rosemary", "basil",
+#         "oregano", "parsley", "cilantro", "thyme", "curry powder", "ginger",
+#         "turmeric", "coriander", "cumin", "paprika", "cardamom", "cloves", "nutmeg", "saffron"
+#         "olive oil", "soy sauce", "vinegar", "honey", "maple syrup", "sesame oil",
+#         "coconut oil", "mustard", "ketchup", "mayonnaise", "hot sauce", "peanut butter",
+#         "wasabi", "teriyaki sauce", "BBQ sauce", "salsa"
+#         "tea", "coffee", "wine", "beer", "soda", "juice"
+#         "black beans", "lentils", "chickpeas", "green lentils", "red kidney beans",
+#         "white beans", "soybeans", "mung beans", "peanuts", "fava beans", "lima beans"
+#         "tofu", "tempeh", "seitan", "edamame", "textured vegetable protein", "soy chunks",
+#         "chocolate", "vanilla", "gelatin", "marshmallow", "caramel", "cookie",
+#         "cake", "brownie", "pie", "ice cream"]
+#
+#
+# print(ingredients)
     #            ])
     #["Domates", "Soğan", "Sarımsak", "Biber", "Tavuk", "Kırmızı Et", "Pirinç", "Makarna", "Patates",
      #"Havuç", "Ispanak", "Brokoli", "Bezelye", "Mantar", "Kabak", "Kırmızı Mercimek", "Nohut", "Yoğurt",
