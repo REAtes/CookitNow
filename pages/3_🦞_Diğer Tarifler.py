@@ -7,6 +7,7 @@ from streamlit_option_menu import option_menu
 from streamlit_extras.metric_cards import style_metric_cards
 import os
 from PIL import Image
+from streamlit_extras.stylable_container import stylable_container
 
 
 st.set_page_config(page_title="Diğer Tarifler | GastroMiuul", page_icon="🦞")
@@ -771,7 +772,18 @@ with col2:
     st_lottie(diger)
 st.subheader("Are you ready to cook a new recipe?")
 
-tarifler_gelsin = st.button("Here are our superstar recipes")
+with stylable_container(
+        key="yellow_button",
+        css_styles="""
+        button {
+            background-color: #FFBC42;
+            color: white;
+            border-radius: 5px;
+        }
+        """,
+):
+    tarifler_gelsin = st.button("**Here are our superstar recipes**")
+
 
 def urun_getir(df, adet=20):
     name = df["name"].tolist()
@@ -795,7 +807,6 @@ def urun_getir(df, adet=20):
 
 
 if tarifler_gelsin:
-    #st.write(favori_yemek_df[["servings", "name", "ingredients_raw_str", "steps"]])
     if which_meal == "Please choose":
         st.write("Please choose a meal on the sidebar 👈")
     elif which_style == "Please choose":

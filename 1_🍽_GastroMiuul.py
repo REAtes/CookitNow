@@ -24,7 +24,7 @@ def load_data(url, page):
     return df
 
 
-df = load_data("C:/Users/remre/PycharmProjects/Tarif_Olusturucu/GastroMiuul/datasets/dataframe.xlsx", "Raw_Data")
+df = pd.read_csv("C:/Users/remre/PycharmProjects/Tarif_Olusturucu/GastroMiuul/datasets/dataframe_060923csv1.csv")
 lowercase = lambda x: str(x).lower()
 df.rename(lowercase, axis='columns', inplace=True)
 pd.set_option('display.max_columns', None)
@@ -48,17 +48,21 @@ lottie_coding = load_lottieurl("https://lottie.host/53a4d2ce-e9fd-48e7-bd10-688f
 
 
 with st.container():
-    col1, col2, col3 = st.columns((3, 2, 3))
+    col1, col2, col3 = st.columns((1, 4, 1))
     with col2:
         st.write('# Gastr🍽Miuul')
         st_lottie(lottie_coding)
-        st.write('## Mutfak Maceran Başlıyor!')
 
-        st.write(
-            "Mutfakta `sürdürülebilir` bir yaklaşımla hem doğayı korumaya hem de yiyecek israfını önlemeye hazır mısın?")
+st.write('## Mutfak Maceran Başlıyor!')
 
-        st.write("İster elindeki malzemeye göre ister diğer tariflere göz at ve mutfak maceranı başlat!")
+st.write(
+    "Mutfakta `sürdürülebilir` bir yaklaşımla hem doğayı korumaya hem de yiyecek israfını önlemeye hazır mısın?")
 
+st.write("İster elindeki malzemeye göre ister diğer tariflere göz at ve mutfak maceranı başlat!")
+
+with st.container():
+    col1, col2, col3 = st.columns((1, 4, 1))
+    with col2:
         with st.container():
             sol_col, sag_col = st.columns(2)
             with sol_col:
@@ -81,13 +85,13 @@ with st.container():
                             css_styles="""
                                     button {
                                         background-color: #FFBC42;
-                                        color: #000000;
+                                        color: #FFFFFF;
                                         border-radius: 5px;
                                     }
                                     """,
                     ):
 
-                        diger = st.button("Diğer Tariflere Göz At")
+                        diger = st.button("**Diğer Tariflere Göz At**")
                         if diger:
                             switch_page("Diğer Tarifler")
 
@@ -169,7 +173,8 @@ df["diet"] = df["search_terms"].apply(lambda search_terms: 1 if "atkins" in sear
                                                                  "sugarless" in search_terms.lower() or
                                                                  "diabetic" in search_terms.lower() else 0)
 df["diet"].sum()
-
+st.container
+st.set_page_config( layout="wide")
 
 st.write("---")
 

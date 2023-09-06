@@ -5,6 +5,8 @@ import requests
 from streamlit_lottie import st_lottie
 from streamlit_option_menu import option_menu
 from streamlit_extras.metric_cards import style_metric_cards
+from streamlit_extras.stylable_container import stylable_container
+
 
 st.set_page_config(page_title="Malzemeye Göre Tarifler  | GastroMiuul", page_icon="🍳")
 
@@ -20,22 +22,19 @@ def load_lottieurl(url):
 
 
 lottie_coding2 = load_lottieurl("https://lottie.host/cc7f103d-8c61-410d-b2c3-dd12baca3c5e/NSfWO4QLy3.json")
-st.write('# Elindeki Malzemeyi Söyle, Sana Ne Yapacağını Söyleyelim!')
+st.write('# Tell Us What You Have, We\'ll Tell You What to Make!')
 
-col1, col2, col3 = st.columns((1,4,1))
+col1, col2, col3 = st.columns((1, 4, 1))
 with col2:
     st_lottie(lottie_coding2)
-st.subheader('Ürün israfının önüne geçtiğin için kendinle gurur duymalısın!')
+st.subheader('Be Proud of Preventing Product Waste!')
 #seçim yapılacak malzeme listesinin tamamı
 df_ingredients = pd.read_csv("ingredients.csv")
 ingredients = df_ingredients["ingredients"].tolist()
 
 with st.container():
-    st.write(
-        """
-        Şimdi bize elindeki malzemeler hakkında bilgi verir misin, hangi ürünler var?
-        """)
-    st.multiselect('', ingredients)
+    st.write("Now, can you please type the ingredients you have? What products do you have?")
+    st.multiselect('', ingredients, placeholder="type here")
 
 
 #aşağıdaki ufak liste de kullanılabilir.
@@ -68,7 +67,17 @@ with st.container():
     # "Taze Nane", "Kıvırcık Maydanoz", "Ruşeym", "Quinoa", "Kinoa", "Bulgur", "Couscous"
     # ]
 
-st.button('Gelsin Tarifler')
+with stylable_container(
+                            key="white_button",
+                            css_styles="""
+                                    button {
+                                        background-color: #FFFFFF;
+                                        color: #FFBC42;
+                                        border-radius: 5px;
+                                    }
+                                    """,
+                    ):
+    st.button('**Give Recommendation**')
 
 #------Görsel ekleme------#
 #from googleapiclient.discovery import build
