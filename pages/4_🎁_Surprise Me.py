@@ -81,7 +81,7 @@ for a in random.sample(range(0, len(df_surprise)), 5): #range kısmı df'e göre
         st.write(f"Carbon Emission: {carbon[a]} gr")
     with tab4:
         st.write(allergen[a].title())
-    st.write("---")
+    #st.write("---")
 
 #şu aşağıdaki uzun işi yukarıdaki iki satır kod yapıyor.
 
