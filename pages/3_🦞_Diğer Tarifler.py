@@ -14,95 +14,99 @@ st.set_page_config(page_title="Diğer Tarifler | GastroMiuul", page_icon="🦞")
 
 
 @st.cache_data  # 👈 Add the caching decorator
-def load_data(url, page):
-    df = pd.read_excel(url, sheet_name=page)
+# def data_from_excel(url, page):
+#     df = pd.read_excel(url, sheet_name=page)
+#     return df
+# df = data_from_excel("C:/Users/remre/PycharmProjects/Tarif_Olusturucu/GastroMiuul/datasets/dataframe.xlsx", "Raw_Data")
+
+# df = pd.read_csv("C:/Users/remre/PycharmProjects/Tarif_Olusturucu/GastroMiuul/datasets/other_recipes.csv",
+#                  sep="delimiter")
+def load_data(url):
+    df = pd.read_csv(url)
     return df
-
-
-df = load_data("C:/Users/remre/PycharmProjects/Tarif_Olusturucu/GastroMiuul/datasets/dataframe.xlsx", "Raw_Data")
+df = load_data("C:/Users/remre/PycharmProjects/Tarif_Olusturucu/GastroMiuul/datasets/other_recipes_detailed.csv")
+# pd.set_option('display.max_rows', 500)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 1500)
 lowercase = lambda x: str(x).lower()
 df.rename(lowercase, axis='columns', inplace=True)
-pd.set_option('display.max_columns', None)
-# pd.set_option('display.max_rows', 500)
-pd.set_option('display.width', 1500)
-
+df['search_terms'] = df['search_terms'].str.lower()
 
 
 # ---- New Features for filtering ---- #
     # ---- Recipe Type ---- #
-df["tatli"] = df["search_terms"].apply(lambda search_terms: 1 if "cake" in search_terms.lower() or
-                                                                 "cookie" in search_terms.lower() or
-                                                                 "dessert" in search_terms.lower() or
-                                                                 "pudding" in search_terms.lower() else 0)
-df["tavuk"] = df["search_terms"].apply(lambda search_terms: 1 if "chicken" in search_terms.lower() else 0)
-df["dana"] = df["search_terms"].apply(lambda search_terms: 1 if "beef" in search_terms.lower() else 0)
-df["içecek"] = df["search_terms"].apply(lambda search_terms: 1 if "drink" in search_terms.lower() else 0)
-df["denizden"] = df["search_terms"].apply(lambda search_terms: 1 if "fish" in search_terms.lower() or
-                                                                    "seafood" in search_terms.lower() or
-                                                                    "shrimp" in search_terms.lower() else 0)
-df["kuzu"] = df["search_terms"].apply(lambda search_terms: 1 if "lamb" in search_terms.lower() else 0)
-df["noodles"] = df["search_terms"].apply(lambda search_terms: 1 if "noodles" in search_terms.lower() else 0)
-df["pasta"] = df["search_terms"].apply(lambda search_terms: 1 if "pasta" in search_terms.lower() else 0)
-df["pie"] = df["search_terms"].apply(lambda search_terms: 1 if "pie" in search_terms.lower() else 0)
-df["pizza"] = df["search_terms"].apply(lambda search_terms: 1 if "pizza" in search_terms.lower() else 0)
-df["pork"] = df["search_terms"].apply(lambda search_terms: 1 if "pork" in search_terms.lower() else 0)
-df["quick"] = df["search_terms"].apply(lambda search_terms: 1 if "quick" in search_terms.lower() else 0)
-df["rice"] = df["search_terms"].apply(lambda search_terms: 1 if "rice" in search_terms.lower() else 0)
-df["salad"] = df["search_terms"].apply(lambda search_terms: 1 if "salad" in search_terms.lower() else 0)
-df["sandwich"] = df["search_terms"].apply(lambda search_terms: 1 if "sandwich" in search_terms.lower() else 0)
-df["soup"] = df["search_terms"].apply(lambda search_terms: 1 if "soup" in search_terms.lower() else 0)
-df["vegan"] = df["search_terms"].apply(lambda search_terms: 1 if "vegan" in search_terms.lower() else 0)
-df["vegetarian"] = df["search_terms"].apply(lambda search_terms: 1 if "vegetarian" in search_terms.lower() or
-                                                                      "nomeat" in search_terms.lower() else 0)
+# df["tatli"] = df["search_terms"].apply(lambda search_terms: 1 if "cake" in search_terms.lower() or
+#                                                                  "cookie" in search_terms.lower() or
+#                                                                  "dessert" in search_terms.lower() or
+#                                                                  "pudding" in search_terms.lower() else 0)
+# df["tavuk"] = df["search_terms"].apply(lambda search_terms: 1 if "chicken" in search_terms.lower() else 0)
+# df["dana"] = df["search_terms"].apply(lambda search_terms: 1 if "beef" in search_terms.lower() else 0)
+# df["denizden"] = df["search_terms"].apply(lambda search_terms: 1 if "fish" in search_terms.lower() or
+#                                                                     "seafood" in search_terms.lower() or
+#                                                                     "shrimp" in search_terms.lower() else 0)
+# df["kuzu"] = df["search_terms"].apply(lambda search_terms: 1 if "lamb" in search_terms.lower() else 0)
+# df["noodles"] = df["search_terms"].apply(lambda search_terms: 1 if "noodles" in search_terms.lower() else 0)
+# df["pasta"] = df["search_terms"].apply(lambda search_terms: 1 if "pasta" in search_terms.lower() else 0)
+# df["pie"] = df["search_terms"].apply(lambda search_terms: 1 if "pie" in search_terms.lower() else 0)
+# df["pizza"] = df["search_terms"].apply(lambda search_terms: 1 if "pizza" in search_terms.lower() else 0)
+# df["pork"] = df["search_terms"].apply(lambda search_terms: 1 if "pork" in search_terms.lower() else 0)
+# df["quick"] = df["search_terms"].apply(lambda search_terms: 1 if "quick" in search_terms.lower() else 0)
+# df["rice"] = df["search_terms"].apply(lambda search_terms: 1 if "rice" in search_terms.lower() else 0)
+# df["salad"] = df["search_terms"].apply(lambda search_terms: 1 if "salad" in search_terms.lower() else 0)
+# df["sandwich"] = df["search_terms"].apply(lambda search_terms: 1 if "sandwich" in search_terms.lower() else 0)
+# df["soup"] = df["search_terms"].apply(lambda search_terms: 1 if "soup" in search_terms.lower() else 0)
+# df["vegan"] = df["search_terms"].apply(lambda search_terms: 1 if "vegan" in search_terms.lower() else 0)
+# df["vegetarian"] = df["search_terms"].apply(lambda search_terms: 1 if "vegetarian" in search_terms.lower() or
+#                                                                       "nomeat" in search_terms.lower() else 0)
+#
+#     # ---- Diet Type ---- #
+# df["diet"] = df["search_terms"].apply(lambda search_terms: 1 if "atkins" in search_terms.lower() or
+#                                                                  "carb-free" in search_terms.lower() or
+#                                                                  "dairy-free" in search_terms.lower() or
+#                                                                  "diet" in search_terms.lower() or
+#                                                                  "low-fat" in search_terms.lower() or
+#                                                                  "low-sodium" in search_terms.lower() or
+#                                                                  "low-sugar" in search_terms.lower() or
+#                                                                  "noflour" in search_terms.lower() or
+#                                                                  "salt-free" in search_terms.lower() or
+#                                                                  "sodium-free" in search_terms.lower() or
+#                                                                  "sugar-free" in search_terms.lower() or
+#                                                                  "lowfat" in search_terms.lower() or
+#                                                                  "low-carb" in search_terms.lower() or
+#                                                                  "low-calorie" in search_terms.lower() or
+#                                                                  "light" in search_terms.lower() or
+#                                                                  "lactose-free" in search_terms.lower() or
+#                                                                  "healthy" in search_terms.lower() or
+#                                                                  "grain-free" in search_terms.lower() or
+#                                                                  "gluten-free" in search_terms.lower() or
+#                                                                  "flour-less" in search_terms.lower() or
+#                                                                  "flourless" in search_terms.lower() or
+#                                                                  "sugarless" in search_terms.lower() or
+#                                                                  "diabetic" in search_terms.lower() else 0)
+#
+#     # ---- Cooking Style ---- #
+# df["baked"] = df["search_terms"].apply(lambda search_terms: 1 if "baked" in search_terms.lower() else 0)
+# df["barbecue"] = df["search_terms"].apply(lambda search_terms: 1 if "barbecue" in search_terms.lower() else 0)
+# df["braised"] = df["search_terms"].apply(lambda search_terms: 1 if "braised" in search_terms.lower() else 0)
+# df["casserole"] = df["search_terms"].apply(lambda search_terms: 1 if "casserole" in search_terms.lower() else 0)
+# df["roast"] = df["search_terms"].apply(lambda search_terms: 1 if "roast" in search_terms.lower() else 0)
+# df["stew"] = df["search_terms"].apply(lambda search_terms: 1 if "stew" in search_terms.lower() else 0)
+#
+#     # ---- Cooking Time ---- #
+# df["breakfast"] = df["search_terms"].apply(lambda search_terms:
+#                                            1 if "breakfast" in search_terms.lower() else 0)  # 21219
+# df["dinner"] = df["search_terms"].apply(lambda search_terms:
+#                                         1 if "dinner" in search_terms.lower() else 0) # 118004
+# df["lunch"] = df["search_terms"].apply(lambda search_terms:
+#                                        1 if "lunch" in search_terms.lower() else 0)  # 28547
+# df["side"] = df["search_terms"].apply(lambda search_terms:
+#                                       1 if "side" in search_terms.lower() else 0)  # 29032
+# df["snack"] = df["search_terms"].apply(lambda search_terms:
+#                                        1 if "snack" in search_terms.lower() else 0)  # 12042
+# df["appetizer"] = df["search_terms"].apply(lambda search_terms:
+#                                            1 if "appetizer" in search_terms.lower() else 0)  # 26538
 
-    # ---- Diet Type ---- #
-df["diet"] = df["search_terms"].apply(lambda search_terms: 1 if "atkins" in search_terms.lower() or
-                                                                 "carb-free" in search_terms.lower() or
-                                                                 "dairy-free" in search_terms.lower() or
-                                                                 "diet" in search_terms.lower() or
-                                                                 "low-fat" in search_terms.lower() or
-                                                                 "low-sodium" in search_terms.lower() or
-                                                                 "low-sugar" in search_terms.lower() or
-                                                                 "noflour" in search_terms.lower() or
-                                                                 "salt-free" in search_terms.lower() or
-                                                                 "sodium-free" in search_terms.lower() or
-                                                                 "sugar-free" in search_terms.lower() or
-                                                                 "lowfat" in search_terms.lower() or
-                                                                 "low-carb" in search_terms.lower() or
-                                                                 "low-calorie" in search_terms.lower() or
-                                                                 "light" in search_terms.lower() or
-                                                                 "lactose-free" in search_terms.lower() or
-                                                                 "healthy" in search_terms.lower() or
-                                                                 "grain-free" in search_terms.lower() or
-                                                                 "gluten-free" in search_terms.lower() or
-                                                                 "flour-less" in search_terms.lower() or
-                                                                 "flourless" in search_terms.lower() or
-                                                                 "sugarless" in search_terms.lower() or
-                                                                 "diabetic" in search_terms.lower() else 0)
-
-    # ---- Cooking Style ---- #
-df["baked"] = df["search_terms"].apply(lambda search_terms: 1 if "baked" in search_terms.lower() else 0)
-df["barbecue"] = df["search_terms"].apply(lambda search_terms: 1 if "barbecue" in search_terms.lower() else 0)
-df["braised"] = df["search_terms"].apply(lambda search_terms: 1 if "braised" in search_terms.lower() else 0)
-df["casserole"] = df["search_terms"].apply(lambda search_terms: 1 if "casserole" in search_terms.lower() else 0)
-df["roast"] = df["search_terms"].apply(lambda search_terms: 1 if "roast" in search_terms.lower() else 0)
-df["stew"] = df["search_terms"].apply(lambda search_terms: 1 if "stew" in search_terms.lower() else 0)
-
-    # ---- Cooking Time ---- #
-df["breakfast"] = df["search_terms"].apply(lambda search_terms:
-                                           1 if "breakfast" in search_terms.lower() else 0)  # 21219
-df["dinner"] = df["search_terms"].apply(lambda search_terms:
-                                        1 if "dinner" in search_terms.lower() else 0) # 118004
-df["lunch"] = df["search_terms"].apply(lambda search_terms:
-                                       1 if "lunch" in search_terms.lower() else 0)  # 28547
-df["side"] = df["search_terms"].apply(lambda search_terms:
-                                      1 if "side" in search_terms.lower() else 0)  # 29032
-df["snack"] = df["search_terms"].apply(lambda search_terms:
-                                       1 if "snack" in search_terms.lower() else 0)  # 12042
-df["appetizer"] = df["search_terms"].apply(lambda search_terms:
-                                           1 if "appetizer" in search_terms.lower() else 0)  # 26538
-
-
+# df.to_csv("other_recipes_detailed.csv", index=False)
 
 # ---- Streamlit sidebar filters ---- #
 
@@ -788,7 +792,15 @@ with stylable_container(
 def urun_getir(df, adet=20):
     name = df["name"].tolist()
     ingredients = df["ingredients_raw_str"].tolist()
+    ingredients = [eleman.replace('[', '').replace(']', '').replace('"', '') for eleman in ingredients]
     steps = df["steps"].tolist()
+    steps = [eleman.replace('[', '').replace(']', '').replace('"', '').replace("'", '').replace(',', '')
+             for eleman in steps]
+    allergen = df["because_of_allergen"].tolist()
+    allergen = [eleman.replace("'", '').replace("[]", "There is no allergen item.").replace("[", "").replace("]", "")
+                for eleman in allergen]
+    calories = df["calories"].tolist()
+    carbon = df["carbon_emission"].tolist()
 
     if adet > len(name):
         adet = len(name)
@@ -799,11 +811,26 @@ def urun_getir(df, adet=20):
         st.subheader(f':red[{name[a]}]')
         tab1, tab2, tab3 = st.tabs(["Calori & Carbon Footprint", "Ingredients", "Cooking Steps"])
         with tab1:
-            st.write("Calori & Carbon Footprint")
+            col1, col2 = st.columns((0.3, 5))
+            with col1:
+                st.image("Görseller_Streamlit/calori1.jpg")
+            with col2:
+                st.write(f"Calori: {calories[a]}")
+            col1, col2 = st.columns((0.3, 5))
+            with col1:
+                st.image("Görseller_Streamlit/carbon_footprint.jpg")
+            with col2:
+                st.write(f"Carbon Footprint: {carbon[a]}")
+            col1, col2 = st.columns((0.3, 5))
+            with col1:
+                st.image("Görseller_Streamlit/allergen1.jpg")
+            with col2:
+                st.write(f"Allergen Item: {allergen[a]}")
         with tab2:
-            st.write(ingredients[a])
+            st.write(ingredients[a].upper().capitalize())
         with tab3:
-            st.write(steps[a])
+            st.write(steps[a].upper().capitalize())
+        st.write("##")
 
 
 if tarifler_gelsin:
@@ -817,7 +844,6 @@ if tarifler_gelsin:
     else:
         with st.container():
             urun_getir(favori_yemek_df, adet=20)
-
 
 
 
@@ -839,7 +865,6 @@ if tarifler_gelsin:
 #print(image_url1)
 
 # st.image(image_url1, caption=query1)
-
 
 
 
