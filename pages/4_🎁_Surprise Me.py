@@ -12,6 +12,10 @@ from streamlit_extras.stylable_container import stylable_container
 from googleapiclient.discovery import build
 import random
 
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 300)
+pd.set_option('display.max_rows', None)
+
 st.set_page_config(page_title="Surprise Me | GastroMiuul", page_icon="🎁")
 
 
@@ -36,19 +40,24 @@ col1, col2, col3 = st.columns((1,2,1))
 with col2:
     st_lottie(lottie_coding4)
 
+#bu sayfa için surprise me adında bir csv yaptım. içinde sadece aşağıda kullandığımız
+#kolan isimleri var.
+df_surprise = pd.read_csv("surprise_me.csv")
+#lowercase = lambda x: str(x).lower()
+df_surprise = df_surprise.applymap(lambda x: str(x).lower())
+df_surprise.columns = [col.lower() for col in df_surprise.columns]
+#df.rename(lowercase, axis='columns', inplace=True)
+df_surprise.drop("unnamed: 0", axis=1, inplace=True)
+#df.dropna(inplace=True)
+df_surprise.head()
 
-df = pd.read_csv("Food_Ingredients.csv")
-lowercase = lambda x: str(x).lower()
-df.rename(lowercase, axis='columns', inplace=True)
-df.drop("unnamed: 0", axis=1, inplace=True)
-df.dropna(inplace=True)
 
-df["ingredients"].head()
-df["instructions"].head()
-
-name = df["title"].tolist()
-ingredients = df["ingredients"].tolist()
-steps = df["instructions"].tolist()
+name = df_surprise["name"].tolist()
+ingredients = df_surprise["ingredients_raw_str"].tolist()
+steps = df_surprise["steps"].tolist()
+allergen = df_surprise["because_of_allergen"].tolist()
+calories = df_surprise["calories"].tolist()
+carbon = df_surprise["carbon_emission"].tolist()
 def google_image_search(query, api_key, cse_id, num=1):
     service = build("customsearch", "v1", developerKey=api_key)
     res = service.cse().list(q=query, cx=cse_id, searchType='image', num=num).execute()
@@ -57,22 +66,24 @@ def google_image_search(query, api_key, cse_id, num=1):
 api_key = "AIzaSyDld5RyAGvlO3KNzHLP3R2CCZV_Uz8cYbg"
 cse_id = "c42eb241a8bb244c0"
 
-for a in random.sample(range(0,13486), 5): #range kısmı df'e göre değişecek
-    #st.subheader(f':red[{name[a]}]')
-    #image_url1 = google_image_search(name[a], api_key, cse_id)
-    #print(image_url1)
-    #st.image(image_url1, caption=name[a], use_column_width="auto")
-    tab1, tab2, tab3 = st.tabs(["Ingredients", "Cooking Steps", "Calori & Carbon Footprint"])
+for a in random.sample(range(0, len(df_surprise)), 5): #range kısmı df'e göre değişecek
+    st.subheader(name[a].title())
+    image_url1 = google_image_search(name[a], api_key, cse_id)
+    print(image_url1)
+    st.image(image_url1, caption=name[a], use_column_width="auto")
+    tab1, tab2, tab3 , tab4 = st.tabs(["Ingredients", "Cooking Steps", "Calori & Carbon Footprint", "Allergen"])
     with tab1:
         st.write(ingredients[a])
     with tab2:
         st.write(steps[a])
     with tab3:
-        st.write("Calori & Carbon Footprint")
+        st.write(f"Calories: {calories[a]} cal")
+        st.write(f"Carbon Emission: {carbon[a]} gr")
+    with tab4:
+        st.write(allergen[a].title())
     st.write("---")
 
-
-
+#şu aşağıdaki uzun işi yukarıdaki iki satır kod yapıyor.
 
 #name_list = df["title"].tolist()
 #query1 = random.choice(name_list)
