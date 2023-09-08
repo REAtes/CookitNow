@@ -68,9 +68,9 @@ cse_id = "c42eb241a8bb244c0"
 
 for a in random.sample(range(0, len(df_surprise)), 5): #range kısmı df'e göre değişecek
     st.subheader(name[a].title())
-    image_url1 = google_image_search(name[a], api_key, cse_id)
-    print(image_url1)
-    st.image(image_url1, caption=name[a], use_column_width="auto")
+    #image_url1 = google_image_search(name[a], api_key, cse_id)
+    #print(image_url1)
+    #st.image(image_url1, caption=name[a], use_column_width="auto")
     tab1, tab2, tab3 , tab4 = st.tabs(["Ingredients", "Cooking Steps", "Calori & Carbon Footprint", "Allergen"])
     with tab1:
         st.write(ingredients[a])
