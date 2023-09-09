@@ -69,7 +69,7 @@ with st.container():
     input2 = st.multiselect('', sorted_ingredients, placeholder="type here", key=2)
 
 
-df = pd.read_csv("malzemeye_gore.csv")
+df = pd.read_csv("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/malzemeye_gore.csv")
 df = df.applymap(lambda x: str(x).lower())
 df.columns = [col.lower() for col in df.columns]
 main_cols = ['name', 'ingredients', 'ingredients_raw_str', 'steps', 'calories',
