@@ -11,7 +11,7 @@ from streamlit_extras.stylable_container import stylable_container
 
 
 
-st.set_page_config(page_title="GastroMiuul - Daha Sürdürülebilir Dünya İçin", page_icon="🍽")
+st.set_page_config(page_title="GastroMiuul - In Pursuit of a More Sustainable World", page_icon="🍽")
 
 # ---- Load Data ----
 
@@ -39,10 +39,8 @@ def load_lottieurl(url):
 
 
 
-# ---- Header Section ----
+# ---- Gif ---- #
 lottie_coding = load_lottieurl("https://lottie.host/53a4d2ce-e9fd-48e7-bd10-688f975eb3c5/imx9F1N56R.json")
-
-
 
 with st.container():
     col1, col2, col3 = st.columns((1, 4, 1))
@@ -50,18 +48,24 @@ with st.container():
         st.write('# Gastr🍽Miuul')
         st_lottie(lottie_coding)
 
-st.write('## Mutfak Maceran Başlıyor!')
+
+# ---- Texts ---- #
+st.write('## The Culinary Journey Begins')
 
 st.write(
-    "Mutfakta `sürdürülebilir` bir yaklaşımla hem doğayı korumaya hem de yiyecek israfını önlemeye hazır mısın?")
+    "Join Us in Preventing Food Waste **`Sustainably`** in the Kitchen")
 
-st.write("İster elindeki malzemeye göre ister diğer tariflere göz at ve mutfak maceranı başlat!")
+st.write("""
+Whether you're cooking with what you have or exploring our chef's creations, embark on your culinary 
+journey with purpose!
+""")
 
+# ---- Buttons ---- #
 with st.container():
     col1, col2, col3 = st.columns((1, 4, 1))
     with col2:
         with st.container():
-            sol_col, sag_col = st.columns(2)
+            sol_col, orta, sag_col = st.columns(3)
             with sol_col:
                 with stylable_container(
                         key="red_button",
@@ -73,25 +77,37 @@ with st.container():
                         }
                         """,
                 ):
-                    malzemeye_gore = st.button("**Elimdeki Malzemeye Göre**")
+                    malzemeye_gore = st.button("**By Ingredient**")
                     if malzemeye_gore:
-                        switch_page("Malzemeye Göre Tarifler")
-                with sag_col:
-                    with stylable_container(
-                            key="yellow_button",
-                            css_styles="""
-                                    button {
-                                        background-color: #FFBC42;
-                                        color: #FFFFFF;
-                                        border-radius: 5px;
-                                    }
-                                    """,
-                    ):
-
-                        diger = st.button("**Diğer Tariflere Göz At**")
-                        if diger:
-                            switch_page("Diğer Tarifler")
-
+                        switch_page("Ingredient-Based")
+            with orta:
+                with stylable_container(
+                        key="yellow_button",
+                        css_styles="""
+                                button {
+                                    background-color: #FFBC42;
+                                    color: #FFFFFF;
+                                    border-radius: 5px;
+                                }
+                                """,
+                ):
+                    diger = st.button("**Other Recipes**")
+                    if diger:
+                        switch_page("Other Recipes")
+            with sag_col:
+                with stylable_container(
+                        key="yellow_button",
+                        css_styles="""
+                                button {
+                                    background-color: #FFBC42;
+                                    color: #FFFFFF;
+                                    border-radius: 5px;
+                                }
+                                """,
+                ):
+                    diger = st.button("**Surprise Me!**")
+                    if diger:
+                        switch_page("Surprise Me")
 # ---- Numbers ----
 # df["tatli"] = df["search_terms"].apply(lambda search_terms: 1 if "cake" in search_terms.lower() or
 #                                                                  "cookie" in search_terms.lower() or
