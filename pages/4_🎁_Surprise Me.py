@@ -10,6 +10,8 @@ from streamlit_card import card
 from streamlit_extras.stylable_container import stylable_container
 from googleapiclient.discovery import build
 import random
+from streamlit_extras.customize_running import center_running
+
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 300)
@@ -47,7 +49,18 @@ st.write("""
     Here's a fantastic opportunity to test your cooking skills! Choose one of the five delicious meals we recommend 
     and challenge yourself in the kitchen.
     """)
+with stylable_container(
+        key="yellow_button",
+        css_styles="""
+        button {
+            background-color: #FFBC42;
+            color: white;
+            border-radius: 5px;
+        }
+        """,
+):
 
+    show_me_recipes = st.button("**Show Me Recipes**")
 
 #bu sayfa için surprise me adında bir csv yaptım. içinde sadece aşağıda kullandığımız
 #kolan isimleri var.
@@ -82,34 +95,36 @@ cse_id = "c42eb241a8bb244c0"
 
 # col1, col2, col3 =st.columns((1,3,1))
 # with col2:
-for a in random.sample(range(0, len(df_surprise)), 5): #range kısmı df'e göre değişecek
-    st.subheader(name[a].title())
-    #image_url1 = google_image_search(name[a], api_key, cse_id)
-    #print(image_url1)
-    #st.image(image_url1, caption=name[a])
-    tab1, tab2, tab3 = st.tabs(["Calori & Carbon Footprint & Allergen", "Ingredients", "Cooking Steps"])
-    with tab1:
-        col1, col2 = st.columns((0.3, 5))
-        with col1:
-            st.image("Görseller_Streamlit/icons/calori1.jpg")
-        with col2:
-            st.write(f"Calori: {calories[a]}")
-        col1, col2 = st.columns((0.3, 5))
-        with col1:
-            st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
-        with col2:
-            st.write(f"Carbon Footprint: {carbon[a]}")
-        col1, col2 = st.columns((0.3, 5))
-        with col1:
-            st.image("Görseller_Streamlit/icons/allergen1.jpg")
-        with col2:
-            st.write(f"Allergen Item: {allergen[a]}")
-    with tab2:
-        st.write(ingredients[a].upper().capitalize())
-    with tab3:
-        st.write(steps[a].upper().capitalize())
 
-    #st.write("---")
+
+if show_me_recipes:
+    for a in random.sample(range(0, len(df_surprise)), 5): #range kısmı df'e göre değişecek
+        st.subheader(name[a].title())
+        #image_url1 = google_image_search(name[a], api_key, cse_id)
+        #print(image_url1)
+        #st.image(image_url1, caption=name[a])
+        tab1, tab2, tab3 = st.tabs(["Calori & Carbon Footprint & Allergen", "Ingredients", "Cooking Steps"])
+        with tab1:
+            col1, col2 = st.columns((0.3, 5))
+            with col1:
+                st.image("Görseller_Streamlit/icons/calori1.jpg")
+            with col2:
+                st.write(f"Calori: {calories[a]}")
+            col1, col2 = st.columns((0.3, 5))
+            with col1:
+                st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
+            with col2:
+                st.write(f"Carbon Footprint: {carbon[a]}")
+            col1, col2 = st.columns((0.3, 5))
+            with col1:
+                st.image("Görseller_Streamlit/icons/allergen1.jpg")
+            with col2:
+                st.write(f"Allergen Item: {allergen[a]}")
+        with tab2:
+            st.write(ingredients[a].upper().capitalize())
+        with tab3:
+            st.write(steps[a].upper().capitalize())
+        st.write("##")
 
 #şu aşağıdaki uzun işi yukarıdaki iki satır kod yapıyor.
 
