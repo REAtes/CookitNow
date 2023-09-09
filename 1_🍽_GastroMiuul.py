@@ -53,7 +53,7 @@ with st.container():
 st.write('## The Culinary Journey Begins')
 
 st.write(
-    "Join Us in Preventing Food Waste Sustainably in the Kitchen")
+    "Join Us in Preventing Food Waste **`Sustainably`** in the Kitchen")
 
 st.write("""
 Whether you're cooking with what you have or exploring our chef's creations, embark on your culinary 

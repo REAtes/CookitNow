@@ -11,7 +11,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from googleapiclient.discovery import build
 
-st.set_page_config(page_title="Malzemeye Göre Tarifler  | GastroMiuul", page_icon="🍳")
+st.set_page_config(page_title="Ingredient-Based  | GastroMiuul", page_icon="🍳")
 
 
 # ---- Main Screen  ---- #
@@ -25,12 +25,12 @@ def load_lottieurl(url):
 
 
 lottie_coding2 = load_lottieurl("https://lottie.host/cc7f103d-8c61-410d-b2c3-dd12baca3c5e/NSfWO4QLy3.json")
-st.write('# Tell Us What You Have, We\'ll Tell You What to Make!')
+st.write("# Be Proud of Preventing Product Waste!")
 
 col1, col2, col3 = st.columns((1, 4, 1))
 with col2:
     st_lottie(lottie_coding2)
-st.subheader('Be Proud of Preventing Product Waste!')
+st.subheader("Share your ingredients, and let us inspire you with recipes tailored just for you!")
 
 #seçim yapılacak malzeme listesinin tamamı
 
@@ -62,7 +62,7 @@ ingredients = ["chicken", "beef", "pork", "lamb", "turkey", "duck", "veal", "bac
          "chocolate", "vanilla", "gelatin", "marshmallow", "caramel", "cookie",
          "cake", "brownie", "pie", "ice cream"]
 with st.container():
-    st.write("Now, can you please type the ingredients you have? What products do you have?")
+    st.write("Now, could you please list the ingredients you have? What items do you have?")
     inputs = st.multiselect('', ingredients, placeholder="type here")
 
 #aşağıdaki ufak liste de kullanılabilir.
@@ -97,22 +97,6 @@ with st.container():
 #         "chocolate", "vanilla", "gelatin", "marshmallow", "caramel", "cookie",
 #         "cake", "brownie", "pie", "ice cream"]
 #
-#
-# print(ingredients)
-    #            ])
-    #["Domates", "Soğan", "Sarımsak", "Biber", "Tavuk", "Kırmızı Et", "Pirinç", "Makarna", "Patates",
-     #"Havuç", "Ispanak", "Brokoli", "Bezelye", "Mantar", "Kabak", "Kırmızı Mercimek", "Nohut", "Yoğurt",
-    #"Peynir", "Zeytin", "Zeytinyağı", "Tereyağı", "Süt", "Un", "Yumurta", "Maydanoz", "Dereotu", "Nane",
-    # "Kekik", "Tarçın", "Zencefil", "Kırmızı Pul Biber", "Kekik", "Krema", "Limon", "Limon Suyu", "Elma",
-    # "Armut", "Çilek", "Üzüm", "Portakal", "Muz", "Ananas", "Avokado", "Karpuz", "Kavun", "Badem",
-    # "Ceviz", "Fındık", "Susam", "Ayçiçek Yağı", "Bal", "Tahin", "Hardal", "Mayonez", "Ketçap", "Salça",
-    # "Balık", "Karides", "Midye", "Kalamar", "Tavuk Göğsü", "Pastirma", "Salam", "Sucuk", "Sosis",
-    # "Zeytin Ezmesi", "Süzme Yoğurt", "Kıvırcık", "Roka", "Lahana", "Karnabahar", "Turşu", "Salatalık",
-    # "Kırmızı Lahana", "Beyaz Lahana", "Brokoli", "Kabak", "Brüksel Lahanası", "Patlıcan", "Enginar",
-    # "Bamya", "Kırmızı Biber", "Acı Biber", "Enginar", "Mısır", "Bezelye", "Yeşil Fasulye", "Kuşkonmaz",
-    # "Sarımsak", "Kereviz", "Havuç", "Patates", "Taze Soğan", "Roka", "Marul", "Semizotu", "Dereotu",
-    # "Taze Nane", "Kıvırcık Maydanoz", "Ruşeym", "Quinoa", "Kinoa", "Bulgur", "Couscous"
-    # ]
 
 df = pd.read_csv("recipes_with_search.csv")
 df = df.applymap(lambda x: str(x).lower())
@@ -161,7 +145,7 @@ with stylable_container(
                                     }
                                     """,
                     ):
-    recommendation_button = st.button('**Give Recommendation**')
+    recommendation_button = st.button('**Show Me Recipes**')
 
 if recommendation_button:
     recommended_recipes, cosine_sim_df = food_recipes_recommender(df, "ingredients", inputs)
@@ -187,17 +171,17 @@ if recommendation_button:
             with tab3:
                 col1, col2 = st.columns((0.3, 5))
                 with col1:
-                    st.image("GastroMiuul/Görseller_Streamlit/calori1.jpg")
+                    st.image("GastroMiuul/Görseller_Streamlit/icons/calori1.jpg")
                 with col2:
                     st.write(f"Calori: {calories[a]} cal")
                 col1, col2 = st.columns((0.3, 5))
                 with col1:
-                    st.image("GastroMiuul/Görseller_Streamlit/carbon_footprint.jpg")
+                    st.image("GastroMiuul/Görseller_Streamlit/icons/carbon_footprint.jpg")
                 with col2:
                     st.write(f"Carbon Footprint: {carbon[a]} gr")
                 col1, col2 = st.columns((0.3, 5))
                 with col1:
-                    st.image("GastroMiuul/Görseller_Streamlit/allergen1.jpg")
+                    st.image("GastroMiuul/Görseller_Streamlit/icons/allergen1.jpg")
                 with col2:
                     st.write(f"Allergen Item: {allergen[a]}")
 
