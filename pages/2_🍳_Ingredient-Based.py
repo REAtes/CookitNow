@@ -237,33 +237,20 @@ st.subheader("Share your ingredients, and let us inspire you with recipes tailor
 
 #seçim yapılacak malzeme listesinin tamamı
 
-ingredients = ["chicken", "beef", "pork", "lamb", "turkey", "duck", "veal", "bacon", "ham", "sausage"
-         "salmon", "tuna", "shrimp", "lobster", "crab", "cod", "mackerel", "trout", "oyster", "clam"
-         "tomato", "onion", "garlic", "bell pepper", "broccoli", "carrot", "spinach",
-         "lettuce", "cabbage", "mushroom", "green beans", "peas", "corn", "zucchini",
-         "eggplant", "cucumber", "celery", "kale", "brussels sprouts", "cauliflower",
-         "asparagus", "beet", "radish", "leek"
-         "apple", "banana", "orange", "strawberry", "blueberry", "raspberry", "kiwi",
-         "mango", "pineapple", "grape", "watermelon", "peach", "pear", "plum", "pomegranate",
-         "fig", "lemon", "lime", "cherry", "blackberry"
-         "rice", "pasta", "potato", "bread", "quinoa", "oats", "barley", "cornmeal",
-         "whole wheat", "rye", "buckwheat", "couscous"
-         "milk", "cream", "yogurt", "cheese", "butter", "ghee", "almond milk",
-         "soy milk", "oat milk", "cashew milk", "feta", "parmesan", "cheddar"
-         "almond", "walnut", "cashew", "peanut", "sesame seed", "sunflower seed",
-         "pumpkin seed", "chia seed", "flaxseed", "pecan", "macadamia", "hazelnut"
-         "pepper", "salt", "sugar", "cinnamon", "chili", "rosemary", "basil",
-         "oregano", "parsley", "cilantro", "thyme", "curry powder", "ginger",
-         "turmeric", "coriander", "cumin", "paprika", "cardamom", "cloves", "nutmeg", "saffron"
-         "olive oil", "soy sauce", "vinegar", "honey", "maple syrup", "sesame oil",
-         "coconut oil", "mustard", "ketchup", "mayonnaise", "hot sauce", "peanut butter",
-         "wasabi", "teriyaki sauce", "BBQ sauce", "salsa"
-         "tea", "coffee", "wine", "beer", "soda", "juice"
-         "black beans", "lentils", "chickpeas", "green lentils", "red kidney beans",
-         "white beans", "soybeans", "mung beans", "peanuts", "fava beans", "lima beans"
-         "tofu", "tempeh", "seitan", "edamame", "textured vegetable protein", "soy chunks",
-         "chocolate", "vanilla", "gelatin", "marshmallow", "caramel", "cookie",
-         "cake", "brownie", "pie", "ice cream"]
+ingredients = ['Almond', 'Apple', 'Asparagus', 'Bacon', 'Banana', 'Basil', 'Beef', 'Beet', 'Blackberry', 'Bread',
+               'Broccoli', 'Brussels sprouts', 'Cabbage', 'Caramel', 'Carrot', 'Cauliflower', 'Celery', 'Cheese',
+               'Cherry', 'Chicken', 'Chili', 'Cilantro', 'Cinnamon', 'Clam', 'Coconut oil', 'Cod', 'Coffee',
+               'Coriander', 'Corn', 'Cornmeal', 'Couscous', 'Crab', 'Cream', 'Cucumber', 'Curry powder', 'Duck',
+               'Eggplant', 'Fava beans', 'Feta', 'Fig', 'Garlic', 'Ghee', 'Ginger', 'Grape', 'Green beans', 'Hazelnut',
+               'Honey', 'Hot sauce', 'Ketchup', 'Kale', 'Kiwi', 'Lamb', 'Lemon', 'Lettuce', 'Lime','Macadamia', 'Mango',
+               'Maple syrup', 'Mackerel', 'Mayonnaise', 'Milk', 'Mushroom', 'Mustard', 'Nutmeg', 'Oat milk','Oats',
+               'Olive oil', 'Onion', 'Orange', 'Oregano', 'Paprika', 'Parmesan', 'Parsley', 'Peach', 'Peanut',
+               'Peanut butter','Pear', 'Pecan', 'Pepper', 'Pineapple', 'Plum', 'Pomegranate', 'Pork', 'Potato',
+               'Pumpkin seed', 'Quinoa', 'Raspberry','Rice', 'Rosemary', 'Saffron', 'Salmon', 'Salt', 'Salsa',
+               'Sausage', 'Seitan', 'Sesame oil', 'Sesame seed', 'Shrimp','Soy milk', 'Soy sauce', 'Spinach',
+               'Strawberry', 'Sugar', 'Sunflower seed', 'Teriyaki sauce', 'Textured vegetable protein', 'Thyme',
+               'Tofu', 'Tomato', 'Trout', 'Tuna', 'Turkey', 'Turmeric', 'Vanilla', 'Veal','Vinegar', 'Walnut', 'Wasabi',
+               'Watermelon', 'White beans', 'Whole wheat', 'Wine', 'Yogurt', 'Zucchini']
 sorted_ingredients = sorted(ingredients)
 with st.container():
     st.write("Now, can you please type the ingredients that you really want to use? What products do you have?")
@@ -431,3 +418,6 @@ if recommendation_button:
 #Fonksiyon görselin url'sini çekiyor..
 #image_url1 = google_image_search(query1, api_key, cse_id)
 #print(image_url1)
+
+
+
