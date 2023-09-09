@@ -50,14 +50,14 @@ with st.container():
 
 
 # ---- Texts ---- #
-st.write('## The Culinary Journey Begins!')
+st.write('## The Culinary Journey Begins')
 
 st.write(
-    "Are you ready to prevent food waste with a `sustainable` approach in the kitchen?")
+    "Join Us in Preventing Food Waste Sustainably in the Kitchen")
 
 st.write("""
-Whether you're cooking based on what you have on hand or browsing through our other recipes, 
-start your culinary journey!
+Whether you're cooking with what you have or exploring our chef's creations, embark on your culinary 
+journey with purpose!
 """)
 
 # ---- Buttons ---- #
@@ -77,9 +77,9 @@ with st.container():
                         }
                         """,
                 ):
-                    malzemeye_gore = st.button("**Ingredient-Based**")
+                    malzemeye_gore = st.button("**By Ingredient**")
                     if malzemeye_gore:
-                        switch_page("Malzemeye Göre Tarifler")
+                        switch_page("Ingredient-Based")
             with orta:
                 with stylable_container(
                         key="yellow_button",
@@ -93,7 +93,7 @@ with st.container():
                 ):
                     diger = st.button("**Other Recipes**")
                     if diger:
-                        switch_page("Diğer Tarifler")
+                        switch_page("Other Recipes")
             with sag_col:
                 with stylable_container(
                         key="yellow_button",
