@@ -11,7 +11,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from googleapiclient.discovery import build
 
-st.set_page_config(page_title="Ingredient-Based  | GastroMiuul", page_icon="🍳")
+st.set_page_config(page_title="Ingredient-Based  | GastroMiuul", page_icon="🍳", layout="wide")
 
 
 # ---- Main Screen  ---- #
