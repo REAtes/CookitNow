@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import pandas as pd
 import numpy as np
 import streamlit as st
@@ -99,7 +98,7 @@ with st.container():
 #         "cake", "brownie", "pie", "ice cream"]
 #
 
-df = pd.read_csv("recipes_with_search.csv")
+df = pd.read_csv("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/malzemeye_gore.csv")
 df = df.applymap(lambda x: str(x).lower())
 df.columns = [col.lower() for col in df.columns]
 main_cols = ['name', 'ingredients', 'ingredients_raw_str', 'steps', 'calories',
@@ -172,17 +171,17 @@ if recommendation_button:
             with tab3:
                 col1, col2 = st.columns((0.3, 5))
                 with col1:
-                    st.image("GastroMiuul/Görseller_Streamlit/icons/calori1.jpg")
+                    st.image("Görseller_Streamlit/icons/calori1.jpg")
                 with col2:
                     st.write(f"Calori: {calories[a]} cal")
                 col1, col2 = st.columns((0.3, 5))
                 with col1:
-                    st.image("GastroMiuul/Görseller_Streamlit/icons/carbon_footprint.jpg")
+                    st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
                 with col2:
                     st.write(f"Carbon Footprint: {carbon[a]} gr")
                 col1, col2 = st.columns((0.3, 5))
                 with col1:
-                    st.image("GastroMiuul/Görseller_Streamlit/icons/allergen1.jpg")
+                    st.image("Görseller_Streamlit/icons/allergen1.jpg")
                 with col2:
                     st.write(f"Allergen Item: {allergen[a]}")
 
@@ -202,7 +201,6 @@ if recommendation_button:
 #Fonksiyon görselin url'sini çekiyor..
 #image_url1 = google_image_search(query1, api_key, cse_id)
 #print(image_url1)
-=======
 import pandas as pd
 import numpy as np
 import streamlit as st
@@ -433,4 +431,3 @@ if recommendation_button:
 #Fonksiyon görselin url'sini çekiyor..
 #image_url1 = google_image_search(query1, api_key, cse_id)
 #print(image_url1)
->>>>>>> 723f3fd4f84eefe07427a442eddd011b9ecdb3b0

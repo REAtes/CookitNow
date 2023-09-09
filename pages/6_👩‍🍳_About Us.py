@@ -1,8 +1,8 @@
 import streamlit as st
 
-st.set_page_config(page_title="Hakkımızda | GastroMiuul", page_icon="👩‍🍳")
+st.set_page_config(page_title="About Us | GastroMiuul", page_icon="👩‍🍳")
 
-st.title("Bu işin mutfağında kim var?")
+st.title("Who Are The Culinary Chiefs Behind This Journey?")
 st.write("##")
 
 # --- Ayça ---
@@ -11,7 +11,7 @@ with st.container():
     with sol:
         st.write("##")
         st.write("##")
-        st.image("Görseller_Streamlit/ayca_maden.jpg")
+        st.image("Görseller_Streamlit/chiefs/ayca_maden.jpg")
     with sag:
         st.subheader("Ayça Madenci")
         st.write(
@@ -22,6 +22,13 @@ with st.container():
             Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
             Page Maker including versions of Lorem Ipsum.
             """)
+        c1, c2, c3, c4 = st.columns((0.2, 0.2, 0.25, 2))
+        with c1:
+            st.image("Görseller_Streamlit/icons/linkedin.png")
+        with c2:
+            st.image("Görseller_Streamlit/icons/github-mark.png")
+        with c3:
+            st.image("Görseller_Streamlit/icons/medium.png")
         st.write("---")
 
 
@@ -31,7 +38,7 @@ with st.container():
     with sol:
         st.write("##")
         st.write("##")
-        st.image("Görseller_Streamlit/zubeyde_er.jpg")
+        st.image("Görseller_Streamlit/chiefs/zubeyde_er.jpg")
 with sag:
     st.subheader("Zübeyde Er")
     st.write(
@@ -42,6 +49,13 @@ with sag:
         Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
         Page Maker including versions of Lorem Ipsum.
         """)
+    c1, c2, c3, c4 = st.columns((0.2, 0.2, 0.25, 2))
+    with c1:
+        st.image("Görseller_Streamlit/icons/linkedin.png")
+    with c2:
+        st.image("Görseller_Streamlit/icons/github-mark.png")
+    with c3:
+        st.image("Görseller_Streamlit/icons/medium.png")
     st.write("---")
 
 
@@ -51,7 +65,7 @@ with st.container():
     with sol:
         st.write("##")
         st.write("##")
-        st.image("Görseller_Streamlit/burak_sevim.jpg")
+        st.image("Görseller_Streamlit/chiefs/burak_sevim.jpg")
     with sag:
         st.subheader("Burak Sevim")
         st.write(
@@ -62,6 +76,13 @@ with st.container():
             Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
             Page Maker including versions of Lorem Ipsum.
             """)
+        c1, c2, c3, c4 = st.columns((0.2, 0.2, 0.25, 2))
+        with c1:
+            st.image("Görseller_Streamlit/icons/linkedin.png")
+        with c2:
+            st.image("Görseller_Streamlit/icons/github-mark.png")
+        with c3:
+            st.image("Görseller_Streamlit/icons/medium.png")
         st.write("---")
 
 # --- Emre ---
@@ -70,7 +91,7 @@ with st.container():
     with sol:
         st.write("##")
         st.write("##")
-        st.image("Görseller_Streamlit/emre_ates.jpg")
+        st.image("Görseller_Streamlit/chiefs/emre_ates.jpg")
     with sag:
         st.subheader("Emre Ateş")
         st.write(
@@ -81,6 +102,13 @@ with st.container():
             Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
             Page Maker including versions of Lorem Ipsum.
             """)
+        c1, c2, c3, c4 = st.columns((0.2, 0.2, 0.25, 2))
+        with c1:
+            st.image("Görseller_Streamlit/icons/linkedin.png")
+        with c2:
+            st.image("Görseller_Streamlit/icons/github-mark.png")
+        with c3:
+            st.image("Görseller_Streamlit/icons/medium.png")
         st.write("---")
 
 
@@ -90,7 +118,7 @@ with st.container():
     with sol:
         st.write("##")
         st.write("##")
-        st.image("Görseller_Streamlit/mehmet_helva.jpg")
+        st.image("Görseller_Streamlit/chiefs/mehmet_helva.jpg")
     with sag:
         st.subheader("Mehmet Helva")
         st.write(
@@ -101,6 +129,13 @@ with st.container():
             Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
             Page Maker including versions of Lorem Ipsum.
             """)
+        c1, c2, c3, c4 = st.columns((0.2, 0.2, 0.25, 2))
+        with c1:
+            st.image("Görseller_Streamlit/icons/linkedin.png")
+        with c2:
+            st.image("Görseller_Streamlit/icons/github-mark.png")
+        with c3:
+            st.image("Görseller_Streamlit/icons/medium.png")
         st.write("---")
 
 

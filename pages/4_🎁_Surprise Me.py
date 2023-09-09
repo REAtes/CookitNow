@@ -42,7 +42,7 @@ with col2:
 
 #bu sayfa için surprise me adında bir csv yaptım. içinde sadece aşağıda kullandığımız
 #kolan isimleri var.
-df_surprise = pd.read_csv("surprise_me.csv")
+df_surprise = pd.read_csv("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/surprise_me.csv")
 #lowercase = lambda x: str(x).lower()
 df_surprise = df_surprise.applymap(lambda x: str(x).lower())
 df_surprise.columns = [col.lower() for col in df_surprise.columns]
@@ -81,17 +81,17 @@ with col2:
         with tab3:
             col1, col2 = st.columns((0.3, 5))
             with col1:
-                st.image("GastroMiuul/Görseller_Streamlit/calori1.jpg")
+                st.image("Görseller_Streamlit/icons/calori1.jpg")
             with col2:
                 st.write(f"Calori: {calories[a]} cal")
             col1, col2 = st.columns((0.3, 5))
             with col1:
-                st.image("GastroMiuul/Görseller_Streamlit/carbon_footprint.jpg")
+                st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
             with col2:
                 st.write(f"Carbon Footprint: {carbon[a]} gr")
             col1, col2 = st.columns((0.3, 5))
             with col1:
-                st.image("GastroMiuul/Görseller_Streamlit/allergen1.jpg")
+                st.image("Görseller_Streamlit/icons/allergen1.jpg")
             with col2:
                 st.write(f"Allergen Item: {allergen[a]}")
 
