@@ -142,8 +142,14 @@ if recommendation_button:
         recommended_recipes1, cosine_sim1 = food_recipes_recommender(df_filtered, "ingredients", input2)
         name = recommended_recipes1["name"].tolist()
         ingredients = recommended_recipes1["ingredients_raw_str"].tolist()
+        ingredients = [eleman.replace('[', '').replace(']', '').replace('"', '') for eleman in ingredients]
         steps = recommended_recipes1["steps"].tolist()
+        steps = [eleman.replace('[', '').replace(']', '').replace('"', '').replace("'", '').replace(',', '')
+                 for eleman in steps]
         allergen = recommended_recipes1["because_of_allergen"].tolist()
+        allergen = [
+            eleman.replace("'", '').replace("[]", "There is no allergen item.").replace("[", "").replace("]", "")
+            for eleman in allergen]
         calories = recommended_recipes1["calories"].tolist()
         carbon = recommended_recipes1["carbon_emission"].tolist()
         col1, col2, col3 = st.columns((1, 3, 1))
@@ -155,32 +161,39 @@ if recommendation_button:
                 # st.image(image_url1, caption=name[a], use_column_width="auto")
                 tab1, tab2, tab3 = st.tabs(["Ingredients", "Cooking Steps", "Calori & Carbon Footprint & Allergen"])
                 with tab1:
-                    st.write(ingredients[a])
-                with tab2:
-                    st.write(steps[a])
-                with tab3:
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
-                        st.image("GastroMiuul/Görseller_Streamlit/calori1.jpg")
+                        st.image("Görseller_Streamlit/icons/calori1.jpg")
                     with col2:
-                        st.write(f"Calori: {calories[a]} cal")
+                        st.write(f"Calori: {calories[a]}")
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
-                        st.image("GastroMiuul/Görseller_Streamlit/carbon_footprint.jpg")
+                        st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
                     with col2:
-                        st.write(f"Carbon Footprint: {carbon[a]} gr")
+                        st.write(f"Carbon Footprint: {carbon[a]}")
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
-                        st.image("GastroMiuul/Görseller_Streamlit/allergen1.jpg")
+                        st.image("Görseller_Streamlit/icons/allergen1.jpg")
                     with col2:
                         st.write(f"Allergen Item: {allergen[a]}")
+                with tab2:
+                    st.write(ingredients[a].upper().capitalize())
+                with tab3:
+                    st.write(steps[a].upper().capitalize())
+                st.write("##")
 
     elif input1:
         recommended_recipes2, cosine_sim_df2 = food_recipes_recommender_only(df, "ingredients", input1)
         name = recommended_recipes2["name"].tolist()
         ingredients = recommended_recipes2["ingredients_raw_str"].tolist()
+        ingredients = [eleman.replace('[', '').replace(']', '').replace('"', '') for eleman in ingredients]
         steps = recommended_recipes2["steps"].tolist()
+        steps = [eleman.replace('[', '').replace(']', '').replace('"', '').replace("'", '').replace(',', '')
+                 for eleman in steps]
         allergen = recommended_recipes2["because_of_allergen"].tolist()
+        allergen = [
+            eleman.replace("'", '').replace("[]", "There is no allergen item.").replace("[", "").replace("]", "")
+            for eleman in allergen]
         calories = recommended_recipes2["calories"].tolist()
         carbon = recommended_recipes2["carbon_emission"].tolist()
         col1, col2, col3 = st.columns((1, 3, 1))
@@ -190,27 +203,28 @@ if recommendation_button:
                 # image_url1 = google_image_search(name[a], api_key, cse_id)
                 # print(image_url1)
                 # st.image(image_url1, caption=name[a], use_column_width="auto")
-                tab1, tab2, tab3 = st.tabs(["Ingredients", "Cooking Steps", "Calori & Carbon Footprint & Allergen"])
+                tab1, tab2, tab3 = st.tabs(["Calori & Carbon Footprint & Allergen", "Ingredients", "Cooking Steps"])
                 with tab1:
-                    st.write(ingredients[a])
-                with tab2:
-                    st.write(steps[a])
-                with tab3:
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
-                        st.image("GastroMiuul/Görseller_Streamlit/calori1.jpg")
+                        st.image("Görseller_Streamlit/icons/calori1.jpg")
                     with col2:
-                        st.write(f"Calori: {calories[a]} cal")
+                        st.write(f"Calori: {calories[a]}")
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
-                        st.image("GastroMiuul/Görseller_Streamlit/carbon_footprint.jpg")
+                        st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
                     with col2:
-                        st.write(f"Carbon Footprint: {carbon[a]} gr")
+                        st.write(f"Carbon Footprint: {carbon[a]}")
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
-                        st.image("GastroMiuul/Görseller_Streamlit/allergen1.jpg")
+                        st.image("Görseller_Streamlit/icons/allergen1.jpg")
                     with col2:
                         st.write(f"Allergen Item: {allergen[a]}")
+                with tab2:
+                    st.write(ingredients[a].upper().capitalize())
+                with tab3:
+                    st.write(steps[a].upper().capitalize())
+                st.write("##")
 
 
 #------Görsel ekleme------#
