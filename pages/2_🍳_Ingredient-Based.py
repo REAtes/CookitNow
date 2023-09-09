@@ -70,6 +70,8 @@ with st.container():
 
 
 df = pd.read_csv("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/malzemeye_gore.csv")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 1500)
 df = df.applymap(lambda x: str(x).lower())
 df.columns = [col.lower() for col in df.columns]
 main_cols = ['name', 'ingredients', 'ingredients_raw_str', 'steps', 'calories',
@@ -148,14 +150,14 @@ if recommendation_button:
                  for eleman in steps]
         allergen = recommended_recipes1["because_of_allergen"].tolist()
         allergen = [
-            eleman.replace("'", '').replace("[]", "There is no allergen item.").replace("[", "").replace("]", "")
+            eleman.gireplace("'", '').replace("[]", "There is no allergen item.").replace("[", "").replace("]", "")
             for eleman in allergen]
         calories = recommended_recipes1["calories"].tolist()
         carbon = recommended_recipes1["carbon_emission"].tolist()
         # col1, col2, col3 = st.columns((1, 3, 1))
         # with col2:
         for a in range(0, 5):
-            st.subheader(f':red[{name[a]}]')
+            st.subheader(f':red[{name[a].capitalize()}]')
             # image_url1 = google_image_search(name[a], api_key, cse_id)
             # print(image_url1)
             # st.image(image_url1, caption=name[a], use_column_width="auto")
@@ -177,9 +179,9 @@ if recommendation_button:
                 with col2:
                     st.write(f"Allergen Item: {allergen[a]}")
             with tab2:
-                st.write(ingredients[a].upper().capitalize())
+                st.write(ingredients[a].lower().capitalize())
             with tab3:
-                st.write(steps[a].upper().capitalize())
+                st.write(steps[a].capitalize())
             st.write("##")
 
     elif input1:
@@ -199,7 +201,7 @@ if recommendation_button:
         # col1, col2, col3 = st.columns((1, 3, 1))
         # with col2:
         for a in range(0, 5):
-            st.subheader(f':red[{name[a]}]')
+            st.subheader(f':red[{name[a].capitalize()}]')
             # image_url1 = google_image_search(name[a], api_key, cse_id)
             # print(image_url1)
             # st.image(image_url1, caption=name[a], use_column_width="auto")
@@ -221,9 +223,9 @@ if recommendation_button:
                 with col2:
                     st.write(f"Allergen Item: {allergen[a]}")
             with tab2:
-                st.write(ingredients[a].upper().capitalize())
+                st.write(ingredients[a].lower().capitalize())
             with tab3:
-                st.write(steps[a].upper().capitalize())
+                st.write(steps[a].capitalize())
             st.write("##")
 
 
