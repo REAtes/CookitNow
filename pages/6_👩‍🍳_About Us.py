@@ -22,13 +22,22 @@ with st.container():
             Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
             Page Maker including versions of Lorem Ipsum.
             """)
-        c1, c2, c3, c4 = st.columns((0.2, 0.2, 0.25, 2))
-        with c1:
+        i1, l1, i2, l2, i3, l3 = st.columns((0.1, 0.2, 0.1, 0.2, 0.1, 0.2))
+        with i1:
             st.image("Görseller_Streamlit/icons/linkedin.png")
-        with c2:
+        with l1:
+            url = "https://www.linkedin.com/in/emreates/"
+            st.write("[LinkedIn](%s)" % url)
+        with i2:
             st.image("Görseller_Streamlit/icons/github-mark.png")
-        with c3:
+        with l2:
+            url = "https://www.linkedin.com/in/emreates/"
+            st.write("[GitHub](%s)" % url)
+        with i3:
             st.image("Görseller_Streamlit/icons/medium.png")
+        with l3:
+            url = "https://www.linkedin.com/in/emreates/"
+            st.write("[Medium](%s)" % url)
         st.write("---")
 
 
@@ -49,13 +58,22 @@ with sag:
         Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
         Page Maker including versions of Lorem Ipsum.
         """)
-    c1, c2, c3, c4 = st.columns((0.2, 0.2, 0.25, 2))
-    with c1:
+    i1, l1, i2, l2, i3, l3 = st.columns((0.1, 0.2, 0.1, 0.2, 0.1, 0.2))
+    with i1:
         st.image("Görseller_Streamlit/icons/linkedin.png")
-    with c2:
+    with l1:
+        url = "https://www.linkedin.com/in/emreates/"
+        st.write("[LinkedIn](%s)" % url)
+    with i2:
         st.image("Görseller_Streamlit/icons/github-mark.png")
-    with c3:
+    with l2:
+        url = "https://www.linkedin.com/in/emreates/"
+        st.write("[GitHub](%s)" % url)
+    with i3:
         st.image("Görseller_Streamlit/icons/medium.png")
+    with l3:
+        url = "https://www.linkedin.com/in/emreates/"
+        st.write("[Medium](%s)" % url)
     st.write("---")
 
 
@@ -76,14 +94,24 @@ with st.container():
             Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
             Page Maker including versions of Lorem Ipsum.
             """)
-        c1, c2, c3, c4 = st.columns((0.2, 0.2, 0.25, 2))
-        with c1:
+        i1, l1, i2, l2, i3, l3 = st.columns((0.1, 0.2, 0.1, 0.2, 0.1, 0.2))
+        with i1:
             st.image("Görseller_Streamlit/icons/linkedin.png")
-        with c2:
+        with l1:
+            url = "https://www.linkedin.com/in/emreates/"
+            st.write("[LinkedIn](%s)" % url)
+        with i2:
             st.image("Görseller_Streamlit/icons/github-mark.png")
-        with c3:
+        with l2:
+            url = "https://www.linkedin.com/in/emreates/"
+            st.write("[GitHub](%s)" % url)
+        with i3:
             st.image("Görseller_Streamlit/icons/medium.png")
+        with l3:
+            url = "https://www.linkedin.com/in/emreates/"
+            st.write("[Medium](%s)" % url)
         st.write("---")
+
 
 # --- Emre ---
 with st.container():
@@ -102,13 +130,22 @@ with st.container():
             Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
             Page Maker including versions of Lorem Ipsum.
             """)
-        c1, c2, c3, c4 = st.columns((0.2, 0.2, 0.25, 2))
-        with c1:
+        i1, l1, i2, l2, i3, l3 = st.columns((0.1, 0.2, 0.1, 0.2, 0.1, 0.2))
+        with i1:
             st.image("Görseller_Streamlit/icons/linkedin.png")
-        with c2:
+        with l1:
+            url = "https://www.linkedin.com/in/emreates/"
+            st.write("[LinkedIn](%s)" % url)
+        with i2:
             st.image("Görseller_Streamlit/icons/github-mark.png")
-        with c3:
+        with l2:
+            url = "https://github.com/REAtes"
+            st.write("[GitHub](%s)" % url)
+        with i3:
             st.image("Görseller_Streamlit/icons/medium.png")
+        with l3:
+            url = "https://medium.com/@emre_ates"
+            st.write("[Medium](%s)" % url)
         st.write("---")
 
 
@@ -129,13 +166,21 @@ with st.container():
             Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
             Page Maker including versions of Lorem Ipsum.
             """)
-        c1, c2, c3, c4 = st.columns((0.2, 0.2, 0.25, 2))
-        with c1:
+        i1, l1, i2, l2, i3, l3 = st.columns((0.1, 0.2, 0.1, 0.2, 0.1, 0.2))
+        with i1:
             st.image("Görseller_Streamlit/icons/linkedin.png")
-        with c2:
+        with l1:
+            url = "https://www.linkedin.com/in/emreates/"
+            st.write("[LinkedIn](%s)" % url)
+        with i2:
             st.image("Görseller_Streamlit/icons/github-mark.png")
-        with c3:
+        with l2:
+            url = "https://www.linkedin.com/in/emreates/"
+            st.write("[GitHub](%s)" % url)
+        with i3:
             st.image("Görseller_Streamlit/icons/medium.png")
-        st.write("---")
+        with l3:
+            url = "https://www.linkedin.com/in/emreates/"
+            st.write("[Medium](%s)" % url)
 
 
