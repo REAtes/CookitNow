@@ -16,6 +16,8 @@ st.set_page_config(page_title="Ingredient-Based  | GastroMiuul", page_icon="🍳
 
 # ---- Main Screen  ---- #
 
+@st.cache_data  # 👈 Add the caching decorator
+
 
 def load_lottieurl(url):
     r = requests.get(url)
