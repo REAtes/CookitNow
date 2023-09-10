@@ -170,17 +170,17 @@ with st.container():
         with i1:
             st.image("Görseller_Streamlit/icons/linkedin.png")
         with l1:
-            url = "https://www.linkedin.com/in/emreates/"
+            url = "https://www.linkedin.com/in/mehmet-helva-b2993a273/"
             st.write("[LinkedIn](%s)" % url)
         with i2:
             st.image("Görseller_Streamlit/icons/github-mark.png")
         with l2:
-            url = "https://www.linkedin.com/in/emreates/"
+            url = "https://github.com/mhelva"
             st.write("[GitHub](%s)" % url)
         with i3:
             st.image("Görseller_Streamlit/icons/medium.png")
         with l3:
-            url = "https://www.linkedin.com/in/emreates/"
+            url = "https://medium.com/@m.helva34"
             st.write("[Medium](%s)" % url)
 
 
