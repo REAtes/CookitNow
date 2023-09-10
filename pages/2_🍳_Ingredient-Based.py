@@ -34,30 +34,30 @@ st.subheader("Share your ingredients, and let us inspire you with recipes tailor
 
 #seçim yapılacak malzeme listesinin tamamı
 
-ingredients = ["chicken", "beef", "pork", "lamb", "turkey", "duck", "veal", "bacon", "ham", "sausage"
-         "salmon", "tuna", "shrimp", "lobster", "crab", "cod", "mackerel", "trout", "oyster", "clam"
+ingredients = ["chicken", "beef", "pork", "lamb", "turkey", "duck", "veal", "bacon", "ham", "sausage",
+         "salmon", "tuna", "shrimp", "lobster", "crab", "cod", "mackerel", "trout", "oyster", "clam",
          "tomato", "onion", "garlic", "bell pepper", "broccoli", "carrot", "spinach",
          "lettuce", "cabbage", "mushroom", "green beans", "peas", "corn", "zucchini",
          "eggplant", "cucumber", "celery", "kale", "brussels sprouts", "cauliflower",
-         "asparagus", "beet", "radish", "leek"
+         "asparagus", "beet", "radish", "leek",
          "apple", "banana", "orange", "strawberry", "blueberry", "raspberry", "kiwi",
          "mango", "pineapple", "grape", "watermelon", "peach", "pear", "plum", "pomegranate",
-         "fig", "lemon", "lime", "cherry", "blackberry"
+         "fig", "lemon", "lime", "cherry", "blackberry",
          "rice", "pasta", "potato", "bread", "quinoa", "oats", "barley", "cornmeal",
-         "whole wheat", "rye", "buckwheat", "couscous"
+         "whole wheat", "rye", "buckwheat", "couscous",
          "milk", "cream", "yogurt", "cheese", "butter", "ghee", "almond milk",
-         "soy milk", "oat milk", "cashew milk", "feta", "parmesan", "cheddar"
+         "soy milk", "oat milk", "cashew milk", "feta", "parmesan", "cheddar",
          "almond", "walnut", "cashew", "peanut", "sesame seed", "sunflower seed",
-         "pumpkin seed", "chia seed", "flaxseed", "pecan", "macadamia", "hazelnut"
+         "pumpkin seed", "chia seed", "flaxseed", "pecan", "macadamia", "hazelnut",
          "pepper", "salt", "sugar", "cinnamon", "chili", "rosemary", "basil",
          "oregano", "parsley", "cilantro", "thyme", "curry powder", "ginger",
-         "turmeric", "coriander", "cumin", "paprika", "cardamom", "cloves", "nutmeg", "saffron"
+         "turmeric", "coriander", "cumin", "paprika", "cardamom", "cloves", "nutmeg", "saffron",
          "olive oil", "soy sauce", "vinegar", "honey", "maple syrup", "sesame oil",
          "coconut oil", "mustard", "ketchup", "mayonnaise", "hot sauce", "peanut butter",
-         "wasabi", "teriyaki sauce", "BBQ sauce", "salsa"
-         "tea", "coffee", "wine", "beer", "soda", "juice"
+         "wasabi", "teriyaki sauce", "BBQ sauce", "salsa",
+         "tea", "coffee", "wine", "beer", "soda", "juice",
          "black beans", "lentils", "chickpeas", "green lentils", "red kidney beans",
-         "white beans", "soybeans", "mung beans", "peanuts", "fava beans", "lima beans"
+         "white beans", "soybeans", "mung beans", "peanuts", "fava beans", "lima beans",
          "tofu", "tempeh", "seitan", "edamame", "textured vegetable protein", "soy chunks",
          "chocolate", "vanilla", "gelatin", "marshmallow", "caramel", "cookie",
          "cake", "brownie", "pie", "ice cream"]
