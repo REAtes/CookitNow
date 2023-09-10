@@ -73,7 +73,7 @@ with sag:
         url = "https://medium.com/@zubeyde.physics"
         st.write("[Medium](%s)" % url)
     with i4:
-        st.image("Görseller_Streamlit/icons/medium.png")
+        st.image("Görseller_Streamlit/icons/kaggle.png")
     with l4:
         url = "https://www.kaggle.com/zubeydeer"
         st.write("[Kaggle](%s)" % url)
@@ -109,7 +109,7 @@ with st.container():
             url = "https://github.com/brksvm"
             st.write("[GitHub](%s)" % url)
         with i3:
-            st.image("Görseller_Streamlit/icons/medium.png")
+            st.image("Görseller_Streamlit/icons/kaggle.png")
         with l3:
             url = "https://www.kaggle.com/buraksevim"
             st.write("[Kaggle](%s)" % url)
