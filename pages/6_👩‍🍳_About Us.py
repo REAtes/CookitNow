@@ -26,18 +26,16 @@ with st.container():
         with i1:
             st.image("Görseller_Streamlit/icons/linkedin.png")
         with l1:
-            url = "https://www.linkedin.com/in/emreates/"
+            url = "https://www.linkedin.com/in/ay%C3%A7a-maden-ph-d-b1794843"
             st.write("[LinkedIn](%s)" % url)
         with i2:
-            st.image("Görseller_Streamlit/icons/github-mark.png")
+            st.write(" ")
         with l2:
-            url = "https://www.linkedin.com/in/emreates/"
-            st.write("[GitHub](%s)" % url)
+            st.write(" ")
         with i3:
-            st.image("Görseller_Streamlit/icons/medium.png")
+            st.write(" ")
         with l3:
-            url = "https://www.linkedin.com/in/emreates/"
-            st.write("[Medium](%s)" % url)
+            st.write(" ")
         st.write("---")
 
 
@@ -58,22 +56,27 @@ with sag:
         Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
         Page Maker including versions of Lorem Ipsum.
         """)
-    i1, l1, i2, l2, i3, l3 = st.columns((0.1, 0.2, 0.1, 0.2, 0.1, 0.2))
+    i1, l1, i2, l2, i3, l3, i4, l4= st.columns((0.1, 0.2, 0.1, 0.2, 0.1, 0.2, 0.1, 0.2))
     with i1:
         st.image("Görseller_Streamlit/icons/linkedin.png")
     with l1:
-        url = "https://www.linkedin.com/in/emreates/"
+        url = "https://www.linkedin.com/in/z%C3%BCbeyde-er-b0285217b"
         st.write("[LinkedIn](%s)" % url)
     with i2:
         st.image("Görseller_Streamlit/icons/github-mark.png")
     with l2:
-        url = "https://www.linkedin.com/in/emreates/"
+        url = "https://github.com/ZubeydEr"
         st.write("[GitHub](%s)" % url)
     with i3:
         st.image("Görseller_Streamlit/icons/medium.png")
     with l3:
-        url = "https://www.linkedin.com/in/emreates/"
+        url = "https://medium.com/@zubeyde.physics"
         st.write("[Medium](%s)" % url)
+    with i4:
+        st.image("Görseller_Streamlit/icons/medium.png")
+    with l4:
+        url = "https://www.kaggle.com/zubeydeer"
+        st.write("[Kaggle](%s)" % url)
     st.write("---")
 
 
@@ -98,18 +101,18 @@ with st.container():
         with i1:
             st.image("Görseller_Streamlit/icons/linkedin.png")
         with l1:
-            url = "https://www.linkedin.com/in/emreates/"
+            url = "https://www.linkedin.com/in/buraksevim/"
             st.write("[LinkedIn](%s)" % url)
         with i2:
             st.image("Görseller_Streamlit/icons/github-mark.png")
         with l2:
-            url = "https://www.linkedin.com/in/emreates/"
+            url = "https://github.com/brksvm"
             st.write("[GitHub](%s)" % url)
         with i3:
             st.image("Görseller_Streamlit/icons/medium.png")
         with l3:
-            url = "https://www.linkedin.com/in/emreates/"
-            st.write("[Medium](%s)" % url)
+            url = "https://www.kaggle.com/buraksevim"
+            st.write("[Kaggle](%s)" % url)
         st.write("---")
 
 
