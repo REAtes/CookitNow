@@ -225,8 +225,8 @@ if recommendation_button:
 
 
     elif input1 and input2:
-        df_filtered = df[df['ingredients'].apply(lambda item: any(key in item for key in input1))]
-        recommended_recipes2, cosine_sim2 = food_recipes_recommender(df_filtered, "ingredients", input2)
+        df_filtered = df[df['ingredients'].apply(lambda item: all(key in item for key in input1))]
+        recommended_recipes2, cosine_sim2 = food_recipes_recommender_only(df_filtered, "ingredients", input2)
         name = recommended_recipes2["name"].tolist()
         ingredients = recommended_recipes2["ingredients_raw_str"].tolist()
         ingredients = [eleman.replace('[', '').replace(']', '').replace('"', '') for eleman in ingredients]
