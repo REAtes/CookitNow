@@ -17,6 +17,12 @@ st.set_page_config(page_title="Ingredient-Based  | GastroMiuul", page_icon="🍳
 # ---- Main Screen  ---- #
 
 @st.cache_data  # 👈 Add the caching decorator
+def load_data(url):
+    df = pd.read_csv(url)
+    return df
+
+
+df = load_data("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/malzemeye_gore.csv")
 
 
 def load_lottieurl(url):
@@ -72,7 +78,7 @@ with st.container():
         input2 = st.multiselect('', sorted_ingredients, placeholder="type here", key=2)
 
 
-df = pd.read_csv("#C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/malzemeye_gore.csv")
+
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 1500)
 df = df.applymap(lambda x: str(x).lower())
