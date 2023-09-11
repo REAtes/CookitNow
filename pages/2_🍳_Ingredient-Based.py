@@ -164,12 +164,37 @@ if recommendation_button:
         carbon = recommended_recipes1["carbon_emission"].tolist()
         # col1, col2, col3 = st.columns((1, 3, 1))
         # with col2:
+# eksik ürünler ile ilgili kod başlangıcı
+        recommended_recipes1["ingredients"] = recommended_recipes1["ingredients"].apply(
+            lambda eleman: [x.strip(" '") for x in eleman.strip("[]").split(',')])
+
+
+        def find_missing_ingredients(row, inputs):
+            if isinstance(row, list):
+                missing_ingredients = []
+                inputs = [ingredient.lower() for ingredient in
+                          inputs]  # Inputs listesindeki malzemeleri küçük harfe dönüştür
+                for ingredient in row:
+                    ingredient = ingredient.strip(
+                        " '").lower()  # Malzemelerin başındaki ve sonundaki boşlukları, tek tırnak işaretlerini temizle ve küçük harfe dönüştür
+                    if ingredient not in inputs:
+                        missing_ingredients.append(ingredient)
+                return missing_ingredients
+            return []
+
+
+        missing_ingredients_lists = recommended_recipes1['ingredients'].apply(find_missing_ingredients,
+                                                                              inputs=inputs).tolist()
+
+# eksik ürünler ile ilgili kodların sonu
+
         for a in range(0, 5):
             st.subheader(f':red[{name[a].capitalize()}]')
             #image_url1 = google_image_search(name[a], api_key, cse_id)
             #print(image_url1)
             #st.image(image_url1, caption=name[a], use_column_width="auto")
-            tab1, tab2, tab3 = st.tabs(["Calori & Carbon Footprint & Allergen", "Ingredients", "Cooking Steps"])
+            tab1, tab2, tab3, tab4 = st.tabs(["Ingredients", "Cooking Steps", "Calori & Carbon Footprint & Allergen",
+                                              "Missing Ingredients"])
             with tab1:
                 col1, col2 = st.columns((0.3, 5))
                 with col1:
@@ -190,6 +215,12 @@ if recommendation_button:
                 st.write(ingredients[a].lower().capitalize())
             with tab3:
                 st.write(steps[a].capitalize())
+            with tab4:
+                st.write(missing_ingredients_lists[a].capitalize())
+                if st.button("Eksik Ürünleri Ara"):
+                    for a in missing_ingredients_lists:
+                        search_item(a)
+                        st.write(f"{missing_ingredients_lists[a]} için arama tamamlandı.")
             st.write("##")
 
 
