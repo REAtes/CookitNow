@@ -16,6 +16,8 @@ st.set_page_config(page_title="Ingredient-Based  | GastroMiuul", page_icon="🍳
 
 # ---- Main Screen  ---- #
 
+@st.cache_data  # 👈 Add the caching decorator
+
 
 def load_lottieurl(url):
     r = requests.get(url)
@@ -34,30 +36,30 @@ st.subheader("Share your ingredients, and let us inspire you with recipes tailor
 
 #seçim yapılacak malzeme listesinin tamamı
 
-ingredients = ["chicken", "beef", "pork", "lamb", "turkey", "duck", "veal", "bacon", "ham", "sausage"
-         "salmon", "tuna", "shrimp", "lobster", "crab", "cod", "mackerel", "trout", "oyster", "clam"
+ingredients = ["chicken", "beef", "pork", "lamb", "turkey", "duck", "veal", "bacon", "ham", "sausage",
+         "salmon", "tuna", "shrimp", "lobster", "crab", "cod", "mackerel", "trout", "oyster", "clam",
          "tomato", "onion", "garlic", "bell pepper", "broccoli", "carrot", "spinach",
          "lettuce", "cabbage", "mushroom", "green beans", "peas", "corn", "zucchini",
          "eggplant", "cucumber", "celery", "kale", "brussels sprouts", "cauliflower",
-         "asparagus", "beet", "radish", "leek"
+         "asparagus", "beet", "radish", "leek",
          "apple", "banana", "orange", "strawberry", "blueberry", "raspberry", "kiwi",
          "mango", "pineapple", "grape", "watermelon", "peach", "pear", "plum", "pomegranate",
-         "fig", "lemon", "lime", "cherry", "blackberry"
+         "fig", "lemon", "lime", "cherry", "blackberry",
          "rice", "pasta", "potato", "bread", "quinoa", "oats", "barley", "cornmeal",
-         "whole wheat", "rye", "buckwheat", "couscous"
+         "whole wheat", "rye", "buckwheat", "couscous",
          "milk", "cream", "yogurt", "cheese", "butter", "ghee", "almond milk",
-         "soy milk", "oat milk", "cashew milk", "feta", "parmesan", "cheddar"
+         "soy milk", "oat milk", "cashew milk", "feta", "parmesan", "cheddar",
          "almond", "walnut", "cashew", "peanut", "sesame seed", "sunflower seed",
-         "pumpkin seed", "chia seed", "flaxseed", "pecan", "macadamia", "hazelnut"
+         "pumpkin seed", "chia seed", "flaxseed", "pecan", "macadamia", "hazelnut",
          "pepper", "salt", "sugar", "cinnamon", "chili", "rosemary", "basil",
          "oregano", "parsley", "cilantro", "thyme", "curry powder", "ginger",
-         "turmeric", "coriander", "cumin", "paprika", "cardamom", "cloves", "nutmeg", "saffron"
+         "turmeric", "coriander", "cumin", "paprika", "cardamom", "cloves", "nutmeg", "saffron",
          "olive oil", "soy sauce", "vinegar", "honey", "maple syrup", "sesame oil",
          "coconut oil", "mustard", "ketchup", "mayonnaise", "hot sauce", "peanut butter",
-         "wasabi", "teriyaki sauce", "BBQ sauce", "salsa"
-         "tea", "coffee", "wine", "beer", "soda", "juice"
+         "wasabi", "teriyaki sauce", "BBQ sauce", "salsa",
+         "tea", "coffee", "wine", "beer", "soda", "juice",
          "black beans", "lentils", "chickpeas", "green lentils", "red kidney beans",
-         "white beans", "soybeans", "mung beans", "peanuts", "fava beans", "lima beans"
+         "white beans", "soybeans", "mung beans", "peanuts", "fava beans", "lima beans",
          "tofu", "tempeh", "seitan", "edamame", "textured vegetable protein", "soy chunks",
          "chocolate", "vanilla", "gelatin", "marshmallow", "caramel", "cookie",
          "cake", "brownie", "pie", "ice cream"]
@@ -65,10 +67,14 @@ sorted_ingredients = sorted(ingredients)
 with st.container():
     st.write("Now, can you please type the ingredients that you really want to use? What products do you have?")
     input1 = st.multiselect('', sorted_ingredients, placeholder="type here", key=1)
-    st.write("If you like you can add more to get more specific recipes?")
-    input2 = st.multiselect('', sorted_ingredients, placeholder="type here", key=2)
+    if st.checkbox("You can also add optional ingredients to versatile recipes"):
+        st.write("If you like you can add more to get more specific recipes?")
+        input2 = st.multiselect('', sorted_ingredients, placeholder="type here", key=2)
 
-df = pd.read_csv("malzemeye_gore.csv")
+
+df = pd.read_csv("#C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/malzemeye_gore.csv")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 1500)
 df = df.applymap(lambda x: str(x).lower())
 df.columns = [col.lower() for col in df.columns]
 main_cols = ['name', 'ingredients', 'ingredients_raw_str', 'steps', 'calories',
@@ -114,7 +120,7 @@ def food_recipes_recommender(dataframe, colname, inputs):
     recommended_recipes = dataframe.iloc[top_5_index].sort_values("calories")
     return recommended_recipes, cosine_sim
 
-
+#görseller için fonk ve api idleri
 #def google_image_search(query, api_key, cse_id, num=1):
 #    service = build("customsearch", "v1", developerKey=api_key)
 #    res = service.cse().list(q=query, cx=cse_id, searchType='image', num=num).execute()
@@ -133,83 +139,98 @@ with stylable_container(
                                     }
                                     """,
                     ):
-    recommendation_button = st.button('**Give Recommendation**')
+    recommendation_button = st.button('**Show Me Recipes**')
 
 if recommendation_button:
-    if input1 and input2:
-        df_filtered = df[df['ingredients'].apply(lambda item: any(key in item for key in input1))]
-        recommended_recipes1, cosine_sim1 = food_recipes_recommender(df_filtered, "ingredients", input2)
+    if input1:
+        recommended_recipes1, cosine_sim_df1 = food_recipes_recommender_only(df, "ingredients", input1)
         name = recommended_recipes1["name"].tolist()
         ingredients = recommended_recipes1["ingredients_raw_str"].tolist()
+        ingredients = [eleman.replace('[', '').replace(']', '').replace('"', '') for eleman in ingredients]
         steps = recommended_recipes1["steps"].tolist()
+        steps = [eleman.replace('[', '').replace(']', '').replace('"', '').replace("'", '').replace(',', '')
+                 for eleman in steps]
         allergen = recommended_recipes1["because_of_allergen"].tolist()
+        allergen = [
+            eleman.replace("'", '').replace("[]", "There is no allergen item.").replace("[", "").replace("]", "")
+            for eleman in allergen]
         calories = recommended_recipes1["calories"].tolist()
         carbon = recommended_recipes1["carbon_emission"].tolist()
-        col1, col2, col3 = st.columns((1, 3, 1))
-        with col2:
-            for a in range(0, 5):
-                st.subheader(name[a].title())
-                # image_url1 = google_image_search(name[a], api_key, cse_id)
-                # print(image_url1)
-                # st.image(image_url1, caption=name[a], use_column_width="auto")
-                tab1, tab2, tab3 = st.tabs(["Ingredients", "Cooking Steps", "Calori & Carbon Footprint & Allergen"])
-                with tab1:
-                    st.write(ingredients[a])
-                with tab2:
-                    st.write(steps[a])
-                with tab3:
-                    col1, col2 = st.columns((0.3, 5))
-                    with col1:
-                        st.image("GastroMiuul/Görseller_Streamlit/calori1.jpg")
-                    with col2:
-                        st.write(f"Calori: {calories[a]} cal")
-                    col1, col2 = st.columns((0.3, 5))
-                    with col1:
-                        st.image("GastroMiuul/Görseller_Streamlit/carbon_footprint.jpg")
-                    with col2:
-                        st.write(f"Carbon Footprint: {carbon[a]} gr")
-                    col1, col2 = st.columns((0.3, 5))
-                    with col1:
-                        st.image("GastroMiuul/Görseller_Streamlit/allergen1.jpg")
-                    with col2:
-                        st.write(f"Allergen Item: {allergen[a]}")
+        # col1, col2, col3 = st.columns((1, 3, 1))
+        # with col2:
+        for a in range(0, 5):
+            st.subheader(f':red[{name[a].capitalize()}]')
+            #image_url1 = google_image_search(name[a], api_key, cse_id)
+            #print(image_url1)
+            #st.image(image_url1, caption=name[a], use_column_width="auto")
+            tab1, tab2, tab3 = st.tabs(["Calori & Carbon Footprint & Allergen", "Ingredients", "Cooking Steps"])
+            with tab1:
+                col1, col2 = st.columns((0.3, 5))
+                with col1:
+                    st.image("Görseller_Streamlit/icons/calori1.jpg")
+                with col2:
+                    st.write(f"Calori: {calories[a]}")
+                col1, col2 = st.columns((0.3, 5))
+                with col1:
+                    st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
+                with col2:
+                    st.write(f"Carbon Footprint: {carbon[a]}")
+                col1, col2 = st.columns((0.3, 5))
+                with col1:
+                    st.image("Görseller_Streamlit/icons/allergen1.jpg")
+                with col2:
+                    st.write(f"Allergen Item: {allergen[a]}")
+            with tab2:
+                st.write(ingredients[a].lower().capitalize())
+            with tab3:
+                st.write(steps[a].capitalize())
+            st.write("##")
 
-    elif input1:
-        recommended_recipes2, cosine_sim_df2 = food_recipes_recommender_only(df, "ingredients", input1)
+
+    elif input1 and input2:
+        df_filtered = df[df['ingredients'].apply(lambda item: any(key in item for key in input1))]
+        recommended_recipes2, cosine_sim2 = food_recipes_recommender(df_filtered, "ingredients", input2)
         name = recommended_recipes2["name"].tolist()
         ingredients = recommended_recipes2["ingredients_raw_str"].tolist()
+        ingredients = [eleman.replace('[', '').replace(']', '').replace('"', '') for eleman in ingredients]
         steps = recommended_recipes2["steps"].tolist()
+        steps = [eleman.replace('[', '').replace(']', '').replace('"', '').replace("'", '').replace(',', '')
+                 for eleman in steps]
         allergen = recommended_recipes2["because_of_allergen"].tolist()
+        allergen = [
+            eleman.gireplace("'", '').replace("[]", "There is no allergen item.").replace("[", "").replace("]", "")
+            for eleman in allergen]
         calories = recommended_recipes2["calories"].tolist()
         carbon = recommended_recipes2["carbon_emission"].tolist()
-        col1, col2, col3 = st.columns((1, 3, 1))
-        with col2:
-            for a in range(0, 5):
-                st.subheader(name[a].title())
-                # image_url1 = google_image_search(name[a], api_key, cse_id)
-                # print(image_url1)
-                # st.image(image_url1, caption=name[a], use_column_width="auto")
-                tab1, tab2, tab3 = st.tabs(["Ingredients", "Cooking Steps", "Calori & Carbon Footprint & Allergen"])
-                with tab1:
-                    st.write(ingredients[a])
-                with tab2:
-                    st.write(steps[a])
-                with tab3:
-                    col1, col2 = st.columns((0.3, 5))
-                    with col1:
-                        st.image("GastroMiuul/Görseller_Streamlit/calori1.jpg")
-                    with col2:
-                        st.write(f"Calori: {calories[a]} cal")
-                    col1, col2 = st.columns((0.3, 5))
-                    with col1:
-                        st.image("GastroMiuul/Görseller_Streamlit/carbon_footprint.jpg")
-                    with col2:
-                        st.write(f"Carbon Footprint: {carbon[a]} gr")
-                    col1, col2 = st.columns((0.3, 5))
-                    with col1:
-                        st.image("GastroMiuul/Görseller_Streamlit/allergen1.jpg")
-                    with col2:
-                        st.write(f"Allergen Item: {allergen[a]}")
+        # col1, col2, col3 = st.columns((1, 3, 1))
+        # with col2:
+        for a in range(0, 5):
+            st.subheader(f':red[{name[a].capitalize()}]')
+            #image_url1 = google_image_search(name[a], api_key, cse_id)
+            #print(image_url1)
+            #st.image(image_url1, caption=name[a], use_column_width="auto")
+            tab1, tab2, tab3 = st.tabs(["Ingredients", "Cooking Steps", "Calori & Carbon Footprint & Allergen"])
+            with tab1:
+                col1, col2 = st.columns((0.3, 5))
+                with col1:
+                    st.image("Görseller_Streamlit/icons/calori1.jpg")
+                with col2:
+                    st.write(f"Calori: {calories[a]}")
+                col1, col2 = st.columns((0.3, 5))
+                with col1:
+                    st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
+                with col2:
+                    st.write(f"Carbon Footprint: {carbon[a]}")
+                col1, col2 = st.columns((0.3, 5))
+                with col1:
+                    st.image("Görseller_Streamlit/icons/allergen1.jpg")
+                with col2:
+                    st.write(f"Allergen Item: {allergen[a]}")
+            with tab2:
+                st.write(ingredients[a].lower().capitalize())
+            with tab3:
+                st.write(steps[a].capitalize())
+            st.write("##")
 
 
 #------Görsel ekleme------#

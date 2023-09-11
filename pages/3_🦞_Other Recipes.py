@@ -8,9 +8,10 @@ from streamlit_extras.metric_cards import style_metric_cards
 import os
 from PIL import Image
 from streamlit_extras.stylable_container import stylable_container
+from googleapiclient.discovery import build
 
 
-st.set_page_config(page_title="Diğer Tarifler | GastroMiuul", page_icon="🦞")
+st.set_page_config(page_title="Other Recipes | GastroMiuul", page_icon="🦞")
 
 
 @st.cache_data  # 👈 Add the caching decorator
@@ -24,7 +25,7 @@ st.set_page_config(page_title="Diğer Tarifler | GastroMiuul", page_icon="🦞")
 def load_data(url):
     df = pd.read_csv(url)
     return df
-df = load_data("C:/Users/remre/PycharmProjects/Tarif_Olusturucu/GastroMiuul/datasets/other_recipes_detailed.csv")
+df = load_data("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/other_recipes_detailed.csv")
 # pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 1500)
@@ -770,11 +771,12 @@ def load_lottieurl(url):
 
 diger = load_lottieurl("https://lottie.host/7b794219-f74e-42dd-a8ad-26b78ec7d7a4/yyVc2FxcgP.json")
 
-st.write('# What would you like to cook today?')
+st.write('# Are You Prepared to Try a New Recipe Today?')
 col1, col2, col3 = st.columns((1,3,1))
 with col2:
     st_lottie(diger)
-st.subheader("Are you ready to cook a new recipe?")
+st.subheader("Where would you like to start your culinary journey today?")
+st.write("Please use the filters on the sidebar 👈 then see the recipes.")
 
 with stylable_container(
         key="yellow_button",
@@ -786,7 +788,16 @@ with stylable_container(
         }
         """,
 ):
-    tarifler_gelsin = st.button("**Here are our superstar chiefs**")
+    tarifler_gelsin = st.button("**Show Me Recipes**")
+
+#ürün görselleri için fonk ve api keys
+#def google_image_search(query, api_key, cse_id, num=1):
+#    service = build("customsearch", "v1", developerKey=api_key)
+#    res = service.cse().list(q=query, cx=cse_id, searchType='image', num=num).execute()
+#    return res['items'][0]['link']
+
+#api_key = "AIzaSyDld5RyAGvlO3KNzHLP3R2CCZV_Uz8cYbg"
+#cse_id = "c42eb241a8bb244c0"
 
 
 def urun_getir(df, adet=20):
@@ -808,8 +819,11 @@ def urun_getir(df, adet=20):
         st.write("We will start to add at least one recipe for this filtering 👩‍🍳")
 
     for a in range(adet):
-        st.subheader(f':red[{name[a]}]')
-        tab1, tab2, tab3 = st.tabs(["Calori & Carbon Footprint", "Ingredients", "Cooking Steps"])
+        st.subheader(f':red[{name[a].capitalize()}]')
+        #image_url1 = google_image_search(name[a], api_key, cse_id)
+        #print(image_url1)
+        #st.image(image_url1, caption=name[a])
+        tab1, tab2, tab3 = st.tabs(["Calori & Carbon Footprint & Allergen", "Ingredients", "Cooking Steps"])
         with tab1:
             col1, col2 = st.columns((0.3, 5))
             with col1:
@@ -840,10 +854,10 @@ if tarifler_gelsin:
         st.write("Please choose a style on the sidebar 👈")
     elif diet_y_n == "Yes":
         with st.container():
-            urun_getir(favori_diet_df, adet=20)
+            urun_getir(favori_diet_df, adet=5)
     else:
         with st.container():
-            urun_getir(favori_yemek_df, adet=20)
+            urun_getir(favori_yemek_df, adet=5)
 
 
 
