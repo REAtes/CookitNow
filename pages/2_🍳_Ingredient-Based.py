@@ -1,3 +1,6 @@
+import xml.sax
+import xml.sax.saxutils
+
 import pandas as pd
 import numpy as np
 import streamlit as st
@@ -98,6 +101,10 @@ def food_recipes_recommender(dataframe, colname, inputs):
     return recommended_recipes, cosine_sim
 
 
+def find_missing_ingredients(row, input_list):
+    return [ingredient for ingredient in row if ingredient not in input_list]
+
+
 # görseller için fonk ve api idleri
 # def google_image_search(query, api_key, cse_id, num=1):
 #    service = build("customsearch", "v1", developerKey=api_key)
@@ -121,11 +128,14 @@ st.write("# Be Proud of Preventing Product Waste!")
 col1, col2, col3 = st.columns((1, 4, 1))
 with col2:
     st_lottie(lottie_coding2)
+
 st.subheader("Share your ingredients, and let us inspire you with recipes tailored just for you!")
 st.write("Now, can you please type the ingredients that you really want to use? What products do you have?")
 
 secenek = ["No", "Yes"]
 kesin_kullanilmali_y_n = st.radio("Kesinlikle bu malzemeyi kullanmam gerekiyor diyorsan YES seçeneğini seç", secenek)
+
+input1 = ["beef", "garlic", "onion"]
 
 if kesin_kullanilmali_y_n == "No":
     input1 = st.multiselect('', sorted_ingredients, placeholder="Kesinlikle kullanman gereken ürünler", key=1)
@@ -148,13 +158,20 @@ if kesin_kullanilmali_y_n == "No":
             allergen = recommended_recipes1["because_of_allergen"].tolist()
             calories = recommended_recipes1["calories"].tolist()
             carbon = recommended_recipes1["carbon_emission"].tolist()
+            recommended_recipes1['missing ingredients'] = recommended_recipes1['ingredients']. \
+                apply(lambda x: [ingredient for ingredient in x.split(', ') if ingredient not in input1])
+            missing_ingredients = recommended_recipes1['missing ingredients'] = recommended_recipes1['missing ingredients'].apply(
+                lambda x: ', '.join(x)).tolist()
 
             for a in range(0, 5):
                 st.subheader(f':red[{name[a].capitalize()}]')
                 # image_url1 = google_image_search(name[a], api_key, cse_id)
                 # print(image_url1)
                 # st.image(image_url1, caption=name[a], use_column_width="auto")
-                tab1, tab2, tab3 = st.tabs(["Ingredients", "Cooking Steps", "Calori & Carbon Footprint & Allergen"])
+                tab1, tab2, tab3, tab4 = st.tabs(["Calori & Carbon Footprint & Allergen",
+                                                  "Ingredients",
+                                                  "Cooking Steps",
+                                                  "Missing Ingredients"])
                 with tab1:
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
@@ -175,6 +192,8 @@ if kesin_kullanilmali_y_n == "No":
                     st.write(ingredients[a].lower().capitalize())
                 with tab3:
                     st.write(steps[a].capitalize())
+                with tab4:
+                    st.write(missing_ingredients[a])
                 st.write("##")
 
 
@@ -202,13 +221,21 @@ else:
             allergen = recommended_recipes2["because_of_allergen"].tolist()
             calories = recommended_recipes2["calories"].tolist()
             carbon = recommended_recipes2["carbon_emission"].tolist()
+            recommended_recipes2['missing ingredients'] = recommended_recipes2['ingredients']. \
+                apply(lambda x: [ingredient for ingredient in x.split(', ') if ingredient not in input1])
+            missing_ingredients = recommended_recipes2['missing ingredients'] = recommended_recipes2[
+                'missing ingredients'].apply(
+                lambda x: ', '.join(x)).tolist()
 
             for a in range(0, 5):
                 st.subheader(f':red[{name[a].capitalize()}]')
                 # image_url1 = google_image_search(name[a], api_key, cse_id)
                 # print(image_url1)
                 # st.image(image_url1, caption=name[a], use_column_width="auto")
-                tab1, tab2, tab3 = st.tabs(["Ingredients", "Cooking Steps", "Calori & Carbon Footprint & Allergen"])
+                tab1, tab2, tab3, tab4 = st.tabs(["Calori & Carbon Footprint & Allergen",
+                                                  "Ingredients",
+                                                  "Cooking Steps",
+                                                  "Missing Ingredients"])
                 with tab1:
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
@@ -229,6 +256,8 @@ else:
                     st.write(ingredients[a].lower().capitalize())
                 with tab3:
                     st.write(steps[a].capitalize())
+                with tab4:
+                    st.write(missing_ingredients[a])
                 st.write("##")
 
 
@@ -251,3 +280,6 @@ else:
 # Fonksiyon görselin url'sini çekiyor..
 # image_url1 = google_image_search(query1, api_key, cse_id)
 # print(image_url1)
+
+
+
