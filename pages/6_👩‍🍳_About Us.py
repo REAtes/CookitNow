@@ -127,11 +127,11 @@ with st.container():
         st.subheader("Emre Ateş")
         st.write(
             """
-            Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of 
-            typeand scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into 
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of 
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
-            Page Maker including versions of Lorem Ipsum.
+            As a seasoned marketing professional, I bring a wealth of expertise in digital marketing, a proficiency with
+            Google Tools, and a strong background in optimizing UX/UI and website strategy. My career journey has 
+            spanned diverse industries, ranging from paper and packaging to video gaming and fintech. My recent 
+            commitment to Data Scientist training is a testament to my profound passion for this field, as I aspire to 
+            further advance my skills in data analysis and machine learning, pushing the boundaries of what's possible.
             """)
         i1, l1, i2, l2, i3, l3 = st.columns((0.1, 0.2, 0.1, 0.2, 0.1, 0.2))
         with i1:
