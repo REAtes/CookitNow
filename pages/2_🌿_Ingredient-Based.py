@@ -263,7 +263,7 @@ if kesin_kullanilmali_y_n == "No":
                 # inceledigi tarifleri listeledik
                 if not selected_row.empty:
                     st.info(f'Those who enjoyed this dish also liked the **_{selected_row["name"].iloc[0].capitalize()}_** dish.')
-                    with st.expander("Click for Recipe"):
+                    with st.expander("Click for The Recipe"):
                         st.subheader(f':red[{selected_row["name"].iloc[0].upper()}]')
                         tab1, tab2, tab3 = st.tabs(["Details", "Ingredients", "Recipe"])
                         with tab1:
@@ -393,7 +393,7 @@ else:
                 if not selected_row.empty:
                     st.info(
                         f'Those who enjoyed this dish also liked the **_{selected_row["name"].iloc[0].capitalize()}_** dish.')
-                    with st.expander("Click for Recipe"):
+                    with st.expander("Click for The Recipe"):
                         st.subheader(f':red[{selected_row["name"].iloc[0].upper()}]')
                         tab1, tab2, tab3 = st.tabs(
                             ["Details", "Ingredients", "Recipe"])
