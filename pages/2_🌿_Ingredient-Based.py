@@ -1,6 +1,5 @@
 import xml.sax
 import xml.sax.saxutils
-
 import pandas as pd
 import numpy as np
 import streamlit as st
@@ -11,8 +10,9 @@ from streamlit_extras.metric_cards import style_metric_cards
 from streamlit_extras.stylable_container import stylable_container
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
 from googleapiclient.discovery import build
+
+
 
 st.set_page_config(page_title="Ingredient-Based  | GastroMiuul", page_icon="🍳")
 
@@ -24,7 +24,7 @@ def load_data(url):
 
 
 # ---- Data ---- #
-df = load_data("C:/Users/B.Sevim/Desktop/malzemeye_gore.csv")
+df = load_data("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/ib4.csv")
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 1500)
 df = df.applymap(lambda x: str(x).lower())
@@ -101,18 +101,18 @@ def food_recipes_recommender(dataframe, colname, inputs):
     return recommended_recipes, cosine_sim
 
 
-def search_item(query):
-    driver = webdriver.Chrome()
-    # driver.get("https://www.a101kapida.com/")  # çalıştı = by="id", value="searchbar"
-    driver.get("https://www.carrefoursa.com/")  # çalıştı = by="id", value="js-site-search-input"
-
-    search_box = driver.find_element(by="id", value="js-site-search-input")
-    search_box.send_keys(query)
-    search_box.send_keys(Keys.RETURN)
-
-    # Tarayıcıyı kapatmadan önce kullanıcının onayını bekliyoruz
-    input(f"{query} aranıyor...")
-    driver.quit()
+# def search_item(query):
+#     driver = webdriver.Chrome()
+#     # driver.get("https://www.a101kapida.com/")  # çalıştı = by="id", value="searchbar"
+#     driver.get("https://www.carrefoursa.com/")  # çalıştı = by="id", value="js-site-search-input"
+#
+#     search_box = driver.find_element(by="id", value="js-site-search-input")
+#     search_box.send_keys(query)
+#     search_box.send_keys(Keys.RETURN)
+#
+#     # Tarayıcıyı kapatmadan önce kullanıcının onayını bekliyoruz
+#     input(f"{query} aranıyor...")
+#     driver.quit()
 
 
 def format_word(word_or_phrase):
@@ -155,7 +155,7 @@ st.write("Now, can you please type the ingredients that you really want to use? 
 secenek = ["No", "Yes"]
 kesin_kullanilmali_y_n = st.radio("Kesinlikle bu malzemeyi kullanmam gerekiyor diyorsan YES seçeneğini seç", secenek)
 
-input1 = ["beef", "garlic", "onion"]
+input1 = ["beef", "carrot", "onion", "potato"]
 
 if kesin_kullanilmali_y_n == "No":
     input1 = st.multiselect('', sorted_ingredients, placeholder="Kesinlikle kullanman gereken ürünler", key=1)
