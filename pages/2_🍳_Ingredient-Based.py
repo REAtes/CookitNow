@@ -24,7 +24,7 @@ def load_data(url):
 
 
 # ---- Data ---- #
-df = load_data("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/ib.csv")
+df = load_data("C:/Users/B.Sevim/Desktop/malzemeye_gore.csv")
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 1500)
 df = df.applymap(lambda x: str(x).lower())
@@ -172,6 +172,10 @@ if kesin_kullanilmali_y_n == "No":
         recommendation_button = st.button('**Show Me Recipes**')
         if recommendation_button:
             recommended_recipes1, cosine_sim_df1 = food_recipes_recommender_only(df, "ingredients", input1)
+
+            # (BS) Onerilen yemekleri begenenelerin begendigi diger yemekler icin id de ekledim
+            id = recommended_recipes1["id"].tolist()
+
             name = recommended_recipes1["name"].tolist()
             ingredients = recommended_recipes1["ingredients_raw_str"].tolist()
             steps = recommended_recipes1["steps"].tolist()
@@ -185,6 +189,16 @@ if kesin_kullanilmali_y_n == "No":
                     lambda x: ', '.join(x)).tolist()
             eksik_malzeme = recommended_recipes1['ingredients']. \
                 apply(lambda x: [ingredient for ingredient in x.split(', ') if ingredient not in input1])
+
+            # (BS) Bu uc satirin amaci search_terms degiskeninin icindeki gozlemlerin tipini listeye ekleyip
+            # ardindan search_terms listesindeki eleman sayisini (num_search_terms) bulmaktir. Yeni degisken urettik
+            import ast
+            df['search_terms'] = df['search_terms'].apply(lambda x: ast.literal_eval(x))
+            df["num_search_terms"] = df["search_terms"].apply(lambda x: len(x))
+
+            # (BS) bu satir ile search_term_id listesi olusturduk boylece bu liste ile asagida benzer urunler
+            # karsilastirmasi yapacagiz
+            search_term_id = recommended_recipes1["search_term_id"].tolist()
 
             for a in range(0, 5):
                 st.subheader(f':red[{name[a].capitalize()}]')
@@ -229,6 +243,57 @@ if kesin_kullanilmali_y_n == "No":
                                 malzeme_buyuk = malzeme.capitalize()
                                 st.write(malzeme_buyuk)
                 st.write("##")
+
+                # (BS) bu bolume bir streamlit infosu eklendi. Burada eger onerilen yemegin baska yemeklerle
+                # search_term benzerligi varsa gosterilecektir. Onerilen bu urunu begenen kullanicilar bu yemegi de
+                # begendi mantigi
+
+                # (BS) Onerilen tarif ile search_term_id no su ayni olan, icerisindeki search_terms sayisi (num_search_terms)
+                # 2 den buyuk olan ve yemegin id numarasi oneri sisteminin id numarasindan farkli olan butun yemekleri
+                # filtreledik
+                filtered_df = df[(df["search_term_id"] == search_term_id[a])
+                                 & (df["num_search_terms"] > 2)
+                                 & (df["id"] != id[a])]
+
+                # (BS) filtered_df icerisinden rasgele bir urun secilecegi icin random i import ettik
+                import random
+
+                # (BS) Rastgele bir satır seçin
+                if len(filtered_df) >= 1:
+                    random_index = random.randint(0, len(filtered_df) - 1)
+                    selected_row = filtered_df.iloc[[random_index]]
+                # (BS) Bu blokta info tanimlandi ve bir expander ile eger varsa onerilen yemegi sevenlerin diger
+                # inceledigi tarifleri listeledik
+                if not selected_row.empty:
+                    st.info(f'Those who enjoyed this dish also liked the **_{selected_row["name"].iloc[0].capitalize()}_** dish.')
+                    with st.expander("Click for Recipe"):
+                        st.subheader(f':red[{selected_row["name"].iloc[0].capitalize()}]')
+                        tab1, tab2, tab3 = st.tabs(["Calori & Carbon Footprint & Allergen", "Ingredients", "Cooking Steps"])
+                        with tab1:
+                            col1, col2 = st.columns((0.3, 5))
+                            with col1:
+                                st.image("Görseller_Streamlit/icons/calori1.jpg")
+                            with col2:
+                                st.write(f'Calori: {selected_row["calories"].iloc[0].capitalize()}')
+                            col1, col2 = st.columns((0.3, 5))
+                            with col1:
+                                st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
+                            with col2:
+                                st.write(f'Carbon Footprint: {selected_row["carbon_emission"].iloc[0].capitalize()}')
+                            col1, col2 = st.columns((0.3, 5))
+                            with col1:
+                                st.image("Görseller_Streamlit/icons/allergen1.jpg")
+                            with col2:
+                                st.write(f'Allergen Item: {selected_row["because_of_allergen"].iloc[0].capitalize()}')
+                        with tab2:
+                            st.write(selected_row["ingredients_raw_str"].iloc[0].capitalize().replace('[', '').replace(']','').replace('"', ''))
+                        with tab3:
+                            st.write(selected_row["steps"].iloc[0].capitalize().replace('[', '').replace(']', '').replace('"', '').replace("'", '').replace(',', ''))
+                        st.write("##")
+                    selected_row = selected_row.iloc[0:0]
+
+
+
 
 
 else:
@@ -248,6 +313,9 @@ else:
         if recommendation_button:
             df_filtered = df[df['ingredients'].apply(lambda item: all(key in item for key in input1))]
             recommended_recipes2, cosine_sim2 = food_recipes_recommender_only(df_filtered, "ingredients", input2)
+            # (BS)
+            id = recommended_recipes2["id"].tolist()
+
             name = recommended_recipes2["name"].tolist()
             ingredients = recommended_recipes2["ingredients_raw_str"].tolist()
             steps = recommended_recipes2["steps"].tolist()
@@ -261,6 +329,14 @@ else:
                 lambda x: ', '.join(x)).tolist()
             eksik_malzeme = recommended_recipes2['ingredients']. \
                 apply(lambda x: [ingredient for ingredient in x.split(', ') if ingredient not in input1])
+
+            # (BS)
+            import ast
+            df['search_terms'] = df['search_terms'].apply(lambda x: ast.literal_eval(x))
+            df["num_search_terms"] = df["search_terms"].apply(lambda x: len(x))
+
+            # (BS)
+            search_term_id = recommended_recipes2["search_term_id"].tolist()
 
             for a in range(0, 5):
                 st.subheader(f':red[{name[a].capitalize()}]')
@@ -305,6 +381,58 @@ else:
                                 malzeme_buyuk = malzeme.capitalize()
                                 st.write(malzeme_buyuk)
                 st.write("##")
+
+
+
+                # (BS)
+                filtered_df = df[(df["search_term_id"] == search_term_id[a])
+                                 & (df["num_search_terms"] > 2)
+                                 & (df["id"] != id[a])]
+
+                import random
+
+                # Rastgele bir satır seçin
+                if len(filtered_df) >= 1:
+                    random_index = random.randint(0, len(filtered_df) - 1)
+                    selected_row = filtered_df.iloc[[random_index]]
+                # pd.isna(selected_row["name"].iloc[0])
+                if not selected_row.empty:
+                    st.info(
+                        f'Those who enjoyed this dish also liked the **_{selected_row["name"].iloc[0].capitalize()}_** dish.')
+                    with st.expander("Click for Recipe"):
+                        st.subheader(f':red[{selected_row["name"].iloc[0].capitalize()}]')
+                        tab1, tab2, tab3 = st.tabs(
+                            ["Calori & Carbon Footprint & Allergen", "Ingredients", "Cooking Steps"])
+                        with tab1:
+                            col1, col2 = st.columns((0.3, 5))
+                            with col1:
+                                st.image('Görseller_Streamlit/icons/calori1.jpg')
+                            with col2:
+                                st.write(f'Calori: {selected_row["calories"].iloc[0].capitalize()}')
+                            col1, col2 = st.columns((0.3, 5))
+                            with col1:
+                                st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
+                            with col2:
+                                st.write(f'Carbon Footprint: {selected_row["carbon_emission"].iloc[0].capitalize()}')
+                            col1, col2 = st.columns((0.3, 5))
+                            with col1:
+                                st.image("Görseller_Streamlit/icons/allergen1.jpg")
+                            with col2:
+                                st.write(f'Allergen Item: {selected_row["because_of_allergen"].iloc[0].capitalize()}')
+                        with tab2:
+                            st.write(
+                                selected_row["ingredients_raw_str"].iloc[0].capitalize().replace('[', '').replace(']',
+                                                                                                                  '').replace(
+                                    '"', ''))
+                        with tab3:
+                            st.write(
+                                selected_row["steps"].iloc[0].capitalize().replace('[', '').replace(']', '').replace(
+                                    '"',
+                                    '').replace(
+                                    "'", '').replace(',', ''))
+                        st.write("##")
+                    selected_row = selected_row.iloc[0:0]
+
 
 
 
