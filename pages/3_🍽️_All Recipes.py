@@ -820,7 +820,7 @@ def urun_getir(df, adet=20):
         st.write("We will start to add at least one recipe for this filtering 👩‍🍳")
 
     for a in range(adet):
-        st.subheader(f':red[{name[a].capitalize()}]')
+        st.subheader(f':red[{name[a].upper()}]')
         #image_url1 = google_image_search(name[a], api_key, cse_id)
         #print(image_url1)
         #st.image(image_url1, caption=name[a])
@@ -830,19 +830,19 @@ def urun_getir(df, adet=20):
             with col1:
                 st.image("Görseller_Streamlit/icons/calori1.jpg")
             with col2:
-                st.write(f"Calories: {calories[a]}")
+                st.write(f"**Calories**: {calories[a]}")
             col1, col2 = st.columns((0.3, 5))
             with col1:
                 st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
             with col2:
-                st.write(f"Carbon Footprint: {carbon[a]}")
+                st.write(f"**Carbon Footprint**: {carbon[a]}")
             col1, col2 = st.columns((0.3, 5))
             with col1:
                 st.image("Görseller_Streamlit/icons/allergen1.jpg")
             with col2:
-                st.write(f"Allergens: {allergen[a]}")
+                st.write(f"**Allergens**: {allergen[a].capitalize()}")
         with tab2:
-            st.write(ingredients[a].upper().capitalize())
+            st.write(ingredients[a].capitalize())
         with tab3:
             st.write(steps[a].upper().capitalize())
         st.write("##")

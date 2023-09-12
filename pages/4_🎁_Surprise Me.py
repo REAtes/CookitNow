@@ -102,7 +102,7 @@ carbon = df_surprise["carbon_emission"].tolist()
 
 if show_me_recipes:
     for a in random.sample(range(0, len(df_surprise)), 5): #range kısmı df'e göre değişecek
-        st.subheader(name[a].title())
+        st.subheader(f':red[{name[a].upper()}]')
         #image_url1 = google_image_search(name[a], api_key, cse_id)
         #print(image_url1)
         #st.image(image_url1, caption=name[a])
@@ -112,19 +112,19 @@ if show_me_recipes:
             with col1:
                 st.image("Görseller_Streamlit/icons/calori1.jpg")
             with col2:
-                st.write(f"Calories: {calories[a]}")
+                st.write(f"**Calories**: {calories[a]}")
             col1, col2 = st.columns((0.3, 5))
             with col1:
                 st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
             with col2:
-                st.write(f"Carbon Footprint: {carbon[a]}")
+                st.write(f"**Carbon Footprint**: {carbon[a]}")
             col1, col2 = st.columns((0.3, 5))
             with col1:
                 st.image("Görseller_Streamlit/icons/allergen1.jpg")
             with col2:
-                st.write(f"Allergens: {allergen[a]}")
+                st.write(f"**Allergens**: {allergen[a].capitalize()}")
         with tab2:
-            st.write(ingredients[a].upper().capitalize())
+            st.write(ingredients[a].capitalize())
         with tab3:
             st.write(steps[a].upper().capitalize())
         st.write("##")
