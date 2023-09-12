@@ -201,30 +201,27 @@ if kesin_kullanilmali_y_n == "No":
             search_term_id = recommended_recipes1["search_term_id"].tolist()
 
             for a in range(0, 5):
-                st.subheader(f':red[{name[a].capitalize()}]')
+                st.subheader(f':red[{name[a].upper()}]')
                 # image_url1 = google_image_search(name[a], api_key, cse_id)
                 # print(image_url1)
                 # st.image(image_url1, caption=name[a], use_column_width="auto")
-                tab1, tab2, tab3, tab4 = st.tabs(["Calori & Carbon Footprint & Allergen",
-                                                  "Ingredients",
-                                                  "Cooking Steps",
-                                                  "Missing Ingredients"])
+                tab1, tab2, tab3, tab4 = st.tabs(["Details", "Ingredients", "Recipe", "Missing Ingredients"])
                 with tab1:
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
                         st.image("Görseller_Streamlit/icons/calori1.jpg")
                     with col2:
-                        st.write(f"Calori: {calories[a]}")
+                        st.write(f"**Calories**: {calories[a]}")
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
                         st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
                     with col2:
-                        st.write(f"Carbon Footprint: {carbon[a]}")
+                        st.write(f"**Carbon Footprint**: {carbon[a]}")
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
                         st.image("Görseller_Streamlit/icons/allergen1.jpg")
                     with col2:
-                        st.write(f"Allergen Item: {allergen[a]}")
+                        st.write(f"**Allergens**: {allergen[a].capitalize()}")
                 with tab2:
                     st.write(ingredients[a].lower().capitalize())
                 with tab3:
@@ -267,24 +264,24 @@ if kesin_kullanilmali_y_n == "No":
                 if not selected_row.empty:
                     st.info(f'Those who enjoyed this dish also liked the **_{selected_row["name"].iloc[0].capitalize()}_** dish.')
                     with st.expander("Click for Recipe"):
-                        st.subheader(f':red[{selected_row["name"].iloc[0].capitalize()}]')
-                        tab1, tab2, tab3 = st.tabs(["Calori & Carbon Footprint & Allergen", "Ingredients", "Cooking Steps"])
+                        st.subheader(f':red[{selected_row["name"].iloc[0].upper()}]')
+                        tab1, tab2, tab3 = st.tabs(["Details", "Ingredients", "Recipe"])
                         with tab1:
                             col1, col2 = st.columns((0.3, 5))
                             with col1:
                                 st.image("Görseller_Streamlit/icons/calori1.jpg")
                             with col2:
-                                st.write(f'Calori: {selected_row["calories"].iloc[0].capitalize()}')
+                                st.write(f'**Calories**: {selected_row["calories"].iloc[0].capitalize()}')
                             col1, col2 = st.columns((0.3, 5))
                             with col1:
                                 st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
                             with col2:
-                                st.write(f'Carbon Footprint: {selected_row["carbon_emission"].iloc[0].capitalize()}')
+                                st.write(f'**Carbon Footprint**: {selected_row["carbon_emission"].iloc[0].capitalize()}')
                             col1, col2 = st.columns((0.3, 5))
                             with col1:
                                 st.image("Görseller_Streamlit/icons/allergen1.jpg")
                             with col2:
-                                st.write(f'Allergen Item: {selected_row["because_of_allergen"].iloc[0].capitalize()}')
+                                st.write(f'**Allergens**: {selected_row["because_of_allergen"].iloc[0].capitalize()}')
                         with tab2:
                             st.write(selected_row["ingredients_raw_str"].iloc[0].capitalize().replace('[', '').replace(']','').replace('"', ''))
                         with tab3:
@@ -339,30 +336,27 @@ else:
             search_term_id = recommended_recipes2["search_term_id"].tolist()
 
             for a in range(0, 5):
-                st.subheader(f':red[{name[a].capitalize()}]')
+                st.subheader(f':red[{name[a].upper()}]')
                 # image_url1 = google_image_search(name[a], api_key, cse_id)
                 # print(image_url1)
                 # st.image(image_url1, caption=name[a], use_column_width="auto")
-                tab1, tab2, tab3, tab4 = st.tabs(["Calori & Carbon Footprint & Allergen",
-                                                  "Ingredients",
-                                                  "Cooking Steps",
-                                                  "Missing Ingredients"])
+                tab1, tab2, tab3, tab4 = st.tabs(["Details", "Ingredients", "Recipe", "Missing Ingredients"])
                 with tab1:
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
                         st.image("Görseller_Streamlit/icons/calori1.jpg")
                     with col2:
-                        st.write(f"Calori: {calories[a]}")
+                        st.write(f"**Calories**: {calories[a]}")
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
                         st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
                     with col2:
-                        st.write(f"Carbon Footprint: {carbon[a]}")
+                        st.write(f"**Carbon Footprint**: {carbon[a]}")
                     col1, col2 = st.columns((0.3, 5))
                     with col1:
                         st.image("Görseller_Streamlit/icons/allergen1.jpg")
                     with col2:
-                        st.write(f"Allergen Item: {allergen[a]}")
+                        st.write(f"**Allergens**: {allergen[a].capitalize()}")
                 with tab2:
                     st.write(ingredients[a].lower().capitalize())
                 with tab3:
@@ -400,25 +394,25 @@ else:
                     st.info(
                         f'Those who enjoyed this dish also liked the **_{selected_row["name"].iloc[0].capitalize()}_** dish.')
                     with st.expander("Click for Recipe"):
-                        st.subheader(f':red[{selected_row["name"].iloc[0].capitalize()}]')
+                        st.subheader(f':red[{selected_row["name"].iloc[0].upper()}]')
                         tab1, tab2, tab3 = st.tabs(
-                            ["Calori & Carbon Footprint & Allergen", "Ingredients", "Cooking Steps"])
+                            ["Details", "Ingredients", "Recipe"])
                         with tab1:
                             col1, col2 = st.columns((0.3, 5))
                             with col1:
                                 st.image('Görseller_Streamlit/icons/calori1.jpg')
                             with col2:
-                                st.write(f'Calori: {selected_row["calories"].iloc[0].capitalize()}')
+                                st.write(f'**Calories**: {selected_row["calories"].iloc[0].capitalize()}')
                             col1, col2 = st.columns((0.3, 5))
                             with col1:
                                 st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
                             with col2:
-                                st.write(f'Carbon Footprint: {selected_row["carbon_emission"].iloc[0].capitalize()}')
+                                st.write(f'**Carbon Footprint**: {selected_row["carbon_emission"].iloc[0].capitalize()}')
                             col1, col2 = st.columns((0.3, 5))
                             with col1:
                                 st.image("Görseller_Streamlit/icons/allergen1.jpg")
                             with col2:
-                                st.write(f'Allergen Item: {selected_row["because_of_allergen"].iloc[0].capitalize()}')
+                                st.write(f'**Allergens**: {selected_row["because_of_allergen"].iloc[0].capitalize()}')
                         with tab2:
                             st.write(
                                 selected_row["ingredients_raw_str"].iloc[0].capitalize().replace('[', '').replace(']',
