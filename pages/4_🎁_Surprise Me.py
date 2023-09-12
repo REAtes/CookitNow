@@ -75,6 +75,7 @@ df_surprise.columns = [col.lower() for col in df_surprise.columns]
 
 
 name = df_surprise["name"].tolist()
+name = [kelime.upper() for kelime in name]
 ingredients = df_surprise["ingredients_raw_str"].tolist()
 ingredients = [eleman.replace('[', '').replace(']', '').replace('"', '') for eleman in ingredients]
 steps = df_surprise["steps"].tolist()

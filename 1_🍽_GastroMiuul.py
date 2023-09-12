@@ -53,58 +53,128 @@ with st.container():
 st.write('## The Culinary Journey Begins')
 
 st.write(
-    "Join Us in Preventing Food Waste **`Sustainably`** in the Kitchen")
-
-st.write("""
-Whether you're cooking with what you have or exploring our chef's creations, embark on your culinary 
-journey with purpose!
-""")
-
-# ---- Buttons ---- #
-with st.container():
-    col1, col2, col3 = st.columns((1, 4, 1))
-    with col2:
-        with st.container():
-            sol_col, orta, sag_col = st.columns(3)
-            with sol_col:
-                with stylable_container(
-                        key="red_button",
-                        css_styles="""
-                        button {
-                            background-color: #FFBC42;
-                            color: green;
-                            border-radius: 5px;
-                        }
-                        """,
-                ):
-                    malzemeye_gore = st.button("**By Ingredient**")
-                    if malzemeye_gore:
-                        switch_page("Ingredient-Based")
-            with orta:
-                with stylable_container(
-                        key="yellow_button",
-                        css_styles="""
-                                button {
-                                    background-color: #FFBC42;
-                                    color: #FFFFFF;
-                                    border-radius: 5px;
-                                }
-                                """,
-                ):
-                    diger = st.button("**Other Recipes**")
-                    if diger:
-                        switch_page("Other Recipes")
-            with sag_col:
-                with stylable_container(
-                        key="yellow_button",
-                        css_styles="""
-                                button {
-                                    background-color: #FFBC42;
-                                    color: #FFFFFF;
-                                    border-radius: 5px;
-                                }
-                                """,
-                ):
-                    diger = st.button("**Surprise Me!**")
-                    if diger:
-                        switch_page("Surprise Me")
+    """
+    GastroMiuul is here to add purpose to your culinary journey! We're redefining your cooking experience with 
+    three distinct services:
+    """)
+st.write("##")
+st.write(" ## Sustainability Journey 🌿")
+st.write(
+    """
+    It's time to reduce food waste and embrace sustainable kitchen habits worldwide. No more tossing 
+    ingredients with approaching expiration dates or those on the verge of spoilage. Just wonder, "What can I make with 
+    what I have?" and let us provide you with the best recipes!
+    """)
+st.write(
+    "Join us in preventing food waste **`sustainably`** in the kitchen.")
+with stylable_container(
+        key="red_button",
+        css_styles="""
+        button {
+            background-color: #FFBC42;
+            color: green;
+            border-radius: 5px;
+        }
+        """,
+):
+    malzemeye_gore = st.button("**Tell Me What Do You Have**")
+    if malzemeye_gore:
+        switch_page("Ingredient-Based")
+st.write("##")
+st.write(" ## Creative Recipes 🍽️")
+st.write(
+    """
+    For those who love to cook or want to explore new recipes, we offer 16 different diet options, 18 different 
+    cuisine types, and flavors from 32 different countries. Plus, we provide various filters to help you decide what to 
+    cook, what ingredients to use, and even how to prepare your meal.
+    """)
+with stylable_container(
+        key="yellow_button",
+        css_styles="""
+                button {
+                    background-color: #FFBC42;
+                    color: #FFFFFF;
+                    border-radius: 5px;
+                }
+                """,
+):
+    diger = st.button("**All Recipes**")
+    if diger:
+        switch_page("All Recipes")
+st.write("##")
+st.write(" ## Surprise Me 🎁️")
+st.write(
+    """
+    It's time to reduce food waste and embrace sustainable kitchen habits worldwide. No more tossing 
+    ingredients with approaching expiration dates or those on the verge of spoilage. Just wonder, "What can I make with 
+    what I have?" and let us provide you with the best recipes!
+    """)
+with stylable_container(
+        key="yellow_button",
+        css_styles="""
+                               button {
+                                   background-color: #FFBC42;
+                                   color: #FFFFFF;
+                                   border-radius: 5px;
+                               }
+                               """,
+):
+    diger = st.button("**Surprise Me!**")
+    if diger:
+        switch_page("Surprise Me")
+st.write(
+    """
+    With GastroMiuul, infuse meaning into your kitchen, make a difference in sustainability, and embark on a flavorful 
+    culinary adventure. Take the first step towards your cooking purpose today!
+    """)
+#
+# # ---- Buttons ---- #
+# with st.container():
+#     col1, col2, col3 = st.columns((1, 4, 1))
+#     with col2:
+#         with st.container():
+#             sol_col, sag_col = st.columns(2)
+#             with sol_col:
+#                 with stylable_container(
+#                         key="red_button",
+#                         css_styles="""
+#                         button {
+#                             background-color: #FFBC42;
+#                             color: green;
+#                             border-radius: 5px;
+#                         }
+#                         """,
+#                 ):
+#                     malzemeye_gore = st.button("**Tell Me What Do You Have**")
+#                     if malzemeye_gore:
+#                         switch_page("Ingredient-Based")
+#         with st.container():
+#             sol_col, sag_col = st.columns(2)
+#             with sol_col:
+#                 with stylable_container(
+#                         key="yellow_button",
+#                         css_styles="""
+#                                 button {
+#                                     background-color: #FFBC42;
+#                                     color: #FFFFFF;
+#                                     border-radius: 5px;
+#                                 }
+#                                 """,
+#                 ):
+#                     diger = st.button("**All Recipes**")
+#                     if diger:
+#                         switch_page("All Recipes")
+#             with sag_col:
+#                 with stylable_container(
+#                         key="yellow_button",
+#                         css_styles="""
+#                                 button {
+#                                     background-color: #FFBC42;
+#                                     color: #FFFFFF;
+#                                     border-radius: 5px;
+#                                 }
+#                                 """,
+#                 ):
+#                     diger = st.button("**Surprise Me!**")
+#                     if diger:
+#                         switch_page("Surprise Me")

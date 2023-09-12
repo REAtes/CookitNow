@@ -11,7 +11,7 @@ from streamlit_extras.stylable_container import stylable_container
 from googleapiclient.discovery import build
 
 
-st.set_page_config(page_title="Other Recipes | GastroMiuul", page_icon="🦞")
+st.set_page_config(page_title="All Recipes | GastroMiuul", page_icon="🦞")
 
 
 @st.cache_data  # 👈 Add the caching decorator
@@ -802,6 +802,7 @@ with stylable_container(
 
 def urun_getir(df, adet=20):
     name = df["name"].tolist()
+    name = [kelime.upper() for kelime in name]
     ingredients = df["ingredients_raw_str"].tolist()
     ingredients = [eleman.replace('[', '').replace(']', '').replace('"', '') for eleman in ingredients]
     steps = df["steps"].tolist()
