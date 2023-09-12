@@ -105,9 +105,8 @@ st.write("##")
 st.write(" ## Surprise Me 🎁️")
 st.write(
     """
-    It's time to reduce food waste and embrace sustainable kitchen habits worldwide. No more tossing 
-    ingredients with approaching expiration dates or those on the verge of spoilage. Just wonder, "What can I make with 
-    what I have?" and let us provide you with the best recipes!
+    For those who say, "Let it be a surprise!" We've got you covered! This feature offers you a surprise recipe based 
+    on the ingredients you love to experiment with. Try it out to discover a new flavor every day.
     """)
 with stylable_container(
         key="yellow_button",
