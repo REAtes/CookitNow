@@ -824,13 +824,13 @@ def urun_getir(df, adet=20):
         #image_url1 = google_image_search(name[a], api_key, cse_id)
         #print(image_url1)
         #st.image(image_url1, caption=name[a])
-        tab1, tab2, tab3 = st.tabs(["Calori & Carbon Footprint & Allergen", "Ingredients", "Cooking Steps"])
+        tab1, tab2, tab3 = st.tabs(["Details", "Ingredients", "Recipe"])
         with tab1:
             col1, col2 = st.columns((0.3, 5))
             with col1:
                 st.image("Görseller_Streamlit/icons/calori1.jpg")
             with col2:
-                st.write(f"Calori: {calories[a]}")
+                st.write(f"Calories: {calories[a]}")
             col1, col2 = st.columns((0.3, 5))
             with col1:
                 st.image("Görseller_Streamlit/icons/carbon_footprint.jpg")
@@ -840,7 +840,7 @@ def urun_getir(df, adet=20):
             with col1:
                 st.image("Görseller_Streamlit/icons/allergen1.jpg")
             with col2:
-                st.write(f"Allergen Item: {allergen[a]}")
+                st.write(f"Allergens: {allergen[a]}")
         with tab2:
             st.write(ingredients[a].upper().capitalize())
         with tab3:
