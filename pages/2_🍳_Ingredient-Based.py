@@ -101,8 +101,28 @@ def food_recipes_recommender(dataframe, colname, inputs):
     return recommended_recipes, cosine_sim
 
 
-def find_missing_ingredients(row, input_list):
-    return [ingredient for ingredient in row if ingredient not in input_list]
+def search_item(query):
+    driver = webdriver.Chrome()
+    # driver.get("https://www.a101kapida.com/")  # çalıştı = by="id", value="searchbar"
+    driver.get("https://www.carrefoursa.com/")  # çalıştı = by="id", value="js-site-search-input"
+
+    search_box = driver.find_element(by="id", value="js-site-search-input")
+    search_box.send_keys(query)
+    search_box.send_keys(Keys.RETURN)
+
+    # Tarayıcıyı kapatmadan önce kullanıcının onayını bekliyoruz
+    input(f"{query} aranıyor...")
+    driver.quit()
+
+
+def format_word(word_or_phrase):
+    if ' ' in word_or_phrase:
+        # Kelime öbeği içeriyorsa, kelimeler arasına artı işareti ekleyin
+        formatted_word = '+'.join(word_or_phrase.split())
+    else:
+        # Tek bir kelimeyse, aynı kelimeyi döndürün
+        formatted_word = word_or_phrase
+    return formatted_word
 
 
 # görseller için fonk ve api idleri
@@ -160,8 +180,11 @@ if kesin_kullanilmali_y_n == "No":
             carbon = recommended_recipes1["carbon_emission"].tolist()
             recommended_recipes1['missing ingredients'] = recommended_recipes1['ingredients']. \
                 apply(lambda x: [ingredient for ingredient in x.split(', ') if ingredient not in input1])
-            missing_ingredients = recommended_recipes1['missing ingredients'] = recommended_recipes1['missing ingredients'].apply(
-                lambda x: ', '.join(x)).tolist()
+            missing_ingredients = recommended_recipes1['missing ingredients'] = \
+                recommended_recipes1['missing ingredients'].apply(
+                    lambda x: ', '.join(x)).tolist()
+            eksik_malzeme = recommended_recipes1['ingredients']. \
+                apply(lambda x: [ingredient for ingredient in x.split(', ') if ingredient not in input1])
 
             for a in range(0, 5):
                 st.subheader(f':red[{name[a].capitalize()}]')
@@ -193,9 +216,19 @@ if kesin_kullanilmali_y_n == "No":
                 with tab3:
                     st.write(steps[a].capitalize())
                 with tab4:
-                    st.write(missing_ingredients[a])
+                    st.write(f"**Missing Ingredients**: {missing_ingredients[a].capitalize()}")
+                    eksik_malzeme_listesi = eksik_malzeme.iloc[a]
+                    with st.expander("**👇 Click and Buy The Missing Ingredients**"):
+                        mal, link = st.columns((0.5, 4))
+                        with mal:
+                            for malzeme in eksik_malzeme_listesi:
+                                url = f"https://www.amazon.de/s?k={format_word(malzeme)}"
+                                st.write("[Buy Now](%s)" % url)
+                        with link:
+                            for malzeme in eksik_malzeme_listesi:
+                                malzeme_buyuk = malzeme.capitalize()
+                                st.write(malzeme_buyuk)
                 st.write("##")
-
 
 
 else:
@@ -226,6 +259,8 @@ else:
             missing_ingredients = recommended_recipes2['missing ingredients'] = recommended_recipes2[
                 'missing ingredients'].apply(
                 lambda x: ', '.join(x)).tolist()
+            eksik_malzeme = recommended_recipes2['ingredients']. \
+                apply(lambda x: [ingredient for ingredient in x.split(', ') if ingredient not in input1])
 
             for a in range(0, 5):
                 st.subheader(f':red[{name[a].capitalize()}]')
@@ -257,11 +292,19 @@ else:
                 with tab3:
                     st.write(steps[a].capitalize())
                 with tab4:
-                    st.write(missing_ingredients[a])
+                    st.write(f"**Missing Ingredients**: {missing_ingredients[a].capitalize()}")
+                    eksik_malzeme_listesi = eksik_malzeme.iloc[a]
+                    with st.expander("**👇 Click and Buy The Missing Ingredients**"):
+                        mal, link = st.columns((0.5, 4))
+                        with mal:
+                            for malzeme in eksik_malzeme_listesi:
+                                url = f"https://www.amazon.de/s?k={format_word(malzeme)}"
+                                st.write("[Buy Now](%s)" % url)
+                        with link:
+                            for malzeme in eksik_malzeme_listesi:
+                                malzeme_buyuk = malzeme.capitalize()
+                                st.write(malzeme_buyuk)
                 st.write("##")
-
-
-
 
 
 
