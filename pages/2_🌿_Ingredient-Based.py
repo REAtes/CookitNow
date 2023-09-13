@@ -259,6 +259,8 @@ if kesin_kullanilmali_y_n == "NO":
                 if len(filtered_df) >= 1:
                     random_index = random.randint(0, len(filtered_df) - 1)
                     selected_row = filtered_df.iloc[[random_index]]
+                else:
+                    selected_row = pd.DataFrame
                 # (BS) Bu blokta info tanimlandi ve bir expander ile eger varsa onerilen yemegi sevenlerin diger
                 # inceledigi tarifleri listeledik
                 if not selected_row.empty:
@@ -390,6 +392,8 @@ else:
                 if len(filtered_df) >= 1:
                     random_index = random.randint(0, len(filtered_df) - 1)
                     selected_row = filtered_df.iloc[[random_index]]
+                else:
+                    selected_row = pd.DataFrame
                 # pd.isna(selected_row["name"].iloc[0])
                 if not selected_row.empty:
                     st.info(
