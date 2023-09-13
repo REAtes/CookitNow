@@ -24,7 +24,8 @@ def load_data(url):
 
 
 # ---- Data ---- #
-df = load_data("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/ib4.csv")
+#df = load_data("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/ib4.csv")
+df = pd.read_csv("ib.csv")
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 1500)
 df = df.applymap(lambda x: str(x).lower())

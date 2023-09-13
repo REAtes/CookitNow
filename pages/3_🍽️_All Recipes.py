@@ -25,8 +25,9 @@ st.set_page_config(page_title="All Recipes | GastroMiuul", page_icon="🍽️")
 def load_data(url):
     df = pd.read_csv(url)
     return df
-df = load_data("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/other_recipes_detailed.csv")
+#df = load_data("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/other_recipes_detailed.csv")
 # pd.set_option('display.max_rows', 500)
+df = pd.read_csv("malzemeye_gore.csv")
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 1500)
 lowercase = lambda x: str(x).lower()
