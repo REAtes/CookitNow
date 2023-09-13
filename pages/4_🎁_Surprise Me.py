@@ -14,8 +14,8 @@ from streamlit_extras.customize_running import center_running
 
 
 pd.set_option('display.max_columns', None)
-pd.set_option('display.width', 300)
-pd.set_option('display.max_rows', None)
+pd.set_option('display.width', 1500)
+pd.set_option('display.max_rows', 10)
 
 st.set_page_config(page_title="Surprise Me | GastroMiuul", page_icon="🎁")
 
@@ -65,6 +65,10 @@ with stylable_container(
 #bu sayfa için surprise me adında bir csv yaptım. içinde sadece aşağıda kullandığımız
 #kolan isimleri var.
 df_surprise = pd.read_csv("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/surprise.csv")
+# df_surprise[df_surprise["name"].str.contains('VEGETARIAN SW')]
+df_surprise = df_surprise.loc[df_surprise["name"] != "SPICY SWEET ONION RINGS"]
+df_surprise = df_surprise.loc[df_surprise["name"] != "TOTALLY TEMPESTUOUS TATER TOTS"]
+df_surprise = df_surprise.loc[df_surprise["name"] != "VEGETARIAN SWEDISH MEATBALLS"]
 #lowercase = lambda x: str(x).lower()
 df_surprise = df_surprise.applymap(lambda x: str(x).lower())
 df_surprise.columns = [col.lower() for col in df_surprise.columns]

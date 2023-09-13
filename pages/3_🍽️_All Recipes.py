@@ -26,6 +26,13 @@ def load_data(url):
     df = pd.read_csv(url)
     return df
 df = load_data("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/other_recipes_detailed.csv")
+# df[df["name"].str.contains('TOTALLY TEMPESTUOUS')]
+# df[df["name"] == "VEGETARIAN"]
+df = df.loc[df["name"] != "SPICY SWEET ONION RINGS"]
+df = df.loc[df["name"] != "TOTALLY TEMPESTUOUS TATER TOTS"]
+df = df.loc[df["name"] != "VEGETARIAN SWEDISH MEATBALLS"]
+
+
 # pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 1500)
