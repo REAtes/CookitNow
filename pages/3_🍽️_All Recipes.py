@@ -287,7 +287,7 @@ if which_meal == "I don't mind":
 
             if cuisine_y_n == "Yes":
                 cuisine = st.sidebar.selectbox("*You can type*",
-                                                 ['American', 'Crazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole', 'Cuban',
+                                                 ['American', 'Brazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole', 'Cuban',
                                                   'Egyptian', 'English', 'Ethiopian', 'French', 'German', 'Greek', 'Indian',
                                                   'Indonesian', 'Irish', 'Italian', 'Jamaican', 'Japanese', 'Korean', 'Lebanese',
                                                   'Malaysian', 'Mexican', 'Moroccan', 'Nigerian', 'Persian', 'Peruvian', 'Polish',
@@ -438,7 +438,7 @@ if which_meal == "I don't mind":
 
             if cuisine_y_n == "Yes":
                 cuisine = st.sidebar.selectbox("*You can type*",
-                                               ['American', 'Crazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole',
+                                               ['American', 'Brazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole',
                                                 'Cuban',
                                                 'Egyptian', 'English', 'Ethiopian', 'French', 'German', 'Greek', 'Indian',
                                                 'Indonesian', 'Irish', 'Italian', 'Jamaican', 'Japanese', 'Korean',
@@ -600,7 +600,7 @@ else:
 
             if cuisine_y_n == "Yes":
                 cuisine = st.sidebar.selectbox("*You can type*",
-                                                 ['American', 'Crazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole', 'Cuban',
+                                                 ['American', 'Brazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole', 'Cuban',
                                                   'Egyptian', 'English', 'Ethiopian', 'French', 'German', 'Greek', 'Indian',
                                                   'Indonesian', 'Irish', 'Italian', 'Jamaican', 'Japanese', 'Korean', 'Lebanese',
                                                   'Malaysian', 'Mexican', 'Moroccan', 'Nigerian', 'Persian', 'Peruvian', 'Polish',
@@ -751,7 +751,7 @@ else:
 
             if cuisine_y_n == "Yes":
                 cuisine = st.sidebar.selectbox("*You can type*",
-                                               ['American', 'Crazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole',
+                                               ['American', 'Brazilian', 'Caribbean', 'Chilean', 'Chinese', 'Creole',
                                                 'Cuban',
                                                 'Egyptian', 'English', 'Ethiopian', 'French', 'German', 'Greek', 'Indian',
                                                 'Indonesian', 'Irish', 'Italian', 'Jamaican', 'Japanese', 'Korean',
