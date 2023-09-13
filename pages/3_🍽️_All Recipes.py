@@ -22,11 +22,11 @@ st.set_page_config(page_title="All Recipes | GastroMiuul", page_icon="🍽️")
 
 # df = pd.read_csv("C:/Users/remre/PycharmProjects/Tarif_Olusturucu/GastroMiuul/datasets/other_recipes.csv",
 #                  sep="delimiter")
-def load_data(path):
-    df = pd.read_csv(path)
-    return df
+# def load_data(path):
+#     df = pd.read_csv(path)
+#     return df
 
-df = load_data(r".datasets/other_recipes_detailed.csv")
+df = pd.read_csv(r".datasets/other_recipes_detailed.csv")
 # df[df["name"].str.contains('TOTALLY TEMPESTUOUS')]
 # df[df["name"] == "VEGETARIAN"]
 df = df.loc[df["name"] != "SPICY SWEET ONION RINGS"]
