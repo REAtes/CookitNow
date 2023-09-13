@@ -51,7 +51,7 @@ with st.container():
 
 
 # ---- Texts ---- #
-st.write('## The Culinary Journey Begins')
+st.write('# The Culinary Journey Begins')
 
 st.write(
     """
