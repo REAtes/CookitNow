@@ -50,11 +50,10 @@ with sag:
     st.subheader("Zübeyde Er")
     st.write(
         """
-        Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of 
-        typeand scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into 
-        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of 
-        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
-        Page Maker including versions of Lorem Ipsum.
+        Her yıl insan tüketimi için üretilen ve yaklaşık 1 trilyon dolarlık gıdanın yaklaşık üçte biri - yani 3 milyar 
+        insanı beslemek için yeterli olan miktar - israf ediliyor veya kaybediliyor. Gıda israfı, tüketilmeyen gıda 
+        şeklinde su kaynağımızın dörtte birini israf ediyor. Bu, israf edilen su miktarı olarak 172 milyar dolarlık bir 
+        değere eşdeğerdir.
         """)
     i1, l1, i2, l2, i3, l3, i4, l4= st.columns((0.1, 0.2, 0.1, 0.2, 0.1, 0.2, 0.1, 0.2))
     with i1:
