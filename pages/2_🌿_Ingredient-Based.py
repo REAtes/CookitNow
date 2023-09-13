@@ -202,9 +202,9 @@ if kesin_kullanilmali_y_n == "NO":
 
             for a in range(0, 5):
                 st.subheader(f':red[{name[a].upper()}]')
-                # image_url1 = google_image_search(name[a], api_key, cse_id)
-                # print(image_url1)
-                # st.image(image_url1, caption=name[a], use_column_width="auto")
+                image_url1 = google_image_search(name[a], api_key, cse_id)
+                print(image_url1)
+                st.image(image_url1, caption=name[a], use_column_width="auto")
                 tab1, tab2, tab3, tab4 = st.tabs(["Details", "Ingredients", "Recipe", "Missing Ingredients"])
                 with tab1:
                     col1, col2 = st.columns((0.3, 5))
@@ -340,9 +340,9 @@ else:
 
             for a in range(0, 5):
                 st.subheader(f':red[{name[a].upper()}]')
-                # image_url1 = google_image_search(name[a], api_key, cse_id)
-                # print(image_url1)
-                # st.image(image_url1, caption=name[a], use_column_width="auto")
+                image_url1 = google_image_search(name[a], api_key, cse_id)
+                print(image_url1)
+                st.image(image_url1, caption=name[a], use_column_width="auto")
                 tab1, tab2, tab3, tab4 = st.tabs(["Details", "Ingredients", "Recipe", "Missing Ingredients"])
                 with tab1:
                     col1, col2 = st.columns((0.3, 5))

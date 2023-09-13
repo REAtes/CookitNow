@@ -103,9 +103,9 @@ cse_id = "c42eb241a8bb244c0"
 if show_me_recipes:
     for a in random.sample(range(0, len(df_surprise)), 5): #range kısmı df'e göre değişecek
         st.subheader(f':red[{name[a].upper()}]')
-        #image_url1 = google_image_search(name[a], api_key, cse_id)
-        #print(image_url1)
-        #st.image(image_url1, caption=name[a])
+        image_url1 = google_image_search(name[a], api_key, cse_id)
+        print(image_url1)
+        st.image(image_url1, caption=name[a])
         tab1, tab2, tab3 = st.tabs(["Details", "Ingredients", "Recipe"])
         with tab1:
             col1, col2 = st.columns((0.3, 5))
