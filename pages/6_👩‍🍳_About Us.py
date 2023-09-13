@@ -50,7 +50,10 @@ with sag:
     st.subheader("Zübeyde Er")
     st.write(
         """
-        I am a Warehouse Manager. I completed my bachelor and master studies in Physics at Namik Kemal University. I have always been interested in data science and aimed to obtain accurate information by playing with data. By expanding my curiosity with Machine Learning, I continue my journey in the field of Data Science, where I get different excitement at every step.
+        I am a Warehouse Manager. I completed my bachelor and master studies in Physics at Namik Kemal University. 
+        I have always been interested in data science and aimed to obtain accurate information by playing with data. 
+        By expanding my curiosity with Machine Learning, I continue my journey in the field of Data Science, where I 
+        get different excitement at every step.
         """)
     i1, l1, i2, l2, i3, l3, i4, l4= st.columns((0.1, 0.2, 0.1, 0.2, 0.1, 0.2, 0.1, 0.2))
     with i1:
