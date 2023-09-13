@@ -849,6 +849,7 @@ def urun_getir(df, adet=20):
         st.write("##")
 
 
+
 if tarifler_gelsin:
     if which_meal == "Please choose":
         st.write("Please choose a meal on the sidebar 👈")
