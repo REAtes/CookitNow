@@ -26,11 +26,7 @@ def load_data(path):
     df = pd.read_csv(path)
     return df
 
-
-file_path = os.path.join("datasets", "other_recipes_detailed.csv")
-print(file_path)
-
-df = load_data(file_path)
+df = load_data(r".datasets/other_recipes_detailed.csv")
 # df[df["name"].str.contains('TOTALLY TEMPESTUOUS')]
 # df[df["name"] == "VEGETARIAN"]
 df = df.loc[df["name"] != "SPICY SWEET ONION RINGS"]
