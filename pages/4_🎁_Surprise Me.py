@@ -64,9 +64,8 @@ with stylable_container(
 
 #bu sayfa için surprise me adında bir csv yaptım. içinde sadece aşağıda kullandığımız
 #kolan isimleri var.
-#df_surprise = pd.read_csv("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/surprise.csv")
+df_surprise = pd.read_csv("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/surprise.csv")
 #lowercase = lambda x: str(x).lower()
-df_surprise = pd.read_csv("surprise_me.csv")
 df_surprise = df_surprise.applymap(lambda x: str(x).lower())
 df_surprise.columns = [col.lower() for col in df_surprise.columns]
 #df.rename(lowercase, axis='columns', inplace=True)
