@@ -10,7 +10,6 @@ from streamlit_card import card
 from streamlit_extras.stylable_container import stylable_container
 from googleapiclient.discovery import build
 import random
-from streamlit_extras.customize_running import center_running
 
 
 pd.set_option('display.max_columns', None)
