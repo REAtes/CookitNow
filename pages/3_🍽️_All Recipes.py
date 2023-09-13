@@ -790,14 +790,14 @@ with stylable_container(
 ):
     tarifler_gelsin = st.button("**Show Me Recipes**")
 
-#ürün görselleri için fonk ve api keys
-#def google_image_search(query, api_key, cse_id, num=1):
-#    service = build("customsearch", "v1", developerKey=api_key)
-#    res = service.cse().list(q=query, cx=cse_id, searchType='image', num=num).execute()
-#    return res['items'][0]['link']
+# ürün görselleri için fonk ve api keys
+def google_image_search(query, api_key, cse_id, num=1):
+   service = build("customsearch", "v1", developerKey=api_key)
+   res = service.cse().list(q=query, cx=cse_id, searchType='image', num=num).execute()
+   return res['items'][0]['link']
 
-#api_key = "AIzaSyDld5RyAGvlO3KNzHLP3R2CCZV_Uz8cYbg"
-#cse_id = "c42eb241a8bb244c0"
+api_key = "AIzaSyDld5RyAGvlO3KNzHLP3R2CCZV_Uz8cYbg"
+cse_id = "c42eb241a8bb244c0"
 
 
 def urun_getir(df, adet=20):
