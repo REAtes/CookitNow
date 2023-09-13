@@ -153,12 +153,12 @@ st.subheader("Share your ingredients, and let us inspire you with recipes tailor
 st.write("Now, can you please type the ingredients that you really want to use? What products do you have?")
 
 secenek = ["NO", "YES"]
-kesin_kullanilmali_y_n = st.radio("If you have products that you **absolutely want to use** or **products that are close to their expiration date**, please click on the 'YES' option and enter those items in the first box.", secenek)
+kesin_kullanilmali_y_n = st.radio("If you have products that you **absolutely want to use** or **products that are close to their expiration date**, please click on '**YES**' option and enter those items in the first box.", secenek)
 
 # input1 = ["beef", "carrot", "onion", "potato"]
 
-if kesin_kullanilmali_y_n == "No":
-    input1 = st.multiselect('', sorted_ingredients, placeholder="The products you definitely want to use", key=1)
+if kesin_kullanilmali_y_n == "NO":
+    input1 = st.multiselect('', sorted_ingredients, placeholder="Please type here what you have...", key=1)
     st.write("##")
     with stylable_container(
             key="white_button",
