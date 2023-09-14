@@ -328,12 +328,12 @@ else:
             allergen = recommended_recipes2["because_of_allergen"].tolist()
             calories = recommended_recipes2["calories"].tolist()
             carbon = recommended_recipes2["carbon_emission"].tolist()
+            input3 = input1 + input2
             recommended_recipes2['missing ingredients'] = recommended_recipes2['ingredients']. \
-                apply(lambda x: [ingredient for ingredient in x.split(', ') if ingredient not in input1])
+                apply(lambda x: [ingredient for ingredient in x.split(', ') if ingredient not in input3])
             missing_ingredients = recommended_recipes2['missing ingredients'] = recommended_recipes2[
                 'missing ingredients'].apply(
                 lambda x: ', '.join(x)).tolist()
-            input3 = input1 + input2
             eksik_malzeme = recommended_recipes2['ingredients']. \
                 apply(lambda x: [ingredient for ingredient in x.split(', ') if ingredient not in input3])
 
