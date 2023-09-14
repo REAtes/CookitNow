@@ -16,11 +16,14 @@ with st.container():
         st.subheader("Ayça Madenci")
         st.write(
             """
-            Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of 
-            typeand scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into 
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of 
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
-            Page Maker including versions of Lorem Ipsum.
+            Ayça Maden serves as an Assistant Professor at Beykent University. Since 2014, she has been involved in 
+            administrative and academic work at various universities. Her main goal is to become a leading researcher 
+            and an effective educator in her field. She completed her PhD in Industrial Engineering at Galatasaray 
+            University, with a thesis titled "Evaluation of Blockchain Technology for Process Improvements in Supply 
+            Chains Using Fuzzy QFD. 
+            Some of Ayça Maden's publications include topics such as the evaluation of metaverse characteristics using
+            scenario-based Fuzzy Cognitive Map, influential factor analysis for cloud computing technology service 
+            providers, and she also has experience teaching various subjects.
             """)
         i1, l1, i2, l2, i3, l3 = st.columns((0.1, 0.2, 0.1, 0.2, 0.1, 0.2))
         with i1:
@@ -90,11 +93,12 @@ with st.container():
         st.subheader("Burak Sevim")
         st.write(
             """
-            Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of 
-            typeand scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into 
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of 
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
-            Page Maker including versions of Lorem Ipsum.
+            I'm an industrial engineer with 15 years' experience, focusing on public transportation planning, operations
+            management, and optimization. After 13 years in various roles in Istanbul, a complex city for public 
+            transportation, I've spent the past year in senior management overseeing public transportation in Mecca, 
+            Saudi Arabia. Currently, I'm dedicated to data science, analyzing our vast operational data to predict 
+            trends and develop algorithms for more efficient public transportation. I'm also working on my doctoral 
+            research, which includes creating such an algorithm.
             """)
         i1, l1, i2, l2, i3, l3 = st.columns((0.1, 0.2, 0.1, 0.2, 0.1, 0.2))
         with i1:
