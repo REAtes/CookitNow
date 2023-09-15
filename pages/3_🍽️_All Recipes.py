@@ -805,8 +805,9 @@ def google_image_search(query, api_key, cse_id, num=1):
    res = service.cse().list(q=query, cx=cse_id, searchType='image', num=num).execute()
    return res['items'][0]['link']
 
-api_key = "AIzaSyDld5RyAGvlO3KNzHLP3R2CCZV_Uz8cYbg"
-cse_id = "c42eb241a8bb244c0"
+# api_key =  # get your own api_key if you want to show the recipes pictures
+# cse_id =  # get your own cse_id if you want to show the recipes pictures
+
 
 
 def urun_getir(df, adet=20):
@@ -830,9 +831,10 @@ def urun_getir(df, adet=20):
 
     for a in range(adet):
         st.subheader(f':red[{name[a].upper()}]')
-        image_url1 = google_image_search(name[a], api_key, cse_id)
-        print(image_url1)
-        st.image(image_url1, caption=name[a])
+        # # if you have "api_key, cse_id" you can type them here:
+        # image_url1 = google_image_search(name[a], api_key, cse_id)
+        # print(image_url1)
+        # st.image(image_url1, caption=name[a])
         tab1, tab2, tab3 = st.tabs(["Details", "Ingredients", "Recipe"])
         with tab1:
             col1, col2 = st.columns((0.3, 5))
@@ -869,28 +871,6 @@ if tarifler_gelsin:
     else:
         with st.container():
             urun_getir(favori_yemek_df, adet=5)
-
-
-
-
-#------Görsel ekleme------#
-#from googleapiclient.discovery import build
-#def google_image_search(query, api_key, cse_id, num=1):
-#    service = build("customsearch", "v1", developerKey=api_key)
-#    res = service.cse().list(q=query, cx=cse_id, searchType='image', num=num).execute()
-#    return res['items'][0]['link']
-
-# Google search için api ve cse id'lerim.
-#api_key = "AIzaSyDld5RyAGvlO3KNzHLP3R2CCZV_Uz8cYbg"
-#cse_id = "c42eb241a8bb244c0"
-#buraya seçilen yemeğin ismi gelecek
-#query = "kuru fasülye"
-#Fonksiyon görselin url'sini çekiyor..
-#image_url1 = google_image_search(query1, api_key, cse_id)
-#print(image_url1)
-
-# st.image(image_url1, caption=query1)
-
 
 
 
