@@ -17,18 +17,6 @@ st.set_page_config(page_title="GastroMiuul - In Pursuit of a More Sustainable Wo
 # ---- Load Data ----
 
 @st.cache_data  # 👈 Add the caching decorator
-#def load_data(url):
-#   df = pd.read_excel(url)
-#   return df
-
-
-# df = load_data("C:/Users/remre/PycharmProjects/Tarif_Olusturucu/GastroMiuul/datasets/dataframe_060923.xlsx")
-# lowercase = lambda x: str(x).lower()
-# df.rename(lowercase, axis='columns', inplace=True)
-# pd.set_option('display.max_columns', None)
-# pd.set_option('display.max_rows', 500)
-# pd.set_option('display.width', 1500)
-
 
 
 # ---- Main Page Gif ----
@@ -127,54 +115,3 @@ st.write(
     With GastroMiuul, infuse meaning into your kitchen, make a difference in sustainability, and embark on a flavorful 
     culinary adventure. Take the first step towards your cooking purpose today!
     """)
-#
-# # ---- Buttons ---- #
-# with st.container():
-#     col1, col2, col3 = st.columns((1, 4, 1))
-#     with col2:
-#         with st.container():
-#             sol_col, sag_col = st.columns(2)
-#             with sol_col:
-#                 with stylable_container(
-#                         key="red_button",
-#                         css_styles="""
-#                         button {
-#                             background-color: #FFBC42;
-#                             color: green;
-#                             border-radius: 5px;
-#                         }
-#                         """,
-#                 ):
-#                     malzemeye_gore = st.button("**Tell Me What Do You Have**")
-#                     if malzemeye_gore:
-#                         switch_page("Ingredient-Based")
-#         with st.container():
-#             sol_col, sag_col = st.columns(2)
-#             with sol_col:
-#                 with stylable_container(
-#                         key="yellow_button",
-#                         css_styles="""
-#                                 button {
-#                                     background-color: #FFBC42;
-#                                     color: #FFFFFF;
-#                                     border-radius: 5px;
-#                                 }
-#                                 """,
-#                 ):
-#                     diger = st.button("**All Recipes**")
-#                     if diger:
-#                         switch_page("All Recipes")
-#             with sag_col:
-#                 with stylable_container(
-#                         key="yellow_button",
-#                         css_styles="""
-#                                 button {
-#                                     background-color: #FFBC42;
-#                                     color: #FFFFFF;
-#                                     border-radius: 5px;
-#                                 }
-#                                 """,
-#                 ):
-#                     diger = st.button("**Surprise Me!**")
-#                     if diger:
-#                         switch_page("Surprise Me")
