@@ -13,7 +13,7 @@ with st.container():
         st.write("##")
         st.image("Görseller_Streamlit/chiefs/ayca_maden.jpg")
     with sag:
-        st.subheader("Ayça Madenci")
+        st.subheader("Ayça Maden")
         st.write(
             """
             Ayça Maden serves as an Assistant Professor at Beykent University. Since 2014, she has been involved in 
