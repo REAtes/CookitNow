@@ -29,7 +29,7 @@ def load_lottieurl(url):
 
 
 # ---- Gif ---- #
-lottie_coding = load_lottieurl("https://lottie.host/53a4d2ce-e9fd-48e7-bd10-688f975eb3c5/imx9F1N56R.json")
+lottie_coding = load_lottieurl("https://lottie.host/e0d42b11-4946-49b5-9a81-81668287d921/HRxgsl3GLT.json")
 
 with st.container():
     col1, col2, col3 = st.columns((1, 4, 1))
