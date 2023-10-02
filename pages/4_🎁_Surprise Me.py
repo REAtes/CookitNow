@@ -63,7 +63,7 @@ with stylable_container(
 
 #bu sayfa için surprise me adında bir csv yaptım. içinde sadece aşağıda kullandığımız
 #kolan isimleri var.
-df_surprise = pd.read_csv("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/datasets/surprise.csv")
+df_surprise = pd.read_csv("DF/surprise.csv")
 # df_surprise[df_surprise["name"].str.contains('VEGETARIAN SW')]
 df_surprise = df_surprise.loc[df_surprise["name"] != "SPICY SWEET ONION RINGS"]
 df_surprise = df_surprise.loc[df_surprise["name"] != "TOTALLY TEMPESTUOUS TATER TOTS"]
