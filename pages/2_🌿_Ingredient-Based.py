@@ -84,7 +84,7 @@ def food_recipes_recommender_only(dataframe, colname, inputs):
     row_sum = np.sum(cosine_sim_df, axis=1)
     row_sum_dataframe = pd.DataFrame(row_sum, columns=["scores"])
     # score'u yüksek ilk 5 indexi seç
-    top_5_index = row_sum_dataframe.sort_values("scores", ascending=False)[0:5].index
+    top_5_index = row_sum_dataframe.sort_values("scores", ascending=False)[0:10].index
     recommended_recipes = dataframe.iloc[top_5_index].sort_values("calories")
     return recommended_recipes, cosine_sim_df
 
@@ -103,7 +103,7 @@ def food_recipes_recommender(dataframe, colname, inputs):
     row_sum = np.sum(cosine_sim, axis=1)
     row_sum_dataframe = pd.DataFrame(row_sum, columns=["scores"])
     # score'u yüksek ilk 5 indexi seç
-    top_5_index = row_sum_dataframe.sort_values("scores", ascending=False)[0:5].index
+    top_5_index = row_sum_dataframe.sort_values("scores", ascending=False)[0:10].index
     recommended_recipes = dataframe.iloc[top_5_index].sort_values("calories")
     return recommended_recipes, cosine_sim
 
