@@ -197,7 +197,7 @@ if kesin_kullanilmali_y_n == "NO":
             # karsilastirmasi yapacagiz
             search_term_id = recommended_recipes1["search_term_id"].tolist()
 
-            for a in range(0, 5):
+            for a in range(0, 10):
                 st.subheader(f':red[{name[a].upper()}]')
                 # if you have "api_key, cse_id" you can type them here:
                 # image_url1 = google_image_search(name[a], api_key, cse_id)
@@ -336,7 +336,7 @@ else:
             # (BS)
             search_term_id = recommended_recipes2["search_term_id"].tolist()
 
-            for a in range(0, 5):
+            for a in range(0, 10):
                 st.subheader(f':red[{name[a].upper()}]')
 
                 # if you have "api_key, cse_id" you can type them here:
