@@ -1,6 +1,6 @@
 # GastroMiuul - In Pursuit of a More Sustainable World
 
-![GastroMiuul Logo](https://lottie.host/53a4d2ce-e9fd-48e7-bd10-688f975eb3c5/imx9F1N56R.json)
+![GastroMiuul Logo](https://github.com/REAtes/GastroMiuul/blob/main/G%C3%B6rseller_Streamlit/diger/main_page.jpg)
 
 GastroMiuul is here to add purpose to your culinary journey! We're redefining your cooking experience with three distinct services:
 
