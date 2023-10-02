@@ -24,12 +24,12 @@ def load_data(url):
 
 
 # ---- Data ---- #
-df = load_data("GastroMiuul/ib4.csv")
-# df[df["NAME"].str.contains('SPICY SWEET ')]
-# df[df["NAME"] == "VEGETARIAN SWEDISH MEATBALLS"]
-# df = df.loc[df["NAME"] != "SPICY SWEET ONION RINGS"]
-# df = df.loc[df["NAME"] != "TOTALLY TEMPESTUOUS TATER TOTS"]
-# df = df.loc[df["NAME"] != "VEGETARIAN SWEDISH MEATBALLS"]
+df = load_data("C:/Users/remre/OneDrive/Belgeler/GitHub/test/GastroMiuul/ib4.csv")
+df[df["NAME"].str.contains('SPICY SWEET ')]
+df[df["NAME"] == "VEGETARIAN SWEDISH MEATBALLS"]
+df = df.loc[df["NAME"] != "SPICY SWEET ONION RINGS"]
+df = df.loc[df["NAME"] != "TOTALLY TEMPESTUOUS TATER TOTS"]
+df = df.loc[df["NAME"] != "VEGETARIAN SWEDISH MEATBALLS"]
 
 
 pd.set_option('display.max_columns', None)
