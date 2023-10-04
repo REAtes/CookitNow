@@ -868,10 +868,10 @@ if tarifler_gelsin:
         st.write("Please choose a style on the sidebar 👈")
     elif diet_y_n == "Yes":
         with st.container():
-            urun_getir(favori_diet_df, adet=5)
+            urun_getir(favori_diet_df, adet=15)
     else:
         with st.container():
-            urun_getir(favori_yemek_df, adet=5)
+            urun_getir(favori_yemek_df, adet=15)
 
 
 
