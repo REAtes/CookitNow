@@ -765,7 +765,7 @@ else:
 
             # ---- Or, would you like to choose a diet? ---- #
 
-st.sidebar.write("When you finish your filtering, please click on SHOW ME RECIPES on the main page, then see the dishes")
+st.sidebar.write("When you finish your filtering, please click on **`Show Me Recipes`** on the main page, then see the dishes")
 
 
 
