@@ -11,7 +11,7 @@ from streamlit_extras.stylable_container import stylable_container
 from googleapiclient.discovery import build
 
 
-st.set_page_config(page_title="All Recipes | GastroMiuul", page_icon="🍽️")
+st.set_page_config(page_title="All Recipes | CookitNow", page_icon="🍽️")
 
 
 @st.cache_data  # 👈 Add the caching decorator

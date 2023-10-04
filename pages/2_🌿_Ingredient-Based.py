@@ -14,7 +14,7 @@ from googleapiclient.discovery import build
 
 
 
-st.set_page_config(page_title="Ingredient-Based  | GastroMiuul", page_icon="🌿")
+st.set_page_config(page_title="Ingredient-Based | CookitNow", page_icon="🌿")
 
 
 @st.cache_data  # 👈 Add the caching decorator

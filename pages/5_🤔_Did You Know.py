@@ -6,7 +6,7 @@ from streamlit_option_menu import option_menu
 from streamlit_extras.metric_cards import style_metric_cards
 
 
-st.set_page_config(page_title="Did You Know This | GastroMiuul", page_icon="🤔")
+st.set_page_config(page_title="Did You Know This | CookitNow", page_icon="🤔")
 
 col1, col2, col3= st.columns(3)
 with col2:

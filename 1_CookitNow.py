@@ -12,7 +12,7 @@ from streamlit_extras.stylable_container import stylable_container
 
 
 
-st.set_page_config(page_title="GastroMiuul - In Pursuit of a More Sustainable World", page_icon="🍽")
+st.set_page_config(page_title="CookitNow - In Pursuit of a More Sustainable World", page_icon="🍽")
 
 # ---- Load Data ----
 
@@ -34,7 +34,7 @@ lottie_coding = load_lottieurl("https://lottie.host/e0d42b11-4946-49b5-9a81-8166
 with st.container():
     col1, col2, col3 = st.columns((1, 4, 1))
     with col2:
-        st.write('# Gastr🍽Miuul')
+        st.write('# CookitN🍽w')
         st_lottie(lottie_coding)
 
 
@@ -43,7 +43,7 @@ st.write('# The Culinary Journey Begins')
 
 st.write(
     """
-    GastroMiuul is here to add purpose to your culinary journey! We're redefining your cooking experience with 
+    CookitNow is here to add purpose to your culinary journey! We're redefining your cooking experience with 
     three distinct services:
     """)
 st.write("##")
@@ -112,6 +112,6 @@ with stylable_container(
         switch_page("Surprise Me")
 st.write(
     """
-    With GastroMiuul, infuse meaning into your kitchen, make a difference in sustainability, and embark on a flavorful 
+    With CookitNow, infuse meaning into your kitchen, make a difference in sustainability, and embark on a flavorful 
     culinary adventure. Take the first step towards your cooking purpose today!
     """)

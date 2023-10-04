@@ -6,7 +6,7 @@ from streamlit_lottie import st_lottie
 from streamlit_option_menu import option_menu
 from streamlit_extras.switch_page_button import switch_page
 
-st.set_page_config(page_title="Contact | GastroMiuul", page_icon="📬")
+st.set_page_config(page_title="Contact | CookitNow", page_icon="📬")
 
 def load_lottieurl(url):
     r = requests.get(url)

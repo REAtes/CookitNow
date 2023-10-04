@@ -16,7 +16,7 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 1500)
 pd.set_option('display.max_rows', 10)
 
-st.set_page_config(page_title="Surprise Me | GastroMiuul", page_icon="🎁")
+st.set_page_config(page_title="Surprise Me | CookitNow", page_icon="🎁")
 
 
 # ---- Main Screen  ---- #

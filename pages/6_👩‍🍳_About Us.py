@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="About Us | GastroMiuul", page_icon="👩‍🍳")
+st.set_page_config(page_title="About Us | CookitNow", page_icon="👩‍🍳")
 
 st.title("Who Are The Culinary Chiefs Behind This Journey?")
 st.write("##")
