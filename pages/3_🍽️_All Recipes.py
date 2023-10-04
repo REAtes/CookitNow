@@ -765,7 +765,7 @@ else:
 
             # ---- Or, would you like to choose a diet? ---- #
 
-st.sidebar.write("When you finish your filtering, please click on **`Show Me Recipes`** on the main page, then see the dishes")
+st.sidebar.write("After you filter, please click on **`Show Me Recipes`** on the main page, then see the dishes")
 
 
 
@@ -786,7 +786,7 @@ col1, col2, col3 = st.columns((1,3,1))
 with col2:
     st_lottie(diger)
 st.subheader("Where would you like to start your culinary journey today?")
-st.write("Please use the filters on the sidebar 👈 then see the recipes.")
+st.write("Please use the filters on the sidebar 👈 to view the recipes.")
 
 with stylable_container(
         key="yellow_button",
