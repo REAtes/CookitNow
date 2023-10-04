@@ -10,18 +10,18 @@ It's time to reduce food waste and embrace sustainable kitchen habits worldwide.
 
 Join us in preventing food waste **sustainably** in the kitchen.
 
-➡[**Tell Me What Do You Have**](https://gastromiuul.streamlit.app/Ingredient-Based)
+➡[**Tell Me What Do You Have**](https://cookitnow.streamlit.app/Ingredient-Based)
 
 ## Creative Recipes 🍽️
 
 For those who love to cook or want to explore new recipes, we offer 16 different diet options, 18 different cuisine types, and flavors from 32 different countries. Plus, we provide various filters to help you decide what to cook, what ingredients to use, and even how to prepare your meal.
 
-➡[**All Recipes**](https://gastromiuul.streamlit.app/All_Recipes)
+➡[**All Recipes**](https://cookitnow.streamlit.app/All_Recipes)
 
 ## Surprise Me 🎁️
 
 For those who say, "Let it be a surprise!" We've got you covered! This feature offers you a surprise recipe based on the ingredients you love to experiment with. Try it out to discover a new flavor every day.
 
-➡[**Surprise Me!**](https://gastromiuul.streamlit.app/Surprise_Me)
+➡[**Surprise Me!**](https://cookitnow.streamlit.app/Surprise_Me)
 
 With CookitNow, infuse meaning into your kitchen, make a difference in sustainability, and embark on a flavorful culinary adventure. Take the first step towards your cooking purpose today!
