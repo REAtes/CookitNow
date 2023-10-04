@@ -1,8 +1,8 @@
-# CookItNow - In Pursuit of a More Sustainable World
+# CookitN🍽️w - In Pursuit of a More Sustainable World
 
-![CookItNow Logo](https://github.com/REAtes/GastroMiuul/blob/main/G%C3%B6rseller_Streamlit/diger/main_page.jpg)
+![CookitNow Logo](https://github.com/REAtes/GastroMiuul/blob/main/G%C3%B6rseller_Streamlit/diger/main_page.jpg)
 
-CookItNow is here to add purpose to your culinary journey! We're redefining your cooking experience with three distinct services:
+CookitNow is here to add purpose to your culinary journey! We're redefining your cooking experience with three distinct services:
 
 ## Sustainability Journey 🌿
 
@@ -24,4 +24,4 @@ For those who say, "Let it be a surprise!" We've got you covered! This feature o
 
 ➡[**Surprise Me!**](https://gastromiuul.streamlit.app/Surprise_Me)
 
-With CookItNow, infuse meaning into your kitchen, make a difference in sustainability, and embark on a flavorful culinary adventure. Take the first step towards your cooking purpose today!
+With CookitNow, infuse meaning into your kitchen, make a difference in sustainability, and embark on a flavorful culinary adventure. Take the first step towards your cooking purpose today!
