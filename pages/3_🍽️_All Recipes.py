@@ -30,9 +30,9 @@ def load_data(path):
 df = load_data("DF/other_recipes_detailed.csv")
 # df[df["name"].str.contains('TOTALLY TEMPESTUOUS')]
 # df[df["name"] == "VEGETARIAN"]
-df = df.loc[df["name"] != "SPICY SWEET ONION RINGS"]
-df = df.loc[df["name"] != "TOTALLY TEMPESTUOUS TATER TOTS"]
-df = df.loc[df["name"] != "VEGETARIAN SWEDISH MEATBALLS"]
+# df = df.loc[df["name"] != "SPICY SWEET ONION RINGS"]
+# df = df.loc[df["name"] != "TOTALLY TEMPESTUOUS TATER TOTS"]
+# df = df.loc[df["name"] != "VEGETARIAN SWEDISH MEATBALLS"]
 
 
 # pd.set_option('display.max_rows', 500)
