@@ -143,8 +143,8 @@ lottie_coding2 = load_lottieurl("https://lottie.host/cc7f103d-8c61-410d-b2c3-dd1
 st.write("# Be Proud of Preventing Product Waste!")
 
 col1, col2, col3 = st.columns((1, 4, 1))
-with col2:
-    st_lottie(lottie_coding2)
+# with col2:
+st_lottie(lottie_coding2)
 
 st.subheader("Share your ingredients, and let us inspire you with recipes tailored just for you!")
 st.write("Now, can you please type the ingredients that you really want to use? What products do you have?")
